@@ -28,3 +28,5 @@ RUN wget --progress=dot:mega https://github.com/gcc-mirror/gcc/archive/gcc-7_4_0
 # set env
 COPY bashrc /root/.bashrc
 
+# labels
+LABEL maintainer="wangyoucao577@gmail.com"
