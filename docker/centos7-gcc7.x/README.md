@@ -18,6 +18,12 @@ docker build -t wangyoucao577/centos7-gcc7.4 .
 - `git-2.x`    
 - `cmake-3.14.1`
 
+## Pull Image from DockerHub
+[DockerHub Repo: wangyoucao577/centos7-gcc7.4](https://hub.docker.com/r/wangyoucao577/centos7-gcc7.4)    
+```bash
+docker pull wangyoucao577/centos7-gcc7.4
+```
+
 ## Author
 wangyoucao577@gmail.com
 
