@@ -13,12 +13,12 @@ RUN wget --progress=dot:mega https://github.com/gcc-mirror/gcc/archive/gcc-7_4_0
   ./contrib/download_prerequisites && \
   mkdir build && \
   cd build && \
-  ../configure --prefix=/ --disable-multilib --enable-languages=c,c++ --enable-checking=release --disable-multilib --with-system-zlib && \
+  ../configure --prefix=/usr/local/gcc-7_4_0/ --disable-multilib --enable-languages=c,c++ --enable-checking=release --disable-multilib --with-system-zlib && \
   make -j && \
   yum remove -y gcc && \ 
   make install-strip && \
   cd / && \
   rm -rf gcc-gcc-7_4_0-release gcc-7_4_0-release.tar.gz
 
-  
+COPY bashrc /root/.bashrc
 

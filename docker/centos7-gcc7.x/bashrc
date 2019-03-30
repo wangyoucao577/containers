@@ -1,0 +1,7 @@
+
+GCC_HOME=/usr/local/gcc-7_4_0
+
+export PATH=${GCC_HOME}/bin/:$PATH
+export CPATH=${GCC_HOME}/include/:$CPATH
+export LIBRARY_PATH=${GCC_HOME}/lib64/:${GCC_HOME}/lib/:$LIBRARY_PATH
+export LD_LIBRARY_PATH=${GCC_HOME}/lib64/:${GCC_HOME}/lib/:$LD_LIBRARY_PATH
