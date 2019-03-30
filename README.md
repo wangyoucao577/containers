@@ -6,4 +6,4 @@ Container images and orchestration, i.e. [docker](https://docs.docker.com/), [ku
 
 ### centos7-gcc7.x
 Docker image based on `CentOS7`, installed `gcc-7.4.0` compiler and running libraries(`libstdc++`, etc.).    
-See details in [docker/centos7-gcc7.x](./docker/centos7-gcc7.x/README.md).    
+See details in [docker/centos7-gcc7.x](./docker/centos7-gcc7.x/).    
