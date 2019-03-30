@@ -1,6 +1,9 @@
 
 FROM centos:7
 
+# alternatively `-j` to enable parallel compile
+ARG MAKE_EXTRA_ARGS=
+
 RUN yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && \
   yum update -y && \
   yum groupinstall -y "Development Tools" && \
@@ -19,7 +22,7 @@ RUN wget --progress=dot:mega https://github.com/gcc-mirror/gcc/archive/gcc-7_4_0
   mkdir build && \
   cd build && \
   ../configure --prefix=/usr/local/gcc-7_4_0/ --disable-multilib --enable-languages=c,c++ --enable-checking=release --with-system-zlib && \
-  make && \
+  make ${MAKE_EXTRA_ARGS} && \
   yum remove -y gcc && \ 
   make install-strip && \
   cd / && \
