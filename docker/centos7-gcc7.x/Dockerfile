@@ -19,7 +19,7 @@ RUN wget --progress=dot:mega https://github.com/gcc-mirror/gcc/archive/gcc-7_4_0
   mkdir build && \
   cd build && \
   ../configure --prefix=/usr/local/gcc-7_4_0/ --disable-multilib --enable-languages=c,c++ --enable-checking=release --with-system-zlib && \
-  make -j && \
+  make && \
   yum remove -y gcc && \ 
   make install-strip && \
   cd / && \
