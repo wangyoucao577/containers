@@ -32,7 +32,13 @@ RUN wget --progress=dot:mega https://github.com/Kitware/CMake/releases/download/
   rm -rf cmake-3.14.1-Linux-x86_64.tar.gz
 
 # set env
-COPY bashrc /root/.bashrc
+ENV GCC_HOME=/usr/local/gcc-7_4_0
+ENV CMAKE_HOME=/usr/local/cmake-3.14.1-Linux-x86_64
+ENV PATH=${GCC_HOME}/bin/:${CMAKE_HOME}/bin/:$PATH
+ENV CPATH=${GCC_HOME}/include/:$CPATH
+ENV LIBRARY_PATH=${GCC_HOME}/lib64/:${GCC_HOME}/lib/:$LIBRARY_PATH
+ENV LD_LIBRARY_PATH=${GCC_HOME}/lib64/:${GCC_HOME}/lib/:$LD_LIBRARY_PATH
+
 
 # labels
 LABEL maintainer="wangyoucao577@gmail.com"
