@@ -25,6 +25,12 @@ RUN wget --progress=dot:mega https://github.com/gcc-mirror/gcc/archive/gcc-7_4_0
   cd / && \
   rm -rf gcc-gcc-7_4_0-release gcc-7_4_0-release.tar.gz
 
+# install cmake3
+RUN wget --progress=dot:mega https://github.com/Kitware/CMake/releases/download/v3.14.1/cmake-3.14.1-Linux-x86_64.tar.gz && \
+  tar -zxf cmake-3.14.1-Linux-x86_64.tar.gz && \
+  mv cmake-3.14.1-Linux-x86_64 /usr/local/ && \
+  rm -rf cmake-3.14.1-Linux-x86_64.tar.gz
+
 # set env
 COPY bashrc /root/.bashrc
 
