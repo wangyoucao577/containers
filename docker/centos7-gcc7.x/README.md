@@ -2,6 +2,8 @@
 Docker image based on `CentOS7`, installed `gcc-7.4.0` compiler and running libraries(`libstdc++`, etc.).    
 
 ## Build Image
+- [Dockerfile](./Dockerfile)
+
 ```bash
 $ cd docker/centos7-gcc7.x
 
