@@ -7,7 +7,13 @@ ARG MAKE_EXTRA_ARGS=
 RUN yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && \
   yum update -y && \
   yum groupinstall -y "Development Tools" && \
-  yum install -y wget vim zlib-devel
+  yum install -y \
+    wget \
+    vim \
+    libtool \
+    zlib-devel \
+    libevent-devel \
+    openssl-devel
 
 # install git 2.x
 RUN yum remove -y git && \
