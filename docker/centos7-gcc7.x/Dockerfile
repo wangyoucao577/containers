@@ -10,7 +10,6 @@ RUN yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.n
   yum install -y \
     wget \
     vim \
-    libtool \
     zlib-devel \
     libevent-devel \
     openssl-devel
@@ -39,6 +38,16 @@ RUN wget --progress=dot:mega https://github.com/Kitware/CMake/releases/download/
   tar -zxf cmake-3.14.1-Linux-x86_64.tar.gz && \
   mv cmake-3.14.1-Linux-x86_64 /usr/local/ && \
   rm -f cmake-3.14.1-Linux-x86_64.tar.gz
+
+# install libtool by source
+RUN wget --progress=dot:mega http://ftpmirror.gnu.org/libtool/libtool-2.4.6.tar.gz && \
+  tar -zxf libtool-2.4.6.tar.gz && \
+  cd libtool-2.4.6 && \
+  ./configure && \
+  make ${MAKE_EXTRA_ARGS} && \
+  make install && \
+  cd .. && \
+  rm -rf libtool-2.4.6 libtool-2.4.6.tar.gz
 
 # install go
 RUN wget --progress=dot:mega https://dl.google.com/go/go1.12.5.linux-amd64.tar.gz && \
