@@ -55,6 +55,28 @@ RUN wget --progress=dot:mega https://dl.google.com/go/go1.12.5.linux-amd64.tar.g
   mv go /usr/local/ && \
   rm -f go1.12.5.linux-amd64.tar.gz
 
+# install python2.7
+RUN wget --progress=dot:mega https://www.python.org/ftp/python/2.7.16/Python-2.7.16.tgz && \
+  tar -zxf Python-2.7.16.tgz && \
+  cd Python-2.7.16 && \
+  ./configure --enable-optimizations  --prefix=/usr/local && \
+  make ${MAKE_EXTRA_ARGS} && \
+  make install && \
+  curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
+  python get-pip.py && \
+  cd .. && \
+  rm -rf Python-2.7.16 Python-2.7.16.tgz
+
+# install python3
+RUN wget --progress=dot:mega https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tgz && \
+  tar -zxf Python-3.7.3.tgz && \
+  cd Python-3.7.3 && \
+  ./configure --enable-optimizations  --prefix=/usr/local && \
+  make ${MAKE_EXTRA_ARGS} && \
+  make install && \
+  cd .. && \
+  rm -rf Python-3.7.3 Python-3.7.3.tgz
+
 # set env
 ENV GCC_HOME=/usr/local/gcc-7_4_0
 ENV CMAKE_HOME=/usr/local/cmake-3.14.1-Linux-x86_64
