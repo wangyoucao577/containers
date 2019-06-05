@@ -38,15 +38,22 @@ RUN wget --progress=dot:mega https://github.com/gcc-mirror/gcc/archive/gcc-7_4_0
 RUN wget --progress=dot:mega https://github.com/Kitware/CMake/releases/download/v3.14.1/cmake-3.14.1-Linux-x86_64.tar.gz && \
   tar -zxf cmake-3.14.1-Linux-x86_64.tar.gz && \
   mv cmake-3.14.1-Linux-x86_64 /usr/local/ && \
-  rm -rf cmake-3.14.1-Linux-x86_64.tar.gz
+  rm -f cmake-3.14.1-Linux-x86_64.tar.gz
+
+# install go
+RUN wget --progress=dot:mega https://dl.google.com/go/go1.12.5.linux-amd64.tar.gz && \
+  tar -zxf go1.12.5.linux-amd64.tar.gz && \
+  mv go /usr/local/ && \
+  rm -f go1.12.5.linux-amd64.tar.gz
 
 # set env
 ENV GCC_HOME=/usr/local/gcc-7_4_0
 ENV CMAKE_HOME=/usr/local/cmake-3.14.1-Linux-x86_64
-ENV PATH=${GCC_HOME}/bin/:${CMAKE_HOME}/bin/:$PATH
+ENV GO_HOME=/usr/local/go
+ENV PATH=${GCC_HOME}/bin/:${CMAKE_HOME}/bin/:${GO_HOME}/bin/:$PATH
 ENV CPATH=${GCC_HOME}/include/:$CPATH
-ENV LIBRARY_PATH=${GCC_HOME}/lib64/:${GCC_HOME}/lib/:$LIBRARY_PATH
-ENV LD_LIBRARY_PATH=${GCC_HOME}/lib64/:${GCC_HOME}/lib/:$LD_LIBRARY_PATH
+ENV LIBRARY_PATH=${GCC_HOME}/lib64/:${GCC_HOME}/lib/:${GCC_HOME}/lib/gcc/x86_64-pc-linux-gnu/7.4.0/:$LIBRARY_PATH
+ENV LD_LIBRARY_PATH=${GCC_HOME}/lib64/:${GCC_HOME}/lib/:${GCC_HOME}/lib/gcc/x86_64-pc-linux-gnu/7.4.0/:$LD_LIBRARY_PATH
 
 
 # labels
