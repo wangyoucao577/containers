@@ -12,6 +12,7 @@ RUN yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.n
     vim \
     zlib-devel \
     libevent-devel \
+    libffi-devel \
     openssl-devel
 
 # install git 2.x
