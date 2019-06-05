@@ -34,11 +34,13 @@ RUN wget --progress=dot:mega https://github.com/gcc-mirror/gcc/archive/gcc-7_4_0
   cd / && \
   rm -rf gcc-gcc-7_4_0-release gcc-7_4_0-release.tar.gz
 
-# install cmake3
-RUN wget --progress=dot:mega https://github.com/Kitware/CMake/releases/download/v3.14.1/cmake-3.14.1-Linux-x86_64.tar.gz && \
-  tar -zxf cmake-3.14.1-Linux-x86_64.tar.gz && \
-  mv cmake-3.14.1-Linux-x86_64 /usr/local/ && \
-  rm -f cmake-3.14.1-Linux-x86_64.tar.gz
+# set gcc env
+ENV GCC_HOME=/usr/local/gcc-7_4_0
+ENV PATH=${GCC_HOME}/bin/:$PATH
+ENV CPATH=${GCC_HOME}/include/:$CPATH
+ENV LIBRARY_PATH=${GCC_HOME}/lib64/:${GCC_HOME}/lib/:${GCC_HOME}/lib/gcc/x86_64-pc-linux-gnu/7.4.0/:$LIBRARY_PATH
+ENV LD_LIBRARY_PATH=${GCC_HOME}/lib64/:${GCC_HOME}/lib/:${GCC_HOME}/lib/gcc/x86_64-pc-linux-gnu/7.4.0/:$LD_LIBRARY_PATH
+
 
 # install libtool by source
 RUN wget --progress=dot:mega http://ftpmirror.gnu.org/libtool/libtool-2.4.6.tar.gz && \
@@ -49,12 +51,6 @@ RUN wget --progress=dot:mega http://ftpmirror.gnu.org/libtool/libtool-2.4.6.tar.
   make install && \
   cd .. && \
   rm -rf libtool-2.4.6 libtool-2.4.6.tar.gz
-
-# install go
-RUN wget --progress=dot:mega https://dl.google.com/go/go1.12.5.linux-amd64.tar.gz && \
-  tar -zxf go1.12.5.linux-amd64.tar.gz && \
-  mv go /usr/local/ && \
-  rm -f go1.12.5.linux-amd64.tar.gz
 
 # install python2.7
 RUN wget --progress=dot:mega https://www.python.org/ftp/python/2.7.16/Python-2.7.16.tgz && \
@@ -78,14 +74,23 @@ RUN wget --progress=dot:mega https://www.python.org/ftp/python/3.7.3/Python-3.7.
   cd .. && \
   rm -rf Python-3.7.3 Python-3.7.3.tgz
 
+
+# install cmake3
+RUN wget --progress=dot:mega https://github.com/Kitware/CMake/releases/download/v3.14.1/cmake-3.14.1-Linux-x86_64.tar.gz && \
+  tar -zxf cmake-3.14.1-Linux-x86_64.tar.gz && \
+  mv cmake-3.14.1-Linux-x86_64 /usr/local/ && \
+  rm -f cmake-3.14.1-Linux-x86_64.tar.gz
+
+# install go
+RUN wget --progress=dot:mega https://dl.google.com/go/go1.12.5.linux-amd64.tar.gz && \
+  tar -zxf go1.12.5.linux-amd64.tar.gz && \
+  mv go /usr/local/ && \
+  rm -f go1.12.5.linux-amd64.tar.gz
+
 # set env
-ENV GCC_HOME=/usr/local/gcc-7_4_0
 ENV CMAKE_HOME=/usr/local/cmake-3.14.1-Linux-x86_64
 ENV GO_HOME=/usr/local/go
-ENV PATH=${GCC_HOME}/bin/:${CMAKE_HOME}/bin/:${GO_HOME}/bin/:$PATH
-ENV CPATH=${GCC_HOME}/include/:$CPATH
-ENV LIBRARY_PATH=${GCC_HOME}/lib64/:${GCC_HOME}/lib/:${GCC_HOME}/lib/gcc/x86_64-pc-linux-gnu/7.4.0/:$LIBRARY_PATH
-ENV LD_LIBRARY_PATH=${GCC_HOME}/lib64/:${GCC_HOME}/lib/:${GCC_HOME}/lib/gcc/x86_64-pc-linux-gnu/7.4.0/:$LD_LIBRARY_PATH
+ENV PATH=${CMAKE_HOME}/bin/:${GO_HOME}/bin/:$PATH
 
 
 # labels
