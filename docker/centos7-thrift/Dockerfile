@@ -15,6 +15,8 @@ RUN mkdir -p boost && \
 # link for install thrift
 RUN ln -s /usr/local/lib/libboost_unit_test_framework.a /usr/local/lib64/libboost_unit_test_framework.a
 
+ENV LIBRARY_PATH=/usr/lib64:$LIBRARY_PATH
+
 # install thrift
 RUN wget --progress=dot:mega https://github.com/apache/thrift/archive/0.11.0.tar.gz && \
     tar zxf 0.11.0.tar.gz && \
