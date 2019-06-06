@@ -17,8 +17,12 @@ docker build -t wangyoucao577/centos7-gcc7.4 .
 ## Installed Tools
 - `gcc-7.4.0`
     - `libstdc++.so.6.0.24`   
+- `libtool-2.4.6`
 - `git-2.x`    
 - `cmake-3.14.1`
+- `python2.7.16`(default)
+- `python3.7.3`(run by `python3`)
+- `go-1.12.5`
 
 ## Pull Image from DockerHub
 [DockerHub Repo: wangyoucao577/centos7-gcc7.4](https://hub.docker.com/r/wangyoucao577/centos7-gcc7.4)    
