@@ -11,7 +11,7 @@ docker build -t wangyoucao577/centos7-thrift .
 
 ## Installed Versions
 - `boost-1.70.0`
-- `thrift-v0.12.0`    
+- `thrift-v0.11.0`    
 
 ## Pull Image from DockerHub
 [DockerHub Repo: wangyoucao577/centos7-thrift](https://hub.docker.com/r/wangyoucao577/centos7-thrift)    
