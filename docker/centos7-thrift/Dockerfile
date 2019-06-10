@@ -18,16 +18,16 @@ RUN ln -s /usr/local/lib/libboost_unit_test_framework.a /usr/local/lib64/libboos
 ENV LIBRARY_PATH=/usr/lib64:$LIBRARY_PATH
 
 # install thrift
-RUN wget --progress=dot:mega https://github.com/apache/thrift/archive/0.11.0.tar.gz && \
-    tar zxf 0.11.0.tar.gz && \
-    cd thrift-0.11.0 && \
+RUN wget --progress=dot:mega https://github.com/apache/thrift/archive/0.12.0.tar.gz && \
+    tar zxf 0.12.0.tar.gz && \
+    cd thrift-0.12.0 && \
     ./bootstrap.sh && \
     ./configure --with-boost=/usr/local && \
     make && \
     make install && \
     cd ../ && \
-    rm -rf ./thrift-0.11.0 && \
-    rm -f 0.11.0.tar.gz 
+    rm -rf ./thrift-0.12.0 && \
+    rm -f 0.12.0.tar.gz 
 
 
 # labels
