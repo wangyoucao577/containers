@@ -6,7 +6,7 @@ Container images and orchestration, i.e. [docker](https://docs.docker.com/), [ku
 
 ### centos7-thrift
 Docker image based on `CentOS7`, installed latest `thrift` and `boost` compiled by `gcc-7.4.0`.    
-See details in [docker/thrift](./docker/thrift/).    
+See details in [docker/centos7-thrift](./docker/centos7-thrift/).    
 
 ### centos7-gcc7.x
 Docker image based on `CentOS7`, installed `gcc-7.4.0` compiler and running libraries(`libstdc++`, etc.).    
