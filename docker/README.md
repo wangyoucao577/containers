@@ -3,7 +3,9 @@ Issues, experiences, knowledges and references when I'm working with Docker.
 
 ## Issues Encountered
 ### 1. Max length of docker image tag
-I hope I can provide sufficent and complete information by the docker image tag. But in my test(based on `docker 18.09.3`), the max length of image tag is only `129 chars`, otherwise the `docker build/tag` command will fail. 
+I hope I can provide sufficent and complete information by the docker image tag. But in my test(based on `docker 18.09.3`), the max length of image tag is only `128 chars`, otherwise the `docker build/tag` command will fail.    
+Also find that this limitation has been described in [Docker CLI - docker tag](https://docs.docker.com/engine/reference/commandline/tag/):     
+**A tag name must be valid ASCII and may contain lowercase and uppercase letters, digits, underscores, periods and dashes. A tag name may not start with a period or a dash and may contain a maximum of 128 characters.**).     
 
 
 ### 2. What if container out of memory
@@ -41,4 +43,4 @@ If it's important to share middle layers(e.g. some middle layers are very large 
 - [Use multi-stage builds](https://docs.docker.com/develop/develop-images/multistage-build/)
 - [Docker Buildkit, start from version 18.09](https://docs.docker.com/engine/reference/builder/#buildkit)
 - [Build Enhancements for Docker](https://docs.docker.com/develop/develop-images/build_enhancements/)
-
+- [Docker CLI - docker tag](https://docs.docker.com/engine/reference/commandline/tag/)
