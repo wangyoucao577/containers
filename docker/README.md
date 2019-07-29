@@ -31,6 +31,10 @@ So be careful about how much memory the container will be needed. It's better to
 If it's important to share middle layers(e.g. some middle layers are very large and valuable to share to save time for `push/pull`),     
 **DON'T delete any previously built image on your build machine.**      
 
+### 4. DOCKER_BUILDKIT=1 can not support special character in URL
+People have reported same issue to docker team already: [Buildkit builds misinterpret encoded URLs ("%3D" changed to "%!D(MISSING)")](https://github.com/docker/for-linux/issues/714).     
+We have to wait docker team to fix this issue. Before that the workaround can be NOT enable `DOCKER_BUILDKIT=1`.    
+
 
 ## References
 - [Get Docker CE for CentOS](https://docs.docker.com/install/linux/docker-ce/centos/)
