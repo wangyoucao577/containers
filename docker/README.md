@@ -35,6 +35,24 @@ If it's important to share middle layers(e.g. some middle layers are very large 
 People have reported same issue to docker team already: [Buildkit builds misinterpret encoded URLs ("%3D" changed to "%!D(MISSING)")](https://github.com/docker/for-linux/issues/714).     
 We have to wait docker team to fix this issue. Before that the workaround can be NOT enable `DOCKER_BUILDKIT=1`.    
 
+### 5. Docker container(run apache httpd inside) can not be started again after stop it by `docker stop`
+I met this issue when I run `apache` docker by `apachectl -k restart -D FOREGROUND` in a `start_httpd_foreground.sh` script.     
+
+- The first issue here is that I use a script as entrypoint in docker, so its `PID` inside docker will be `1`. (We can use `docker exec {container id} ps -ef` to see all processes inside container.)     
+  - The `docker stop` command will try to gracefully stop the container by send a signal(default `TERM`) to the `PID 1` process. If it's not stopped in several seconds(default `10`), docker will force to stop it. 
+  - Since the script will not forward signals to any child processes, i.e. the `httpd` process, it will not stop gracefully. The docker force stop seems make something wrong on it so that the container can not restart again.    
+  - To solve this issue, I refer to [apache httpd docker library](https://github.com/docker-library/httpd), use `exec httpd -k restart -D FOREGROUND` instead of `apachectl -k restart -D FOREGROUND`. The `exec` command here gives the `httpd` as `PID 1`. After that, the container can be stopped and restart again.    
+- The [apache httpd docker library](https://github.com/docker-library/httpd) also shows 2 more best practices for `apache httpd` docker:     
+  - `rm -f /usr/local/apache2/logs/httpd.pid` in [httpd_foreground](https://github.com/docker-library/httpd/blob/master/2.4/httpd-foreground) script, which can fix `Apache` gets grumpy about PID files pre-existing.     
+  - `STOPSIGNAL WINCH` in [Dockerfile](https://github.com/docker-library/httpd/blob/master/2.4/Dockerfile), which try to gracefully stop `apache httpd`. See [apache http stopping](https://httpd.apache.org/docs/current/stopping.html#gracefulstop) in details.    
+- Some references for this issue:     
+  - [apache httpd docker library](https://github.com/docker-library/httpd)
+  - [apache http stopping](https://httpd.apache.org/docs/current/stopping.html#gracefulstop)
+  - [Gracefully Stopping Docker Containers](https://www.ctl.io/developers/blog/post/gracefully-stopping-docker-containers/)
+  - [What does Docker STOPSIGNAL do?](https://stackoverflow.com/questions/50898134/what-does-docker-stopsignal-do)
+
+
+
 
 ## References
 - [Get Docker CE for CentOS](https://docs.docker.com/install/linux/docker-ce/centos/)
@@ -48,3 +66,7 @@ We have to wait docker team to fix this issue. Before that the workaround can be
 - [Docker Buildkit, start from version 18.09](https://docs.docker.com/engine/reference/builder/#buildkit)
 - [Build Enhancements for Docker](https://docs.docker.com/develop/develop-images/build_enhancements/)
 - [Docker CLI - docker tag](https://docs.docker.com/engine/reference/commandline/tag/)
+- [apache httpd docker library](https://github.com/docker-library/httpd)
+- [apache http stopping](https://httpd.apache.org/docs/current/stopping.html#gracefulstop)
+- [Gracefully Stopping Docker Containers](https://www.ctl.io/developers/blog/post/gracefully-stopping-docker-containers/)
+- [What does Docker STOPSIGNAL do?](https://stackoverflow.com/questions/50898134/what-does-docker-stopsignal-do)
