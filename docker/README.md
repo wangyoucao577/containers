@@ -51,7 +51,11 @@ I met this issue when I run `apache` docker by `apachectl -k restart -D FOREGROU
   - [Gracefully Stopping Docker Containers](https://www.ctl.io/developers/blog/post/gracefully-stopping-docker-containers/)
   - [What does Docker STOPSIGNAL do?](https://stackoverflow.com/questions/50898134/what-does-docker-stopsignal-do)
 
-
+### 6. `gdb` can not work in container
+When I try to run my [docker/osrm-backend-dev] container to debug, I found that `gdb` can not break on breakpoints, the program continues directly instead.     
+In which case `gdb` reports `warning: Error disabling address space randomization: Operation not permitted`, it seems `gdb` has been limited in container.     
+After `docker run` with extra parameters `--cap-add=SYS_PTRACE --security-opt seccomp=unconfined` which suggested by [Stackoverflow - warning: Error disabling address space randomization: Operation not permitted](https://stackoverflow.com/questions/35860527/warning-error-disabling-address-space-randomization-operation-not-permitted), `gdb` works well.      
+Why the `--cap-add=SYS_PTRACE --security-opt seccomp=unconfined` works? The wiki [How to use GDB within Docker Container](https://github.com/tonyOreglia/argument-counter/wiki/How-to-use-GDB-within-Docker-Container) explains it very well.                
 
 
 ## References
@@ -70,3 +74,8 @@ I met this issue when I run `apache` docker by `apachectl -k restart -D FOREGROU
 - [apache http stopping](https://httpd.apache.org/docs/current/stopping.html#gracefulstop)
 - [Gracefully Stopping Docker Containers](https://www.ctl.io/developers/blog/post/gracefully-stopping-docker-containers/)
 - [What does Docker STOPSIGNAL do?](https://stackoverflow.com/questions/50898134/what-does-docker-stopsignal-do)
+- [How to use GDB within Docker Container](https://github.com/tonyOreglia/argument-counter/wiki/How-to-use-GDB-within-Docker-Container)
+- [Seccomp security profiles for Docker](https://docs.docker.com/engine/security/seccomp/)
+- [Security Lab: Seccomp](https://training.play-with-docker.com/security-seccomp/)
+- [Docker run reference - Security configuration](https://docs.docker.com/engine/reference/run/#security-configuration)
+- [Stackoverflow - warning: Error disabling address space randomization: Operation not permitted](https://stackoverflow.com/questions/35860527/warning-error-disabling-address-space-randomization-operation-not-permitted)
