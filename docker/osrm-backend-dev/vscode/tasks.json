@@ -1,0 +1,24 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "command": "sh",
+    "type": "shell",
+    "args": ["-c"],
+    "options": {
+        "cwd": "${workspaceFolder}/build/debug/"
+    },
+    "tasks": [
+        {
+            "label": "cmake build",
+            "type": "shell",
+            "args": [
+                "cmake --build . -- -j"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ],
+    "version": "2.0.0"
+}
