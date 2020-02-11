@@ -18,3 +18,7 @@ See details in [docker/centos7-gcc7.x](./docker/centos7-gcc7.x/).
 ### centos7-gcc6.x
 Docker image based on `CentOS7`, installed `gcc-6.5.0` compiler and running libraries(`libstdc++`, etc.).    
 See details in [docker/centos7-gcc6.x](./docker/centos7-gcc6.x/).    
+
+### osrm-backend-dev
+My personal docker image for [osrm-backend](https://github.com/Telenav/osrm-backend) development. It's based on the [telenavmap/osrm-backend-dev](https://github.com/Telenav/osrm-backend/tree/master-telenav/docker-orchestration/osrm-backend-dev) which includes all dependencies.     
+See details in [docker/osrm-backend-dev](./docker/osrm-backend-dev/).    
