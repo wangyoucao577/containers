@@ -1,23 +1,65 @@
 {
     // See https://go.microsoft.com/fwlink/?LinkId=733558
     // for the documentation about the tasks.json format
-    "command": "sh",
     "type": "shell",
-    "args": ["-c"],
-    "options": {
-        "cwd": "${workspaceFolder}/build/debug/"
-    },
     "tasks": [
         {
-            "label": "cmake build",
+            "label": "build debug",
             "type": "shell",
+            "command": "cmake",
             "args": [
-                "cmake --build . -- -j"
+                "--build",
+                ".",
+                "--",
+                "-j"
             ],
+            "options": {
+                "cwd": "${workspaceFolder}/build/debug"
+            },        
             "group": {
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "label": "build release",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build",
+                ".",
+                "--",
+                "-j"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/build/release"
+            },        
+            "group": "build"
+        },
+        {
+            "label": "cmake debug generate",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "../..",
+                "-DCMAKE_BUILD_TYPE=Debug"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/build/debug"
+            },        
+            "group": "build"
+        },
+        {
+            "label": "cmake release generate",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "../.."
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/build/release"
+            },        
+            "group": "build"
         }
     ],
     "version": "2.0.0"
