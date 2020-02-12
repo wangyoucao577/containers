@@ -3,7 +3,9 @@ FROM telenavmap/osrm-backend-dev:latest
 
 
 # install extra tools
-RUN apt-get install -y openssh-server gdb
+RUN apt-get install -y openssh-server && \
+  gdb && \
+  locales-all
 
 # prepare for sshd
 RUN mkdir -p /root/.ssh
