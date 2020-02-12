@@ -32,15 +32,21 @@ Refer to [VS Code Remote Development](https://code.visualstudio.com/docs/remote/
 
 - Install latest [VSCode](https://code.visualstudio.com/) on your local 
 
-### Debug via [Remote-Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+### Debugging via [Remote-Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 
+- Install [Remote-Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension in your local vscode
+- TODO:     
 
-### Debug via [Remote-SSH](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh)
+### Debugging via [Remote-SSH](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh)
 
-- Install [Remote-SSH](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh) extension in your vscode 
+- Install [Remote-SSH](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh) extension in your local vscode 
 - Make sure `ssh` works on your local machine: `ssh -i <YOUR_PRIVATE_KEY> -p 19001 root@<CONTAINER_IP>`
-- "Remote-SSH: Connect to Host" to connect your container in vscode
-- "Extensions: Install from VSIX", choose `/workspace/cpptools-linux.vsix` to install
+- Use "Remote-SSH: Connect to Host" to connect to your container in vscode
+- Install vscode extensions remotely
+  - The [C/C++ extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools) is mandatory. 
+  - All other extensions are optional but good to have, e.g. [Git History](https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory), [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens), etc.    
+  - Either install from the vscode Extensions page,
+  - Or install by "Extensions: Install from VSIX", choose `/workspace/cpptools-linux.vsix`
 - "Open Folder", choose `/workspace/osrm-backend`
 - "Tasks: Run Task", run `cmake debug generate`
 - "Tasks: Run Task", run `build debug`
