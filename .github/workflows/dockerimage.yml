@@ -23,24 +23,13 @@ jobs:
       uses: managedkaos/print-env@v1.0
     #- name: Build the Docker image
     #  run: cd ${DOCKERFILE_PATH} && docker build . --tag ${IMAGE_NAME}:latest
-    - name: GitHub Docker Action
-      uses: matootie/github-docker@v2.2.2
+
+    - name: Build & Push to GitHub Package
+      uses: opspresso/action-docker@master
       with:
-        # GitHub Repository Token to log in using.
-        accessToken: ${{ secrets.GITHUB_TOKEN }}
-        # Where should GitHub Docker find the Dockerfile, relative to the root of the repository.
-        context: ${DOCKERFILE_PATH} # optional, default is .
-        # GitHub user to publish the image on behalf of.
-        username: wangyoucao577 # optional
-        # The repository to push the image to. Defaults to current repository. Must be specified in format user/repo
-        repositoryName: # optional
-        # The desired name for the image. Defaults to current repository name.
-        imageName: ${IMAGE_NAME} # optional
-        # The desired tag for the image. Defaults to current branch or release version number.
-        imageTag: # optional
-        # Added to the beginning of the tag.
-        imageTagPrefix: # optional
-        # Added to the end of the tag.
-        imageTagSuffix: # optional
-        # The build arguments for image.
-        buildArgs: # optional
+        args: --docker
+      env:
+        PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+        REGISTRY: "docker.pkg.github.com"
+        IMAGE_NAME: "${IMAGE_NAME}"
+        LATEST: "true"
