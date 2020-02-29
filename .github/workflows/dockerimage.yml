@@ -16,8 +16,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Environment Printer
-      uses: managedkaos/print-env@v1.0
     - name: Current Branch
       uses: ryolambert/current-branch@v1.0
     - name: Environment Printer
