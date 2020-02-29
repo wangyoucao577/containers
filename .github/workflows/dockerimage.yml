@@ -1,12 +1,15 @@
-name: Docker Image CI
+name: osrm-backend-dev
 
 on: 
   push:
     branches:
-    - 'docker/**'
-  create:
-    branches:
-    - 'docker/**'
+    - 'master'
+    paths:
+    - 'docker/osrm-backend-dev/**'
+
+env:
+  image-name: osrm-backend-dev
+  dockerfile-path: docker/osrm-backend-dev/
 
 jobs:
 
@@ -16,9 +19,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Get branch name
-      uses: nelonoel/branch-name@v1
     - name: Environment Printer
       uses: managedkaos/print-env@v1.0
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag test1:$(date +%s)
+      run: cd ${dockerfile-path} && docker build . --tag ${image-name}:latest
