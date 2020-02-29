@@ -9,7 +9,6 @@ RUN apt-get install -y \
   locales-all
 
 # prepare for sshd
-RUN mkdir -p /root/.ssh
 COPY jay_easy_rsa.pub /root/.ssh/
 RUN cat /root/.ssh/jay_easy_rsa.pub >> /root/.ssh/authorized_keys && \
   chmod 600 /root/.ssh/authorized_keys && \
