@@ -3,10 +3,10 @@ name: Docker Image CI
 on: 
   push:
     branches:
-    - docker/*
+    - 'docker/**'
   create:
     branches:
-    - docker/*
+    - 'docker/**'
 
 jobs:
 
@@ -16,8 +16,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Current Branch
-      uses: ryolambert/current-branch@v1.0
+    - name: Get branch name
+      uses: nelonoel/branch-name@v1
     - name: Environment Printer
       uses: managedkaos/print-env@v1.0
     - name: Build the Docker image
