@@ -31,5 +31,6 @@ jobs:
       env:
         PASSWORD: ${{ secrets.GITHUB_TOKEN }}
         REGISTRY: "docker.pkg.github.com"
-        IMAGE_NAME: "${IMAGE_NAME}"
+        IMAGE_NAME: ${IMAGE_NAME}
+        TAG_NAME: $(date +%s)
         LATEST: "true"
