@@ -1,0 +1,26 @@
+name: Docker Image CI
+
+on: 
+  push:
+    branches:
+    - docker/*
+  create:
+    branches:
+    - docker/*
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Environment Printer
+      uses: managedkaos/print-env@v1.0
+    - name: Current Branch
+      uses: ryolambert/current-branch@v1.0
+    - name: Environment Printer
+      uses: managedkaos/print-env@v1.0
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag test1:$(date +%s)
