@@ -33,9 +33,9 @@ jobs:
         # GitHub user to publish the image on behalf of.
         username: wangyoucao577 # optional
         # The repository to push the image to. Defaults to current repository. Must be specified in format user/repo
-        repositoryName: ${IMAGE_NAME} # optional
+        repositoryName: # optional
         # The desired name for the image. Defaults to current repository name.
-        imageName: # optional
+        imageName: ${IMAGE_NAME} # optional
         # The desired tag for the image. Defaults to current branch or release version number.
         imageTag: # optional
         # Added to the beginning of the tag.
