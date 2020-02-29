@@ -18,17 +18,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout
     - uses: actions/checkout@v2
     - name: Environment Printer
       uses: managedkaos/print-env@v1.0
-    - name: Build the Docker image
-      run: cd ${DOCKERFILE_PATH} && docker build . --tag ${IMAGE_NAME}:latest
-    - name: Push to Github Package 
-      if: success()
-      uses: manusa/actions-publish-docker@master
+    #- name: Build the Docker image
+    #  run: cd ${DOCKERFILE_PATH} && docker build . --tag ${IMAGE_NAME}:latest
+    - name: Publish to Github Package
+      uses: elgohr/Publish-Docker-Github-Action@master
       with:
-        name: ${GITHUB_REPOSITORY}/${IMAGE_NAME}
-        username: ${GITHUB_ACTOR}
+        name: wangyoucao577/containers/osrm-backend-dev
+        username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-        registry: "docker.pkg.github.com"
+        registry: docker.pkg.github.com
+        snapshot: true
+        workdir: docker/osrm-backend-dev/
+        tags: "latest,another-test"
 
