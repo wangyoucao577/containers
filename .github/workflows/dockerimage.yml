@@ -8,8 +8,8 @@ on:
     - 'docker/osrm-backend-dev/**'
 
 env:
-  image-name: osrm-backend-dev
-  dockerfile-path: docker/osrm-backend-dev/
+  IMAGE_NAME: osrm-backend-dev
+  DOCKERFILE_PATH: docker/osrm-backend-dev/
 
 jobs:
 
@@ -22,4 +22,4 @@ jobs:
     - name: Environment Printer
       uses: managedkaos/print-env@v1.0
     - name: Build the Docker image
-      run: cd ${dockerfile-path} && docker build . --tag ${image-name}:latest
+      run: cd ${DOCKERFILE_PATH} && docker build . --tag ${IMAGE_NAME}:latest
