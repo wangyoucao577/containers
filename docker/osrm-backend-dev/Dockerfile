@@ -6,6 +6,7 @@ FROM telenavmap/osrm-backend-dev:latest
 RUN apt-get install -y \
   openssh-server \
   gdb \
+  tmux \
   locales-all
 
 # prepare for sshd
