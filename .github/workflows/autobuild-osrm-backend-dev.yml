@@ -4,6 +4,9 @@ on:
   push:
     branches:
     - 'master'
+    - 'release/**'
+    tags:
+    - '**'
     paths:
     - 'docker/osrm-backend-dev/**'
 
