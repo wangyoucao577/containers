@@ -1,4 +1,4 @@
-name: osrm-backend-dev
+name: Build Docker - osrm-backend-dev 
 
 on: 
   push:
@@ -27,11 +27,11 @@ jobs:
     - name: Publish to Github Package
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
-        name: wangyoucao577/containers/osrm-backend-dev
+        name: ${{ github.repository }}/${{ env.IMAGE_NAME }}
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
         registry: docker.pkg.github.com
-        snapshot: true
-        workdir: docker/osrm-backend-dev/
-        tags: "latest,another-test"
+        snapshot: false
+        workdir: ${{ env.DOCKERFILE_PATH }}
+        tags: "latest,${{ github.ref }}"
 
