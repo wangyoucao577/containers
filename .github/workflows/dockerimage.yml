@@ -24,6 +24,7 @@ jobs:
       uses: managedkaos/print-env@v1.0
     #- name: Build the Docker image
     #  run: cd ${DOCKERFILE_PATH} && docker build . --tag ${IMAGE_NAME}:latest
+
     - name: Publish to Github Package
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
@@ -35,3 +36,12 @@ jobs:
         workdir: ${{ env.DOCKERFILE_PATH }}
         tags: "latest,${{ github.ref }}"
 
+    - name: Publish to Dockerhub
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        name: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+        snapshot: false
+        workdir: ${{ env.DOCKERFILE_PATH }}
+        tags: "latest,${{ github.ref }}"
