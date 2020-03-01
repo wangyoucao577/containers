@@ -34,7 +34,7 @@ jobs:
         registry: docker.pkg.github.com
         snapshot: false
         workdir: ${{ env.DOCKERFILE_PATH }}
-        tags: "latest,${{ github.ref }}"
+        tags: "latest"
 
     - name: Publish to Dockerhub
       uses: elgohr/Publish-Docker-Github-Action@master
@@ -44,4 +44,4 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
         snapshot: false
         workdir: ${{ env.DOCKERFILE_PATH }}
-        tags: "latest,${{ github.ref }}"
+        tags: "latest"
