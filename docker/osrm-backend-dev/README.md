@@ -9,10 +9,18 @@ $ cd docker/osrm-backend-dev
 $ docker build -t wangyoucao577/osrm-backend-dev .  
 ```
 
-## Pull Image from DockerHub
+## Pull Image 
+### DockerHub
 [DockerHub Repo: wangyoucao577/osrm-backend-dev](https://hub.docker.com/r/wangyoucao577/osrm-backend-dev)    
 ```bash
 $ docker pull wangyoucao577/osrm-backend-dev
+```
+
+### Github Package
+[Github Package Repo: docker.pkg.github.com/wangyoucao577/containers/osrm-backend-dev](https://github.com/wangyoucao577/containers/packages/141148)
+
+```bash
+$ docker pull docker.pkg.github.com/wangyoucao577/containers/osrm-backend-dev:master-f4f4ccf-20200301
 ```
 
 ## Run container
