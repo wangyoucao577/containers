@@ -21,9 +21,9 @@ RUN yum remove -y git && \
   yum install -y git2u
 
 # install gcc-7.4.0
-RUN wget --progress=dot:mega https://github.com/gcc-mirror/gcc/archive/gcc-7_4_0-release.tar.gz && \
-  tar -xzf gcc-7_4_0-release.tar.gz && \
-  cd gcc-gcc-7_4_0-release && \
+RUN wget --progress=dot:mega https://bigsearcher.com/mirrors/gcc/releases/gcc-7.4.0/gcc-7.4.0.tar.gz && \
+  tar -xzf gcc-7.4.0.tar.gz && \
+  cd gcc-7.4.0 && \
   ./contrib/download_prerequisites && \
   mkdir build && \
   cd build && \
@@ -32,7 +32,7 @@ RUN wget --progress=dot:mega https://github.com/gcc-mirror/gcc/archive/gcc-7_4_0
   yum remove -y gcc && \ 
   make install-strip && \
   cd / && \
-  rm -rf gcc-gcc-7_4_0-release gcc-7_4_0-release.tar.gz
+  rm -rf gcc-7.4.0 gcc-7.4.0.tar.gz
 
 # set gcc env
 ENV GCC_HOME=/usr/local/gcc-7_4_0
