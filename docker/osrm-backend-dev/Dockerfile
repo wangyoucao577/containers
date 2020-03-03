@@ -7,7 +7,8 @@ RUN apt-get install -y \
   openssh-server \
   gdb \
   tmux \
-  locales-all
+  locales-all \
+  iperf3
 
 # prepare for sshd
 COPY jay_easy_rsa.pub /root/.ssh/
