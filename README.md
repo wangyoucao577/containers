@@ -12,6 +12,7 @@ Docker image based on `CentOS7`, installed latest `thrift` and `boost` compiled 
 See details in [docker/centos7-thrift](./docker/centos7-thrift/).    
 
 ### centos7-gcc7.x
+![Build Docker - centos7-gcc7.x](https://github.com/wangyoucao577/containers/workflows/Build%20Docker%20-%20centos7-gcc7.x/badge.svg)    
 Docker image based on `CentOS7`, installed `gcc-7.4.0` compiler and running libraries(`libstdc++`, etc.).    
 See details in [docker/centos7-gcc7.x](./docker/centos7-gcc7.x/).    
 
