@@ -23,6 +23,9 @@ COPY .tmux.conf /root/
 COPY .vimrc /root/
 COPY .bashrc /root/
 
+RUN git config --global core.editor vim && \
+  git config --global credential.helper 'cache --timeout 3600'
+
 # latest vscode extension
 RUN cd /workspace && \
   wget --progress=dot:mega https://github.com/microsoft/vscode-cpptools/releases/download/0.26.3/cpptools-linux.vsix
