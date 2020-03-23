@@ -8,7 +8,8 @@ RUN apt-get install -y \
   gdb \
   tmux \
   locales-all \
-  iperf3
+  iperf3 \
+  net-tools
 
 # prepare for sshd
 COPY jay_easy_rsa.pub /root/.ssh/
