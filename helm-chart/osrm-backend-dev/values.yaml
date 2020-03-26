@@ -5,21 +5,23 @@
 replicaCount: 1
 
 image:
-  repository: nginx
+  name: wangyoucao577/osrm-backend-dev
   pullPolicy: IfNotPresent
-
 imagePullSecrets: []
+
+container:
+  sshPort: 22
+  httpPort: 5000
+
+service:
+  type: NodePort
+  sshPort: 19001
+  httpPort: 80
+
+
+
 nameOverride: ""
 fullnameOverride: ""
-
-serviceAccount:
-  # Specifies whether a service account should be created
-  create: true
-  # Annotations to add to the service account
-  annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name:
 
 podSecurityContext: {}
   # fsGroup: 2000
@@ -32,9 +34,6 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
-service:
-  type: ClusterIP
-  port: 80
 
 ingress:
   enabled: false

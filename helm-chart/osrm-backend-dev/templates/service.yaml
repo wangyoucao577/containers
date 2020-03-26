@@ -1,15 +1,19 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "osrm-backend-dev.fullname" . }}
+  name: {{ .Release.Name }}
   labels:
-    {{- include "osrm-backend-dev.labels" . | nindent 4 }}
+    app: {{ .Release.Name }}
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
+    - port: {{ .Values.service.httpPort }}
+      targetPort: {{ .Values.container.httpPort }}
       protocol: TCP
       name: http
+    - port: {{ .Values.service.sshPort }}
+      targetPort: {{ .Values.container.sshPort }}
+      protocol: TCP
+      name: ssh
   selector:
-    {{- include "osrm-backend-dev.selectorLabels" . | nindent 4 }}
+    app: {{ .Release.Name }}
