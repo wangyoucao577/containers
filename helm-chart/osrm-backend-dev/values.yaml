@@ -26,8 +26,11 @@ fullnameOverride: ""
 podSecurityContext: {}
   # fsGroup: 2000
 
-securityContext: {}
-  # capabilities:
+securityContext: 
+  capabilities:
+    add:
+    - SYS_PTRACE
+
   #   drop:
   #   - ALL
   # readOnlyRootFilesystem: true
