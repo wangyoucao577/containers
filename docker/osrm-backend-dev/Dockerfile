@@ -10,7 +10,8 @@ RUN apt-get install -y \
   locales-all \
   iperf3 \
   net-tools \
-  htop
+  htop \
+  zip
 
 # prepare for sshd
 COPY jay_easy_rsa.pub /root/.ssh/
