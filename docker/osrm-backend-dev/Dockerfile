@@ -30,12 +30,13 @@ COPY .bashrc /root/
 RUN git config --global core.editor vim && \
   git config --global credential.helper 'cache --timeout 3600'
 
-# latest vscode extension
-RUN cd /workspace && \
-  wget --progress=dot:mega https://github.com/microsoft/vscode-cpptools/releases/download/0.27.0/cpptools-linux.vsix
+# vscode configs and latest extensions
+COPY vscode/ /workspace/vscode/ 
+RUN cd /workspace/vscode && \
+  wget --progress=dot:mega https://github.com/microsoft/vscode-cpptools/releases/download/0.27.0/cpptools-linux.vsix && \
+  wget --progress=dot:mega https://github.com/microsoft/vscode-go/releases/download/0.13.1/Go-0.13.1.vsix
 
 # prepare osrm-backend dev env
-COPY vscode/ /workspace/vscode/ 
 RUN cd /workspace && \
   git clone https://github.com/Telenav/osrm-backend.git && \
   cd osrm-backend && \

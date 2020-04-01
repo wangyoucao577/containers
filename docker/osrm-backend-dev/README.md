@@ -55,7 +55,7 @@ Refer to [VS Code Remote Development](https://code.visualstudio.com/docs/remote/
   - The [C/C++ extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools) is mandatory. 
   - All other extensions are optional but good to have, e.g. [Git History](https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory), [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens), etc.    
   - Either install from the vscode Extensions page,
-  - Or install by "Extensions: Install from VSIX", choose `/workspace/cpptools-linux.vsix`
+  - Or install by "Extensions: Install from VSIX", choose `/workspace/vscode/cpptools-linux.vsix`
 - "Open Folder", choose `/workspace/osrm-backend`
 - "Tasks: Run Task", run `cmake debug generate`
 - "Tasks: Run Task", run `build debug`
