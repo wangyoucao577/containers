@@ -54,6 +54,7 @@ RUN cd /workspace && \
 # for shown on runtime
 ARG IMAGE_TAG
 ENV IMAGE_TAG ${IMAGE_TAG}
+RUN echo IMAGE_TAG=${IMAGE_TAG} >> /etc/environment
 
 ENTRYPOINT ["/usr/sbin/sshd", "-D"]
 
