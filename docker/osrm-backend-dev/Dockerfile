@@ -51,11 +51,11 @@ RUN cd /workspace && \
   wget --progress=dot:mega https://download.geofabrik.de/north-america/us/nevada-latest.osm.pbf 
 
 
-ENTRYPOINT ["/usr/sbin/sshd", "-D"]
-
 # for shown on runtime
 ARG IMAGE_TAG
 ENV IMAGE_TAG ${IMAGE_TAG}
+
+ENTRYPOINT ["/usr/sbin/sshd", "-D"]
 
 # labels
 LABEL maintainer="wangyoucao577@gmail.com"
