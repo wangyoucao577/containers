@@ -32,7 +32,7 @@ RUN git config --global core.editor vim && \
 
 # latest vscode extension
 RUN cd /workspace && \
-  wget --progress=dot:mega https://github.com/microsoft/vscode-cpptools/releases/download/0.26.3/cpptools-linux.vsix
+  wget --progress=dot:mega https://github.com/microsoft/vscode-cpptools/releases/download/0.27.0/cpptools-linux.vsix
 
 # prepare osrm-backend dev env
 COPY vscode/ /workspace/vscode/ 
