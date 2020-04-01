@@ -10,6 +10,8 @@ RUN apt-get install -y \
   locales-all \
   iperf3 \
   net-tools \
+  iputils-ping \
+  dnsutils \
   htop \
   zip
 
