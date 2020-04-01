@@ -53,6 +53,10 @@ RUN cd /workspace && \
 
 ENTRYPOINT ["/usr/sbin/sshd", "-D"]
 
+# for shown on runtime
+ARG IMAGE_TAG
+ENV IMAGE_TAG ${IMAGE_TAG}
+
 # labels
 LABEL maintainer="wangyoucao577@gmail.com"
 
