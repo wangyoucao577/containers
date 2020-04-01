@@ -3,7 +3,7 @@
     // for the documentation about the tasks.json format
     "type": "shell",
     "options": {
-        "cwd": "${workspaceFolder}/integration/"
+        "cwd": "${workspaceFolder}/"
     },        
     "tasks": [
         {
@@ -27,9 +27,7 @@
                 "install",
                 "./..."
             ],
-            "group": {
-                "kind": "build"
-            }
+            "group": "build"
         },
         {
             "label": "go test",
@@ -40,7 +38,8 @@
                 "./..."
             ],
             "group": {
-                "kind": "test"
+                "kind": "test",
+                "isDefault": true
             }
         }
     ],
