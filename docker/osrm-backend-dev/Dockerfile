@@ -3,7 +3,7 @@ FROM telenavmap/osrm-backend-dev:latest
 
 
 # install extra tools
-RUN apt-get update && apt-get install -y \
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
   openssh-server \
   gdb \
   tmux \
