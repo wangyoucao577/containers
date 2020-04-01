@@ -7,7 +7,7 @@ replicaCount: 1
 image:
   #name: docker.pkg.github.com/wangyoucao577/containers/osrm-backend-dev
   name: wangyoucao577/osrm-backend-dev
-  #pullPolicy: IfNotPresent
+  pullPolicy: Always
 imagePullSecrets: []
 
 container:
