@@ -40,7 +40,8 @@ RUN cd /workspace && \
   git clone https://github.com/Telenav/osrm-backend.git && \
   cd osrm-backend && \
   mkdir -p build/debug build/release && \
-  cp -r /workspace/vscode/cpp .vscode
+  cp -r /workspace/vscode/cpp .vscode && \
+  cp -r /workspace/vscode/go integration/.vscode
 
 # sample osm pbf
 RUN cd /workspace && \
