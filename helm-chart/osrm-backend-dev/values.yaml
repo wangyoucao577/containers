@@ -4,6 +4,9 @@
 
 replicaCount: 1
 
+strategy:
+  type: Recreate
+
 image:
   #name: docker.pkg.github.com/wangyoucao577/containers/osrm-backend-dev
   name: wangyoucao577/osrm-backend-dev
