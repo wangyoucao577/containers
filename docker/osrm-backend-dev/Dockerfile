@@ -23,10 +23,10 @@ RUN cat /root/.ssh/jay_easy_rsa.pub >> /root/.ssh/authorized_keys && \
   chmod 755 /root/
 RUN service ssh start
 
+# easy to use
 COPY .tmux.conf /root/
 COPY .vimrc /root/
 COPY .bashrc /root/
-
 RUN git config --global core.editor vim && \
   git config --global credential.helper 'cache --timeout 3600'
 
@@ -55,6 +55,9 @@ RUN cd /workspace && \
 ARG IMAGE_TAG
 ENV IMAGE_TAG ${IMAGE_TAG}
 RUN echo IMAGE_TAG=${IMAGE_TAG} >> /etc/environment
+
+
+
 
 ENTRYPOINT ["/usr/sbin/sshd", "-D"]
 
