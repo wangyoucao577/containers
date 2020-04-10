@@ -13,6 +13,8 @@ RUN apt-get update && apt-get install -y \
   iputils-ping \
   dnsutils \
   htop \
+  atop \
+  sysstat \
   zip
 
 # prepare for sshd
