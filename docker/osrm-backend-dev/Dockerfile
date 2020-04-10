@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install -y \
   htop \
   atop \
   sysstat \
+  strace \
   zip
 
 # prepare for sshd
