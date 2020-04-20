@@ -18,6 +18,12 @@ RUN apt-get update && apt-get install -y \
   strace \
   zip
 
+# osmium
+RUN cd /workspace && mkdir -p osmium && cd osmium \
+  git clone https://github.com/mapbox/protozero.git && \
+  git clone https://github.com/osmcode/osmium-tool.git && \
+  git clone https://github.com/wangyoucao577/libosmium.git
+
 # prepare for sshd
 COPY jay_easy_rsa.pub /root/.ssh/
 RUN cat /root/.ssh/jay_easy_rsa.pub >> /root/.ssh/authorized_keys && \
