@@ -66,6 +66,10 @@ resources:
   #   cpu: 100m
   #   memory: 128Mi
 
+emptyDir:
+  medium: Memory
+  sizeLimit: 128Gi
+
 nodeSelector: {}
 
 tolerations: []

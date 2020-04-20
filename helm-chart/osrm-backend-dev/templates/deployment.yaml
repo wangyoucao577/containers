@@ -50,6 +50,13 @@ spec:
             periodSeconds: 5
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - mountPath: /mnt/emptydir
+              name: host-emptydir
+      volumes:
+        - emptyDir:
+            {{- toYaml .Values.emptyDir | nindent 12 }}
+          name: host-emptydir
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
