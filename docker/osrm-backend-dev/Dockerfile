@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y \
   zip
 
 # osmium
-RUN cd /workspace && mkdir -p osmium && cd osmium \
+RUN cd /workspace && mkdir -p osmium && cd osmium && \
   git clone https://github.com/mapbox/protozero.git && \
   git clone https://github.com/osmcode/osmium-tool.git && \
   git clone https://github.com/wangyoucao577/libosmium.git
