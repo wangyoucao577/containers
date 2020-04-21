@@ -13,6 +13,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteract
   zlib1g-dev \
   libexpat1-dev
 
+# Alternatively `-- -j` to enable parallel compiling.
+ARG CMAKE_BUILD_EXTRA_ARGS="-- -j"
 
 # osmium
 RUN mkdir -p /osmium /osmium/bin && cd osmium && \
@@ -23,7 +25,7 @@ RUN mkdir -p /osmium /osmium/bin && cd osmium && \
   mkdir -p build && \
   cd build && \
   cmake .. && \
-  cmake --build . && \
+  cmake --build . ${CMAKE_BUILD_EXTRA_ARGS} && \
   cp ./osmium /osmium/bin && \
   chmod +x /osmium/bin/*
 
