@@ -1,7 +1,7 @@
 # osmium-tool
 ![Build Docker - osmium-tool](https://github.com/wangyoucao577/containers/workflows/Build%20Docker%20-%20osmium-tool/badge.svg)      
 Docker image to wrap [osmium-tool](https://github.com/osmcode/osmium-tool) that can be used like a command line tool.     
-Please be noted that the `libosmium` clones from [wangyoucao577/libosmium](https://github.com/wangyoucao577/libosmium) instead of the official repo [osmcode/libosmium](https://github.com/osmcode/libosmium), which has incread the `max_osm_string_length` to support long PBF tags. See more details in [#1](https://github.com/wangyoucao577/libosmium/pull/1).     
+Please be noted that the `libosmium` clones from [wangyoucao577/libosmium](https://github.com/wangyoucao577/libosmium) instead of the official repo [osmcode/libosmium](https://github.com/osmcode/libosmium), which has increased the `max_osm_string_length` to support long PBF tags. See more details in [#1](https://github.com/wangyoucao577/libosmium/pull/1).     
  
 ## Build Image
 - [Dockerfile](./Dockerfile)
