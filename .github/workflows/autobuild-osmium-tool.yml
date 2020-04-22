@@ -45,7 +45,7 @@ jobs:
         snapshot: false
         workdir: ${{ env.DOCKERFILE_PATH }}
         tags: "${{ env.COMMA_SEPARATED_IMAGE_TAGS }}"
-        buildargs: "IMAGE_TAG=${{ env.IMAGE_TAG }}"
+        buildargs: "IMAGE_TAG=${{ env.IMAGE_TAG }},CMAKE_BUILD_EXTRA_ARGS="
 
     - name: Build & Publish to DockerHub
       uses: elgohr/Publish-Docker-Github-Action@master
@@ -56,4 +56,4 @@ jobs:
         snapshot: false
         workdir: ${{ env.DOCKERFILE_PATH }}
         tags: "${{ env.COMMA_SEPARATED_IMAGE_TAGS }}"
-        buildargs: "IMAGE_TAG=${{ env.IMAGE_TAG }}"
+        buildargs: "IMAGE_TAG=${{ env.IMAGE_TAG }},CMAKE_BUILD_EXTRA_ARGS="
