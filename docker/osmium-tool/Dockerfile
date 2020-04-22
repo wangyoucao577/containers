@@ -31,10 +31,10 @@ RUN mkdir -p /osmium /osmium/bin && cd osmium && \
 
 
 
-FROM debian:stretch-slim
+#FROM debian:stretch-slim
 
-RUN mkdir -p /osmium/bin
-COPY --from=builder /osmium/bin /osmium/bin
+#RUN mkdir -p /osmium/bin
+#COPY --from=builder /osmium/bin /osmium/bin
 
 # for shown on runtime
 ARG IMAGE_TAG
