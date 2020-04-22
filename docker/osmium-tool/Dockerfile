@@ -27,14 +27,20 @@ RUN mkdir -p /osmium /osmium/bin && cd osmium && \
   cd build && \
   cmake .. && \
   cmake --build . ${CMAKE_BUILD_EXTRA_ARGS} && \
-  cp ./osmium /osmium/bin && \
+  cp ./src/osmium /osmium/bin && \
   chmod +x /osmium/bin/*
 
 
-#FROM debian:stretch-slim
+FROM debian:stretch-slim
 
-#RUN mkdir -p /osmium/bin
-#COPY --from=builder /osmium/bin /osmium/bin
+# Install necessary packages
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+  libboost-program-options-dev \
+  libbz2-dev \
+  zlib1g-dev \
+  libexpat1-dev
+
+COPY --from=builder /osmium/bin /osmium/bin
 
 # for shown on runtime
 ARG IMAGE_TAG
