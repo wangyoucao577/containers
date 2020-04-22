@@ -28,7 +28,8 @@ RUN mkdir -p /osmium /osmium/bin && cd osmium && \
   cmake .. && \
   cmake --build . ${CMAKE_BUILD_EXTRA_ARGS} && \
   cp ./src/osmium /osmium/bin && \
-  chmod +x /osmium/bin/*
+  chmod +x /osmium/bin/* && \
+  /osmium/bin/osmium --version
 
 
 FROM debian:stretch-slim
@@ -41,14 +42,16 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteract
   libexpat1-dev
 
 COPY --from=builder /osmium/bin /osmium/bin
+ENV PATH=/osmium/bin/:$PATH
+RUN osmium --version
+
+ENTRYPOINT [ "/osmium/bin/osmium" ]
+
 
 # for shown on runtime
 ARG IMAGE_TAG
 ENV IMAGE_TAG ${IMAGE_TAG}
 RUN echo IMAGE_TAG=${IMAGE_TAG} >> /etc/environment
-
-
-ENTRYPOINT [ "/osmium/bin/osmium" ]
 
 # labels
 LABEL maintainer="wangyoucao577@gmail.com"
