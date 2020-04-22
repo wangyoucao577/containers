@@ -14,6 +14,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteract
   libexpat1-dev
 
 # Alternatively `-- -j` to enable parallel compiling.
+# It must be disabled on GitHub Actions due to runner's resource limitation.
 ARG CMAKE_BUILD_EXTRA_ARGS="-- -j"
 
 # osmium
@@ -28,7 +29,6 @@ RUN mkdir -p /osmium /osmium/bin && cd osmium && \
   cmake --build . ${CMAKE_BUILD_EXTRA_ARGS} && \
   cp ./osmium /osmium/bin && \
   chmod +x /osmium/bin/*
-
 
 
 #FROM debian:stretch-slim
