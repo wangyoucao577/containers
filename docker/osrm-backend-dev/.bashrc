@@ -21,4 +21,4 @@ alias l='ls $LS_OPTIONS -lA'
 
 export GOPATH=/workspace/go
 export GO_HOME=/usr/local/go
-export PATH=${GOPATH}/bin:${GO_HOME}/bin:$PATH
+export PATH=/workspace/osmium/bin:${GOPATH}/bin:${GO_HOME}/bin:$PATH

@@ -1,4 +1,6 @@
 
+FROM wangyoucao577/osmium-tool as osmium_builder
+
 FROM telenavmap/osrm-backend-dev:latest
 
 
@@ -19,10 +21,7 @@ RUN apt-get update && apt-get install -y \
   zip
 
 # osmium
-RUN cd /workspace && mkdir -p osmium && cd osmium && \
-  git clone https://github.com/mapbox/protozero.git && \
-  git clone https://github.com/osmcode/osmium-tool.git && \
-  git clone https://github.com/wangyoucao577/libosmium.git
+COPY --from=builder /osmium/bin /workspace/osmium/bin
 
 # prepare for sshd
 COPY jay_easy_rsa.pub /root/.ssh/
