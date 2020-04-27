@@ -69,7 +69,7 @@ RUN echo IMAGE_TAG=${IMAGE_TAG} >> /etc/environment
 
 
 
-
+WORKDIR /workspace
 ENTRYPOINT ["/usr/sbin/sshd", "-D"]
 
 # labels
