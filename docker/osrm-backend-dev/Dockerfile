@@ -21,7 +21,7 @@ RUN apt-get update && apt-get install -y \
   zip
 
 # osmium
-COPY --from=builder /osmium/bin /workspace/osmium/bin
+COPY --from=osmium_builder /osmium/bin /workspace/osmium/bin
 
 # prepare for sshd
 COPY jay_easy_rsa.pub /root/.ssh/
