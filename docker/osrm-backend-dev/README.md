@@ -27,7 +27,7 @@ $ docker pull docker.pkg.github.com/wangyoucao577/containers/osrm-backend-dev:ma
 ## Run container
 
 ```bash
-$ docker run -d -p 19001:22 --shm-size 64g --cap-add=SYS_PTRACE --security-opt seccomp=unconfined wangyoucao577/osrm-backend-dev
+$ docker run -d -p 19001:22 -p 5000:5000 --shm-size 64g --cap-add=SYS_PTRACE --security-opt seccomp=unconfined wangyoucao577/osrm-backend-dev
 4dce06ca751f4ee803df809396b8e1ed830f496ed530f52476034a92d35c8fe2
 ```
 
