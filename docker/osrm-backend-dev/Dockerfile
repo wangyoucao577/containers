@@ -30,6 +30,7 @@ RUN cat /root/.ssh/jay_easy_rsa.pub >> /root/.ssh/authorized_keys && \
   chmod 700 /root/.ssh/ && \
   chmod 755 /root/
 RUN service ssh start
+RUN echo 'root:root' | chpasswd
 
 # easy to use
 COPY .tmux.conf /root/
