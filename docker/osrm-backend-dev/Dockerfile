@@ -24,13 +24,14 @@ RUN apt-get update && apt-get install -y \
 COPY --from=osmium_builder /osmium/bin /workspace/osmium/bin
 
 # prepare for sshd
+RUN echo 'root:root' | chpasswd
+RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 COPY jay_easy_rsa.pub /root/.ssh/
 RUN cat /root/.ssh/jay_easy_rsa.pub >> /root/.ssh/authorized_keys && \
   chmod 600 /root/.ssh/authorized_keys && \
   chmod 700 /root/.ssh/ && \
   chmod 755 /root/
 RUN service ssh start
-RUN echo 'root:root' | chpasswd
 
 # easy to use
 COPY .tmux.conf /root/
