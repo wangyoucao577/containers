@@ -27,7 +27,9 @@
     "defaults": {
       // Put settings here that you want to apply to all profiles.
       "historySize":  "102400",
-      "colorScheme":  "One Half Dark"
+      "colorScheme":  "One Half Dark",
+      "suppressApplicationTitle": true,
+      "startingDirectory": "D:\\workspace"
     },
     "list": [
       {
