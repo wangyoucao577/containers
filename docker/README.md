@@ -6,6 +6,7 @@
     - [4. DOCKER_BUILDKIT=1 can not support special character in URL](#4-docker_buildkit1-can-not-support-special-character-in-url)
     - [5. Docker container(run apache httpd inside) can not be started again after stop it by `docker stop`](#5-docker-containerrun-apache-httpd-inside-can-not-be-started-again-after-stop-it-by-docker-stop)
     - [6. `gdb` can not work in container](#6-gdb-can-not-work-in-container)
+    - [7. Failed to export image](#7-failed-to-export-image)
   - [References](#references)
 
 # Docker Resources
@@ -67,6 +68,17 @@ In which case `gdb` reports `warning: Error disabling address space randomizatio
 After `docker run` with extra parameters `--cap-add=SYS_PTRACE --security-opt seccomp=unconfined` which suggested by [Stackoverflow - warning: Error disabling address space randomization: Operation not permitted](https://stackoverflow.com/questions/35860527/warning-error-disabling-address-space-randomization-operation-not-permitted), `gdb` works well.      
 Why the `--cap-add=SYS_PTRACE --security-opt seccomp=unconfined` works? The wiki [How to use GDB within Docker Container](https://github.com/tonyOreglia/argument-counter/wiki/How-to-use-GDB-within-Docker-Container) explains it very well.                
 
+### 7. Failed to export image
+We met a lot of `failed to export image` errors when execute `COPY` in `Dockerfile`(`docker build`). The error message that we met are:        
+- `failed to export image: failed to set parent ...` 
+- `failed to export image: failed to create image: failed to get layer ...`
+
+It seems a bug of `docker` that has not been fixed yet, see more details in https://github.com/moby/moby/issues/33974, https://github.com/moby/moby/issues/37965, https://github.com/moby/moby/issues/36573, https://github.com/moby/moby/issues/36901.        
+As [this comment](https://github.com/moby/moby/issues/37965#issue-366585696) mentioned, [Build images with BuildKit](https://docs.docker.com/develop/develop-images/build_enhancements/)(i.e., `DOCKER_BUILDKIT=1`) could be a workaround. However, I met another issue that `docker build` shows succeed but `docker push` fails due to can not find image after enable the `BuildKit`.     
+[comment](https://github.com/moby/moby/issues/37965#issuecomment-426853382) shows another workaround that insert `RUN true` between `COPY`s, but it requires modification on `Dockerfile` which is not a good idea most of time.     
+Final workaround to me:     
+- Enable `BuildKit`
+- retry `docker build + docker push` if any error occurs       
 
 ## References
 - [Get Docker CE for CentOS](https://docs.docker.com/install/linux/docker-ce/centos/)
