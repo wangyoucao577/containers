@@ -8,10 +8,10 @@ RUN pip install -r /tmp/requirements.txt
 
 RUN apk del --no-cache .build-deps
 
-RUN mkdir -p /src
-COPY src/ /src/
-RUN pip install -e /src
-COPY Makefile /
-COPY tests/ /tests/
+RUN mkdir -p /workspace/src
+COPY src/ /workspace//src/
+RUN pip install -e /workspace/src
+COPY Makefile /workspace/
+COPY tests/ /workspace/tests/
 
-WORKDIR /
+WORKDIR /workspace/
