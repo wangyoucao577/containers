@@ -91,13 +91,12 @@ There're ways can do it:
 However, both of them have security issue and not recommended. Because the actual command is executed in plain inside docker. We'll see them if inspect the layers after building. Even most of time we'll use [Jenkins - Using credentials](https://www.jenkins.io/doc/book/using/using-credentials/) to store and transfer the data to `docker cli`, the `docker cli` still just gets that as arguments in plain, so from its perspective is not sensitive data.     
 
 **Solution**:     
-[Docker Buildkit, start from version 18.09](https://docs.docker.com/engine/reference/builder/#buildkit) provides new `--secret` and `--ssh` command line options that allow the user to pass secret information for building new images with a specified `Dockerfile`. Read more in [Build images with BuildKit - Using SSH to access private data in builds](https://docs.docker.com/develop/develop-images/build_enhancements/#using-ssh-to-access-private-data-in-builds) and [Build secrets and SSH forwarding in Docker 18.09](https://medium.com/@tonistiigi/build-secrets-and-ssh-forwarding-in-docker-18-09-ae8161d066). The `--ssh` is based on `ssh` agent forwarding technology(read more in [An Illustrated Guide to SSH Agent Forwarding](http://www.unixwiz.net/techtips/ssh-agent-forwarding.html)), which is perfect for this scenario.     
+[Docker Buildkit, start from version 18.09](https://docs.docker.com/engine/reference/builder/#buildkit) provides new `--secret` and `--ssh` command line options that allow the user to pass secret information for building new images with a specified `Dockerfile`. Read more in [Build images with BuildKit - Using SSH to access private data in builds](https://docs.docker.com/develop/develop-images/build_enhancements/#using-ssh-to-access-private-data-in-builds), [Build secrets and SSH forwarding in Docker 18.09](https://medium.com/@tonistiigi/build-secrets-and-ssh-forwarding-in-docker-18-09-ae8161d066) and [Dockerfile frontend experimental syntaxes - Dockerfile frontend experimental syntaxes](https://github.com/moby/buildkit/blob/master/frontend/dockerfile/docs/experimental.md#run---mounttypessh). The `--ssh` is based on `ssh` agent forwarding technology(read more in [An Illustrated Guide to SSH Agent Forwarding](http://www.unixwiz.net/techtips/ssh-agent-forwarding.html)), which is perfect for this scenario.     
 Two phases to leverage the `--ssh`:     
 - make sure host has already launched `ssh-agent` with valid private key
   - This part requires to understand the base knowledges of the `ssh` technology. Then [ssh-agent - Single Sign-On using SSH](https://www.ssh.com/ssh/agent) introduced the basic usage.       
   - If use Jenkins for automation, [Jenkins SSH Agent Plugin](https://www.jenkins.io/doc/pipeline/steps/ssh-agent/) can help.     
 - update `Dockerfile` refer to [Build images with BuildKit - Using SSH to access private data in builds](https://docs.docker.com/develop/develop-images/build_enhancements/#using-ssh-to-access-private-data-in-builds)
-
 
 
 ## References
@@ -127,3 +126,4 @@ Two phases to leverage the `--ssh`:
 - [Jenkins SSH Agent Plugin](https://www.jenkins.io/doc/pipeline/steps/ssh-agent/)
 - [Jenkins - Using credentials](https://www.jenkins.io/doc/book/using/using-credentials/)
 - [ssh-agent - Single Sign-On using SSH](https://www.ssh.com/ssh/agent)
+- [Dockerfile frontend experimental syntaxes - Dockerfile frontend experimental syntaxes](https://github.com/moby/buildkit/blob/master/frontend/dockerfile/docs/experimental.md#run---mounttypessh)
