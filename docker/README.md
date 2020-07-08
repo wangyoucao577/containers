@@ -87,6 +87,7 @@ Sometimes we may want to access private data when `docker build` (i.e., in `Dock
 There're ways can do it:    
   - pass password by `docker build --build-arg`, and `git clone -n https://${GIT_REPO_USERNAME}:${GIT_REPO_PASSWORD}@{repo-url}.git` in `Dockerfile`      
   - use `ADD/COPY` to copy ssh private key into `Dockerfile`, and clone via `ssh` in `Dockerfile`    
+
 However, both of them have security issue and not recommended. Because the actual command is executed in plain inside docker. We'll see them if inspect the layers after building. Even most of time we'll use [Jenkins - Using credentials](https://www.jenkins.io/doc/book/using/using-credentials/) to store and transfer the data to `docker cli`, the `docker cli` still just gets that as arguments in plain, so from its perspective is not sensitive data.     
 
 **Solution**:     
