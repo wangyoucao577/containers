@@ -7,6 +7,7 @@
     - [5. Docker container(run apache httpd inside) can not be started again after stop it by `docker stop`](#5-docker-containerrun-apache-httpd-inside-can-not-be-started-again-after-stop-it-by-docker-stop)
     - [6. `gdb` can not work in container](#6-gdb-can-not-work-in-container)
     - [7. Failed to export image](#7-failed-to-export-image)
+    - [8. Using SSH to access private data in builds](#8-using-ssh-to-access-private-data-in-builds)
   - [References](#references)
 
 # Docker Resources
@@ -80,6 +81,24 @@ Final workaround to me:
 - Enable `BuildKit`
 - retry `docker build + docker push` if any error occurs       
 
+### 8. Using SSH to access private data in builds 
+
+Sometimes we may want to access private data when `docker build` (i.e., in `Dockerfile`). For example, clone code from private `git` repo. The clone process requires credential(username/password or `ssh` private key) for authecation.     
+There're ways can do it:    
+  - pass password by `docker build --build-arg`, and `git clone -n https://${GIT_REPO_USERNAME}:${GIT_REPO_PASSWORD}@{repo-url}.git` in `Dockerfile`      
+  - use `ADD/COPY` to copy ssh private key into `Dockerfile`, and clone via `ssh` in `Dockerfile`    
+However, both of them have security issue and not recommended. Because the actual command is executed in plain inside docker. We'll see them if inspect the layers after building. Even most of time we'll use [Jenkins - Using credentials](https://www.jenkins.io/doc/book/using/using-credentials/) to store and transfer the data to `docker cli`, the `docker cli` still just gets that as arguments in plain, so from its perspective is not sensitive data.     
+
+**Solution**:     
+[Docker Buildkit, start from version 18.09](https://docs.docker.com/engine/reference/builder/#buildkit) provides new `--secret` and `--ssh` command line options that allow the user to pass secret information for building new images with a specified `Dockerfile`. Read more in [Build images with BuildKit - Using SSH to access private data in builds](https://docs.docker.com/develop/develop-images/build_enhancements/#using-ssh-to-access-private-data-in-builds) and [Build secrets and SSH forwarding in Docker 18.09](https://medium.com/@tonistiigi/build-secrets-and-ssh-forwarding-in-docker-18-09-ae8161d066). The `--ssh` is based on `ssh` agent forwarding technology(read more in [An Illustrated Guide to SSH Agent Forwarding](http://www.unixwiz.net/techtips/ssh-agent-forwarding.html)), which is perfect for this scenario.     
+Two phases to leaverage the `--ssh`:     
+- make sure host has already launched `ssh-agent` with valid private key
+  - This part requires to understand the base knowledges of the `ssh` technology. Then [ssh-agent - Single Sign-On using SSH](https://www.ssh.com/ssh/agent) introduced the basic usage.       
+  - If use Jenkins for automation, [Jenkins SSH Agent Plugin](https://www.jenkins.io/doc/pipeline/steps/ssh-agent/) can help.     
+- update `Dockerfile` refer to [Build images with BuildKit - Using SSH to access private data in builds](https://docs.docker.com/develop/develop-images/build_enhancements/#using-ssh-to-access-private-data-in-builds)
+
+
+
 ## References
 - [Get Docker CE for CentOS](https://docs.docker.com/install/linux/docker-ce/centos/)
 - [Docker Command Line Docs](https://docs.docker.com/engine/reference/run/)
@@ -101,3 +120,9 @@ Final workaround to me:
 - [Security Lab: Seccomp](https://training.play-with-docker.com/security-seccomp/)
 - [Docker run reference - Security configuration](https://docs.docker.com/engine/reference/run/#security-configuration)
 - [Stackoverflow - warning: Error disabling address space randomization: Operation not permitted](https://stackoverflow.com/questions/35860527/warning-error-disabling-address-space-randomization-operation-not-permitted)
+- [Build images with BuildKit - Using SSH to access private data in builds](https://docs.docker.com/develop/develop-images/build_enhancements/#using-ssh-to-access-private-data-in-builds)
+- [An Illustrated Guide to SSH Agent Forwarding](http://www.unixwiz.net/techtips/ssh-agent-forwarding.html)
+- [Build secrets and SSH forwarding in Docker 18.09](https://medium.com/@tonistiigi/build-secrets-and-ssh-forwarding-in-docker-18-09-ae8161d066)
+- [Jenkins SSH Agent Plugin](https://www.jenkins.io/doc/pipeline/steps/ssh-agent/)
+- [Jenkins - Using credentials](https://www.jenkins.io/doc/book/using/using-credentials/)
+- [ssh-agent - Single Sign-On using SSH](https://www.ssh.com/ssh/agent)
