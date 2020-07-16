@@ -1,0 +1,8 @@
+{
+    "dockerFile": "Dockerfile",
+
+    "workspaceMount": "src=${localWorkspaceFolder},dst=/workspace,type=bind",
+    "workspaceFolder": "/workspace",
+
+}
+
