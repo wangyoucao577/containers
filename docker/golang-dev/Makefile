@@ -1,0 +1,6 @@
+test:
+	go test -short -v ./...
+
+install:
+	go install ./...
+
