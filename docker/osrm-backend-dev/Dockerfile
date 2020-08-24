@@ -51,13 +51,20 @@ RUN cd /workspace/vscode && \
 RUN mkdir -p /root/.vscode-server/data/Machine && \
   cp /workspace/vscode/settings.json /root/.vscode-server/data/Machine/
 
-# prepare osrm-backend dev env
+# prepare Telenav/osrm-backend dev env
 RUN cd /workspace && \
   git clone https://github.com/Telenav/osrm-backend.git && \
   cd osrm-backend && \
   mkdir -p build/debug build/release && \
   cp -r /workspace/vscode/cpp .vscode && \
   cp -r /workspace/vscode/go integration/.vscode
+
+# prepare wangyoucao577/osrm-backend dev env
+RUN cd /workspace && \
+  git clone https://github.com/wangyoucao577/osrm-backend.git osrm-backend-w && \
+  cd osrm-backend-w && \
+  mkdir -p build/debug build/release && \
+  cp -r /workspace/vscode/cpp .vscode
 
 # sample osm pbf
 RUN cd /workspace && \
