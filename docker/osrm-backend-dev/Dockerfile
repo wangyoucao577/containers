@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y \
   atop \
   sysstat \
   strace \
+  jq \
   zip \
   unzip \
   tree
