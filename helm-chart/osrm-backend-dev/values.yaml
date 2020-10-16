@@ -33,7 +33,8 @@ podSecurityContext: {}
 securityContext: 
   capabilities:
     add:
-    - SYS_PTRACE
+     - ALL
+  #  - SYS_PTRACE
 
   #   drop:
   #   - ALL
