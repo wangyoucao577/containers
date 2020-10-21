@@ -27,16 +27,17 @@ RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.36.0/install.sh | 
   export NVM_DIR="$HOME/.nvm" && \
   # This loads nvm
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  && \
-  # # This loads nvm bash_completion
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  && \
   # we can only use node 10 for now, see https://github.com/Project-OSRM/osrm-backend/issues/5720
   nvm install 10 && \
   # nvm install node && \
   node --version && \
   npm --version
 
-# install elasticdump
-RUN npm install -g elasticdump && \
+# install elasticdump via nvm/node
+RUN export NVM_DIR="$HOME/.nvm" && \
+  # This loads nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  && \
+  npm install -g elasticdump && \
   npm link elasticdump && \
   elasticdump --version 
 
