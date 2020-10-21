@@ -23,11 +23,9 @@ RUN apt-get update && apt-get install -y \
 
 # install nvm and nodejs
 # https://github.com/nvm-sh/nvm#install--update-script
-RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.36.0/install.sh | bash && \
-  source ~/.bashrc && \
-  command -v nvm && \
-  # https://github.com/Project-OSRM/osrm-backend/issues/5720
-  nvm install 10 && \
+RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.36.0/install.sh | bash
+# https://github.com/Project-OSRM/osrm-backend/issues/5720
+RUN nvm install 10 && \
   # nvm install node && \
   node --version && \
   npm --version
