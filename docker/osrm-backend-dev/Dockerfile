@@ -35,6 +35,11 @@ RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.36.0/install.sh | 
   node --version && \
   npm --version
 
+# install elasticdump
+RUN npm install -g elasticdump && \
+  npm link elasticdump && \
+  elasticdump --version 
+
 # osmium
 COPY --from=osmium_builder /osmium/bin /workspace/osmium/bin
 
