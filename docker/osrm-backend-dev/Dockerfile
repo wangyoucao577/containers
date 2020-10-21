@@ -26,7 +26,9 @@ RUN apt-get update && apt-get install -y \
 RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.36.0/install.sh | bash && \
   source ~/.bashrc && \
   command -v nvm && \
-  nvm install node && \
+  # https://github.com/Project-OSRM/osrm-backend/issues/5720
+  nvm install 10 && \
+  # nvm install node && \
   node --version && \
   npm --version
 
