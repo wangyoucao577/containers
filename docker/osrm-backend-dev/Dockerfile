@@ -69,7 +69,7 @@ RUN cd /workspace && \
 RUN cd /workspace && \
   mkdir -p osrm-mapdata-nevada && \
   cd osrm-mapdata-nevada && \
-  wget --progress=dot:mega https://download.geofabrik.de/north-america/us/nevada-latest.osm.pbf 
+  wget --progress=dot:mega --no-check-certificate https://download.geofabrik.de/north-america/us/nevada-latest.osm.pbf 
 
 
 # for shown on runtime
