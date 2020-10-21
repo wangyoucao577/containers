@@ -1,7 +1,7 @@
 
 FROM wangyoucao577/osmium-tool as osmium_builder
 
-FROM telenavmap/osrm-backend-dev:master
+FROM telenavmap/osrm-backend-dev
 
 
 # install extra tools
