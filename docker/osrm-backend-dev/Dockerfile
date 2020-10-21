@@ -21,6 +21,15 @@ RUN apt-get update && apt-get install -y \
   strace \
   jq
 
+# install nvm and nodejs
+# https://github.com/nvm-sh/nvm#install--update-script
+RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.36.0/install.sh | bash && \
+  source ~/.bashrc && \
+  command -v nvm && \
+  nvm install node && \
+  node --version && \
+  npm --version
+
 # osmium
 COPY --from=osmium_builder /osmium/bin /workspace/osmium/bin
 
