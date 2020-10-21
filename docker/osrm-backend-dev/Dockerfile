@@ -18,10 +18,7 @@ RUN apt-get update && apt-get install -y \
   atop \
   sysstat \
   strace \
-  jq \
-  zip \
-  unzip \
-  tree
+  jq
 
 # osmium
 COPY --from=osmium_builder /osmium/bin /workspace/osmium/bin
