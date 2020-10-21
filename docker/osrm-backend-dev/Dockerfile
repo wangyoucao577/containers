@@ -38,6 +38,7 @@ COPY .tmux.conf /root/
 COPY .vimrc /root/
 COPY .bashrc /root/
 RUN git config --global core.editor vim && \
+  git config --global http.sslverify false && \
   git config --global credential.helper 'cache --timeout 3600' && \
   git config --global log.decorate auto
 
