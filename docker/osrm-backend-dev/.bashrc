@@ -22,3 +22,8 @@ alias l='ls $LS_OPTIONS -lA'
 export GOPATH=/workspace/go
 export GO_HOME=/usr/local/go
 export PATH=/workspace/osmium/bin:${GOPATH}/bin:${GO_HOME}/bin:$PATH
+
+# for nvm and node/npm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
