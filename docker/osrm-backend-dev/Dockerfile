@@ -44,8 +44,8 @@ RUN git config --global core.editor vim && \
 # vscode configs and latest extensions
 COPY vscode/ /workspace/vscode/ 
 RUN cd /workspace/vscode && \
-  wget --progress=dot:mega https://github.com/microsoft/vscode-cpptools/releases/download/1.0.1/cpptools-linux.vsix && \
-  wget --progress=dot:mega https://github.com/golang/vscode-go/releases/download/v0.17.2/go-0.17.2.vsix
+  wget --progress=dot:mega --no-check-certificate https://github.com/microsoft/vscode-cpptools/releases/download/1.0.1/cpptools-linux.vsix && \
+  wget --progress=dot:mega --no-check-certificate https://github.com/golang/vscode-go/releases/download/v0.17.2/go-0.17.2.vsix
 RUN mkdir -p /root/.vscode-server/data/Machine && \
   cp /workspace/vscode/settings.json /root/.vscode-server/data/Machine/
 
