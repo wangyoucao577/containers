@@ -7,6 +7,7 @@ FROM telenavmap/osrm-backend-dev:latest
 # install extra tools
 RUN apt-get update && apt-get install -y \
   openssh-server \
+  python3-pip \
   gdb \
   tmux \
   locales-all \
