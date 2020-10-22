@@ -1,7 +1,7 @@
 
 FROM wangyoucao577/osmium-tool as osmium_builder
 
-FROM telenavmap/osrm-backend-dev
+FROM telenavmap/osrm-backend-dev:dev-image-d281a7c-20201022
 
 
 # install extra tools
@@ -20,18 +20,6 @@ RUN apt-get update && apt-get install -y \
   sysstat \
   strace \
   jq
-
-# install nvm and nodejs
-# https://github.com/nvm-sh/nvm#install--update-script
-RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.36.0/install.sh | bash && \
-  export NVM_DIR="$HOME/.nvm" && \
-  # This loads nvm
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  && \
-  # we can only use node 10 for now, see https://github.com/Project-OSRM/osrm-backend/issues/5720
-  nvm install 10 && \
-  # nvm install node && \
-  node --version && \
-  npm --version
 
 # install elasticdump via nvm/node
 RUN export NVM_DIR="$HOME/.nvm" && \
