@@ -30,5 +30,12 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteract
   ca-certificates \
   && rm -rf /var/lib/apt/lists/*
 
+
+# for shown on runtime
+ARG IMAGE_TAG
+ENV IMAGE_TAG ${IMAGE_TAG}
+RUN echo IMAGE_TAG=${IMAGE_TAG} >> /etc/environment
+
+
 LABEL maintainer="wangyoucao577@gmail.com"
 
