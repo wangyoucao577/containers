@@ -19,9 +19,10 @@ alias l='ls $LS_OPTIONS -lA'
 # alias cp='cp -i'
 # alias mv='mv -i'
 
-export GOPATH=/workspace/go
+# for golang
 export GO_HOME=/usr/local/go
-export PATH=/workspace/osmium/bin:${GOPATH}/bin:${GO_HOME}/bin:$PATH
+export GOPATH=/root/workspace/go
+export PATH=${GOPATH}/bin:${GO_HOME}/bin:$PATH
 
 # for nvm and node/npm
 export NVM_DIR="$HOME/.nvm"
