@@ -30,6 +30,21 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteract
   ca-certificates \
   && rm -rf /var/lib/apt/lists/*
 
+# set workspace
+WORKDIR /root/workspace
+
+# install go
+RUN wget --progress=dot:mega --no-check-certificate https://golang.org/dl/go1.15.3.linux-amd64.tar.gz && \
+  tar -zxf go1.15.3.linux-amd64.tar.gz && \
+  mv go /usr/local/ && \
+  rm -f go1.15.3.linux-amd64.tar.gz && \
+  mkdir -p go/bin /go/src go/pkg
+
+# set env
+ENV GO_HOME=/usr/local/go
+ENV PATH=${GO_HOME}/bin/:$PATH
+ENV GOPATH=/root/workspace/go
+
 
 # for shown on runtime
 ARG IMAGE_TAG
