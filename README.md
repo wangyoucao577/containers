@@ -34,3 +34,4 @@ See details in [docker/osmium-tool](./docker/osmium-tool/).
 ### debian10-dev
 ![Build Docker - debian10-dev](https://github.com/wangyoucao577/containers/workflows/Build%20Docker%20-%20debian10-dev/badge.svg)    
 All-in-one dev image based on `debian:buster` for my daily development.     
+See details in [docker/debian10-dev](./docker/debian10-dev/).      
