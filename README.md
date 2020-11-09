@@ -30,3 +30,7 @@ See details in [docker/osrm-backend-dev](./docker/osrm-backend-dev/).
 ![Build Docker - osmium-tool](https://github.com/wangyoucao577/containers/workflows/Build%20Docker%20-%20osmium-tool/badge.svg)      
 Docker image to wrap [osmium-tool](https://github.com/osmcode/osmium-tool) that can be used like a command line tool.     
 See details in [docker/osmium-tool](./docker/osmium-tool/).    
+
+### debian10-dev
+![Build Docker - debian10-dev](https://github.com/wangyoucao577/containers/workflows/Build%20Docker%20-%20debian10-dev/badge.svg)    
+All-in-one dev image based on `debian:buster` for my daily development.     
