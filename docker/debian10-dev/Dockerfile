@@ -34,8 +34,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteract
 # prepare for sshd
 RUN echo 'root:root' | chpasswd
 RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
-COPY jay_easy_rsa.pub /root/.ssh/
+COPY *.pub /root/.ssh/
 RUN cat /root/.ssh/jay_easy_rsa.pub >> /root/.ssh/authorized_keys && \
+  cat /root/.ssh/jay_priv_rsa.pub >> /root/.ssh/authorized_keys && \
   chmod 600 /root/.ssh/authorized_keys && \
   chmod 700 /root/.ssh/ && \
   chmod 755 /root/
