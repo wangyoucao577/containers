@@ -18,7 +18,7 @@ $ docker pull wangyoucao577/debian10-dev
 ```
 
 ### Github Container Registry
-
+[Github Container Repo: wangyoucao577/debian10-dev](https://github.com/users/wangyoucao577/packages/container/package/debian10-dev)
 ```bash
 $ docker pull ghcr.io/wangyoucao577/debian10-dev
 ```
