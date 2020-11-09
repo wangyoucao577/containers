@@ -17,6 +17,12 @@ $ docker build -t wangyoucao577/debian10-dev .
 $ docker pull wangyoucao577/debian10-dev
 ```
 
+### Github Container Registry
+
+```bash
+$ docker pull ghcr.io/wangyoucao577/debian10-dev
+```
+
 ### Github Package
 [Github Package Repo: docker.pkg.github.com/wangyoucao577/containers/debian10-dev](https://github.com/wangyoucao577/containers/packages/493706)
 
