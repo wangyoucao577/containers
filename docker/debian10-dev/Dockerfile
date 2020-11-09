@@ -76,6 +76,12 @@ RUN wget --progress=dot:mega --no-check-certificate https://golang.org/dl/go1.15
   rm -f go1.15.3.linux-amd64.tar.gz && \
   mkdir -p go/bin /go/src go/pkg
 
+
+# vscode configs and latest extensions
+RUN mkdir -p vscode && cd vscode && \
+  wget --progress=dot:mega --no-check-certificate https://github.com/microsoft/vscode-cpptools/releases/download/1.1.0/cpptools-linux.vsix && \
+  wget --progress=dot:mega --no-check-certificate https://github.com/golang/vscode-go/releases/download/v0.18.1/go-0.18.1.vsix
+
 # set env
 ENV GO_HOME=/usr/local/go
 ENV PATH=${GO_HOME}/bin/:$PATH
