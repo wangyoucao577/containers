@@ -30,6 +30,27 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteract
   ca-certificates \
   && rm -rf /var/lib/apt/lists/*
 
+
+# prepare for sshd
+RUN echo 'root:root' | chpasswd
+RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+COPY jay_easy_rsa.pub /root/.ssh/
+RUN cat /root/.ssh/jay_easy_rsa.pub >> /root/.ssh/authorized_keys && \
+  chmod 600 /root/.ssh/authorized_keys && \
+  chmod 700 /root/.ssh/ && \
+  chmod 755 /root/
+RUN service ssh start
+
+# easy to use
+COPY .tmux.conf /root/
+COPY .vimrc /root/
+COPY .bashrc /root/
+RUN git config --global core.editor vim && \
+  git config --global http.sslverify false && \
+  git config --global credential.helper 'cache --timeout 36000' && \
+  git config --global log.decorate auto
+
+
 # set workspace
 WORKDIR /root/workspace
 
@@ -46,7 +67,6 @@ RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.36.0/install.sh | 
 #  export NVM_DIR="$HOME/.nvm"
 #  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 #  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 
 
 # install go
@@ -66,6 +86,9 @@ ENV GOPATH=/root/workspace/go
 ARG IMAGE_TAG
 ENV IMAGE_TAG ${IMAGE_TAG}
 RUN echo IMAGE_TAG=${IMAGE_TAG} >> /etc/environment
+
+# lanuch via ssh by default
+ENTRYPOINT ["/usr/sbin/sshd", "-D"]
 
 
 LABEL maintainer="wangyoucao577@gmail.com"
