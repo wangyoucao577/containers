@@ -36,6 +36,8 @@ securityContext:
      - ALL
   #  - SYS_PTRACE
 
+  privileged: true
+
   #   drop:
   #   - ALL
   # readOnlyRootFilesystem: true
