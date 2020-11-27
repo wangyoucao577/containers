@@ -30,6 +30,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteract
   ca-certificates \
   && rm -rf /var/lib/apt/lists/*
 
+# install docker for docker-in-docker
+RUN curl -sSL https://get.docker.com/ | sh
 
 # prepare for sshd
 RUN echo 'root:root' | chpasswd
@@ -93,4 +95,5 @@ ENTRYPOINT ["/usr/sbin/sshd", "-D"]
 
 
 LABEL maintainer="wangyoucao577@gmail.com"
+LABEL org.opencontainers.image.source https://github.com/wangyoucao577/containers
 
