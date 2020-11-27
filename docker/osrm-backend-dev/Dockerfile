@@ -21,6 +21,9 @@ RUN apt-get update && apt-get install -y \
   strace \
   jq
 
+# install docker for docker-in-docker
+RUN curl -sSL https://get.docker.com/ | sh
+
 # install elasticdump via nvm/node
 RUN export NVM_DIR="$HOME/.nvm" && \
   # This loads nvm
