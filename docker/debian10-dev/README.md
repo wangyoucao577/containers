@@ -37,6 +37,21 @@ $ docker pull docker.pkg.github.com/wangyoucao577/containers/debian10-dev
 $ docker run -d --restart=always -p 13191:22 --cap-add=ALL --security-opt seccomp=unconfined wangyoucao577/debian10-dev
 4dce06ca751f4ee803df809396b8e1ed830f496ed530f52476034a92d35c8fe2
 ```
+### Docker-in-docker
+[jpetazzo/dind](https://github.com/jpetazzo/dind) and [Using Docker-in-Docker for your CI or testing environment? Think twice.](http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/) provides awesome help on this topic.    
+
+#### Option 1: isolated docker context
+
+- with one more parameter `--privileged` when execute `docker run`
+- Run `service docker start` to launch docker deamon after entered container 
+- Enjoy! 
+
+#### Option 2: share host docker context
+With this option if you run `docker run` inside `docker`, the new container will be launched on host!    
+
+- with one more parameter `-v /var/run/docker.sock:/var/run/docker.sock` when execute `docker run`
+- Enjoy!    
+
 
 ## Remote Debug via VSCode
 Refer to [VS Code Remote Development](https://code.visualstudio.com/docs/remote/remote-overview) for more usage.    
