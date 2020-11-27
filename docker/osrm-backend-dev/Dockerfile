@@ -23,6 +23,7 @@ RUN apt-get update && apt-get install -y \
 
 # install docker for docker-in-docker
 RUN curl -sSL https://get.docker.com/ | sh
+RUN service docker start
 
 # install elasticdump via nvm/node
 RUN export NVM_DIR="$HOME/.nvm" && \
