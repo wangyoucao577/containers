@@ -98,6 +98,8 @@ Two phases to leverage the `--ssh`:
   - If use Jenkins for automation, [Jenkins SSH Agent Plugin](https://www.jenkins.io/doc/pipeline/steps/ssh-agent/) can help.     
 - update `Dockerfile` refer to [Build images with BuildKit - Using SSH to access private data in builds](https://docs.docker.com/develop/develop-images/build_enhancements/#using-ssh-to-access-private-data-in-builds)
 
+### 9. Docker-in-docker
+[jpetazzo/dind](https://github.com/jpetazzo/dind) and [Using Docker-in-Docker for your CI or testing environment? Think twice.](http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/) provides awesome help on this topic.    
 
 ## References
 - [Get Docker CE for CentOS](https://docs.docker.com/install/linux/docker-ce/centos/)
@@ -127,3 +129,5 @@ Two phases to leverage the `--ssh`:
 - [Jenkins - Using credentials](https://www.jenkins.io/doc/book/using/using-credentials/)
 - [ssh-agent - Single Sign-On using SSH](https://www.ssh.com/ssh/agent)
 - [Dockerfile frontend experimental syntaxes - Dockerfile frontend experimental syntaxes](https://github.com/moby/buildkit/blob/master/frontend/dockerfile/docs/experimental.md#run---mounttypessh)
+- [jpetazzo/dind](https://github.com/jpetazzo/dind)
+- [Using Docker-in-Docker for your CI or testing environment? Think twice.](http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/)

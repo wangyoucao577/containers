@@ -17,6 +17,13 @@ $ docker build -t wangyoucao577/osrm-backend-dev .
 $ docker pull wangyoucao577/osrm-backend-dev
 ```
 
+### Github Container Registry
+[Github Container Registry Repo: ghcr.io/wangyoucao577/osrm-backend-dev](https://github.com/users/wangyoucao577/packages/container/package/osrm-backend-dev)
+
+```bash
+$ docker pull ghcr.io/wangyoucao577/osrm-backend-dev
+``` 
+
 ### Github Package
 [Github Package Repo: docker.pkg.github.com/wangyoucao577/containers/osrm-backend-dev](https://github.com/wangyoucao577/containers/packages/141148)
 
@@ -27,12 +34,26 @@ $ docker pull docker.pkg.github.com/wangyoucao577/containers/osrm-backend-dev
 ## Run container
 
 ```bash
-$ docker run -d -p 19001:22 -p 5000:5000 --shm-size 64g --cap-add=SYS_PTRACE --security-opt seccomp=unconfined wangyoucao577/osrm-backend-dev
+$ docker run -d -p 19001:22 -p 5000:5000 --shm-size 64g --cap-add=ALL --security-opt seccomp=unconfined wangyoucao577/osrm-backend-dev
 4dce06ca751f4ee803df809396b8e1ed830f496ed530f52476034a92d35c8fe2
 ```
 
 After run above command, we get a deamon container which can be connect by `ssh` via port `19001`. `--cap-add=SYS_PTRACE --security-opt seccomp=unconfined` is used to let `gdb` works, more discussion see [Docker - Issues Encountered](../docker#issues-encountered), and [How to use GDB within Docker Container](https://github.com/tonyOreglia/argument-counter/wiki/How-to-use-GDB-within-Docker-Container) explains it very well.         
 
+### Docker-in-docker
+[jpetazzo/dind](https://github.com/jpetazzo/dind) and [Using Docker-in-Docker for your CI or testing environment? Think twice.](http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/) provides awesome help on this topic.    
+
+#### Option 1: isolated docker context
+
+- with one more parameter `--privileged` when execute `docker run`
+- Run `service docker start` to launch docker deamon after entered container 
+- Enjoy! 
+
+#### Option 2: share host docker context
+With this option if you run `docker run` inside `docker`, the new container will be launched on host!    
+
+- with one more parameter `-v /var/run/docker.sock:/var/run/docker.sock` when execute `docker run`
+- Enjoy!    
 
 ## Remote Debug via VSCode
 Refer to [VS Code Remote Development](https://code.visualstudio.com/docs/remote/remote-overview) for more usage.    
