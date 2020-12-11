@@ -55,6 +55,8 @@ With this option if you run `docker run` inside `docker`, the new container will
 - with one more parameter `-v /var/run/docker.sock:/var/run/docker.sock` when execute `docker run`
 - Enjoy!    
 
+NOTE: be aware that this option will no longer available once [Kubernetes is deprecating Docker as a container runtime after v1.20.](https://kubernetes.io/blog/2020/12/02/dont-panic-kubernetes-and-docker/). Check out other options including things like [kaniko](https://github.com/GoogleContainerTools/kaniko), [img](https://github.com/genuinetools/img), and [buildah](https://github.com/containers/buildah).     
+
 ## Remote Debug via VSCode
 Refer to [VS Code Remote Development](https://code.visualstudio.com/docs/remote/remote-overview) for more usage.    
 

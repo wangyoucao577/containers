@@ -8,6 +8,7 @@
     - [6. `gdb` can not work in container](#6-gdb-can-not-work-in-container)
     - [7. Failed to export image](#7-failed-to-export-image)
     - [8. Using SSH to access private data in builds](#8-using-ssh-to-access-private-data-in-builds)
+    - [9. Docker-in-docker](#9-docker-in-docker)
   - [References](#references)
 
 # Docker Issues & Experiences
@@ -100,6 +101,9 @@ Two phases to leverage the `--ssh`:
 
 ### 9. Docker-in-docker
 [jpetazzo/dind](https://github.com/jpetazzo/dind) and [Using Docker-in-Docker for your CI or testing environment? Think twice.](http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/) provides awesome help on this topic.    
+
+One thing to note: If you are relying on the underlying docker socket (`/var/run/docker.sock`) as part of a workflow within your cluster today, it will be broken due to [Kubernetes is deprecating Docker as a container runtime after v1.20.](https://kubernetes.io/blog/2020/12/02/dont-panic-kubernetes-and-docker/). There are lots of options out there for this specific use case including things like [kaniko](https://github.com/GoogleContainerTools/kaniko), [img](https://github.com/genuinetools/img), and [buildah](https://github.com/containers/buildah).      
+
 
 ## References
 - [Get Docker CE for CentOS](https://docs.docker.com/install/linux/docker-ce/centos/)
