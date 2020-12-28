@@ -54,8 +54,8 @@ RUN git config --global core.editor vim && \
 # prepare ApolloAuto/apollo dev env
 # apollo has to be placed in root folder due to scripts checking for inside docker
 # e.g., https://github.com/ApolloAuto/apollo/blob/a8fc19f746c4ca95d01fa688a84ab376cbf89af3/scripts/apollo.bashrc#L23
-RUN cd / && \
-  git clone https://github.com/ApolloAuto/apollo.git
+# RUN cd / && \
+#   git clone https://github.com/ApolloAuto/apollo.git
 
 # for shown on runtime
 ARG IMAGE_TAG
