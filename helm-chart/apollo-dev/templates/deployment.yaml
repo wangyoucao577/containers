@@ -22,15 +22,17 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
     {{- end }}
+    {{- with .Values.podSecurityContext }}
       securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
       initContainers:
         - name: cloneCode
           image: "{{ .Values.image.name }}"
           command: "cd / && git clone https://github.com/ApolloAuto/apollo.git"
           volumeMounts:
             - mountPath: /apollo
-            name: apolloRoot
+              name: apolloRoot
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -63,7 +65,7 @@ spec:
               name: sharedMemory
             {{- end}}
             - mountPath: /apollo
-            name: apolloRoot
+              name: apolloRoot
       volumes:
         {{- if .Values.sharedMemory }}         
         - emptyDir:
