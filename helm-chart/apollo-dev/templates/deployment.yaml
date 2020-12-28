@@ -27,13 +27,13 @@ spec:
         {{- toYaml . | nindent 8 }}
     {{- end }}
       initContainers:
-        - name: cloneCode
+        - name: clone-code
           image: "{{ .Values.image.name }}"
           command: ["/bin/bash"]
           args: ["-c", "cd / && git clone https://github.com/ApolloAuto/apollo.git"]
           volumeMounts:
             - mountPath: /apollo
-              name: apolloRoot
+              name: apollo-root
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -63,18 +63,18 @@ spec:
           volumeMounts:
             {{- if .Values.sharedMemory }}         
             - mountPath: /dev/shm
-              name: sharedMemory
+              name: shared-memory
             {{- end}}
             - mountPath: /apollo
-              name: apolloRoot
+              name: apollo-root
       volumes:
         {{- if .Values.sharedMemory }}         
         - emptyDir:
             {{- toYaml .Values.sharedMemory | nindent 12 }}
-          name: sharedMemory
+          name: shared-memory
         {{- end}}
         - emptyDir:
-          name: apolloRoot
+          name: apollo-root
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
