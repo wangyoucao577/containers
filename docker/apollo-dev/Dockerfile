@@ -1,20 +1,10 @@
 
-FROM ubuntu:focal
+FROM apolloauto/apollo:dev-x86_64-18.04-20201210_1400
 
 # Install necessary packages for proper system state
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
-  build-essential \
+RUN apt-get update && apt-get install --no-install-recommends -y \
   openssh-server \
-  lsb-release \
-  cmake \
-  gdb \
   tmux \
-  curl \
-  wget \
-  vim \
-  git \
-  zip \
-  unzip \
   tree \
   iperf3 \
   net-tools \
@@ -26,7 +16,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteract
   strace \
   jq \
   locales-all \
-  pkg-config \
   ca-certificates \
   && rm -rf /var/lib/apt/lists/*
 
