@@ -26,20 +26,25 @@ spec:
       securityContext:
         {{- toYaml . | nindent 8 }}
     {{- end }}
+    {{- if .Values.cloneCodeByInitContainer.enabled }}
       initContainers:
         - name: clone-code
           image: "{{ .Values.image.name }}"
           command: ["/bin/bash"]
           args: ["-c", "cd / && git clone https://github.com/ApolloAuto/apollo.git"]
           volumeMounts:
-            - mountPath: /apollo
+            - mountPath: {{ .Values.container.apolloRootDir }}
               name: apollo-root
+    {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.name }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: APOLLO_ROOT_DIR
+              value: {{ .Values.container.apolloRootDir }}
           ports:
             - name: http
               containerPort: {{ .Values.container.httpPort }}
@@ -61,20 +66,24 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
-            {{- if .Values.sharedMemory }}         
+            {{- if .Values.emptyDir.sharedMemory }}         
             - mountPath: /dev/shm
               name: shared-memory
             {{- end}}
-            - mountPath: /apollo
+            {{- if .Values.emptyDir.apolloRootDir }}         
+            - mountPath: {{ .Values.container.apolloRootDir }}
               name: apollo-root
+            {{- end}}
       volumes:
-        {{- if .Values.sharedMemory }}         
+        {{- if .Values.emptyDir.sharedMemory }}         
         - emptyDir:
-            {{- toYaml .Values.sharedMemory | nindent 12 }}
+            {{- toYaml .Values.emptyDir.sharedMemory | nindent 12 }}
           name: shared-memory
         {{- end}}
+        {{- if .Values.emptyDir.apolloRootDir }}         
         - emptyDir:
           name: apollo-root
+        {{- end}}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
