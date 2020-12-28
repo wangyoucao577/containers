@@ -29,7 +29,8 @@ spec:
       initContainers:
         - name: cloneCode
           image: "{{ .Values.image.name }}"
-          command: "cd / && git clone https://github.com/ApolloAuto/apollo.git"
+          command: ["/bin/bash"]
+          args: ["-c", "cd / && git clone https://github.com/ApolloAuto/apollo.git"]
           volumeMounts:
             - mountPath: /apollo
               name: apolloRoot
