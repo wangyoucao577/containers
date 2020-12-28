@@ -5,7 +5,7 @@ FROM ubuntu:focal
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
   build-essential \
   openssh-server \
-  python3-pip \
+  lsb-release \
   cmake \
   gdb \
   tmux \
