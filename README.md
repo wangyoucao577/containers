@@ -35,3 +35,8 @@ See details in [docker/osmium-tool](./docker/osmium-tool/).
 ![Build Docker - debian10-dev](https://github.com/wangyoucao577/containers/workflows/Build%20Docker%20-%20debian10-dev/badge.svg)    
 All-in-one dev image based on `debian:buster` for my daily development.     
 See details in [docker/debian10-dev](./docker/debian10-dev/).      
+
+### apollo-dev
+![Build Docker - apollo-dev](https://github.com/wangyoucao577/containers/workflows/Build%20Docker%20-%20apollo-dev/badge.svg)      
+Dev image based on `ubuntu:focal` to support my playing on [ApolloAuto/apollo](https://github.com/ApolloAuto/apollo).      
+See details in [docker/apollo-dev](./docker/apollo-dev/).      
