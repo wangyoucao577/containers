@@ -73,7 +73,7 @@ resources:
   #   cpu: 100m
   #   memory: 128Mi
 
-emptyDir:
+sharedMemory:
   medium: Memory
   sizeLimit: 16Gi
 
