@@ -78,8 +78,14 @@ function build_code_cpu() {
     ./apollo.sh build_cpu
 }
 
+function launch_docker() {
+    service docker start
+}
+
 function main() {
     clone_code
+
+    launch_docker
 
     prepare_maps
 
