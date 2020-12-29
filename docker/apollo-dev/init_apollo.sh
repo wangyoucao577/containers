@@ -82,15 +82,25 @@ function launch_docker() {
     service docker start
 }
 
-function main() {
-    clone_code
+function geo_cn_specific_config() {
+    #TODO: clone from gitee instead github if need
+    # https://github.com/ApolloAuto/apollo/blob/master/docs/howto/how_to_clone_apollo_repo_from_china.md
 
+    # docker registry
+    GEO_CN_DOCKER_REGISTRY="registry.baidubce.com"
+    APOLLO_DOCKER_REPO="${GEO_CN_DOCKER_REGISTRY}/${APOLLO_DOCKER_REPO}"
+}
+
+function main() {
+    geo_cn_specific_config
     launch_docker
 
+    # clone code & pull/export data
+    clone_code
     prepare_maps
-
     prepare_other_data
 
+    # build
     build_code_cpu
 }
 
