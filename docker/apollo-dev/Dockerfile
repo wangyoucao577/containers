@@ -40,11 +40,8 @@ RUN git config --global core.editor vim && \
   git config --global credential.helper 'cache --timeout 36000' && \
   git config --global log.decorate auto
 
-# prepare ApolloAuto/apollo dev env
-# apollo has to be placed in root folder due to scripts checking for inside docker
-# e.g., https://github.com/ApolloAuto/apollo/blob/a8fc19f746c4ca95d01fa688a84ab376cbf89af3/scripts/apollo.bashrc#L23
-# RUN cd / && \
-#   git clone https://github.com/ApolloAuto/apollo.git
+# prepare ApolloAuto/apollo scripts
+COPY *.sh / 
 
 # for shown on runtime
 ARG IMAGE_TAG
