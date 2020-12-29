@@ -37,7 +37,7 @@ function prepare_other_data() {
     docker pull ${AUDIO_DATA_IMAGE} 
     mkdir -p ${AUDIO_DATA_PATH}
     cd ${AUDIO_DATA_PATH}
-    docker run --rm --mount "src=$(pwd),dst=/data,type=bind" ${AUDIO_DATA_IMAGE} "cp ${AUDIO_DATA_PATH}/* /data/ && chmod 777 /data/*"
+    docker run --rm --mount "src=$(pwd),dst=/data,type=bind" ${AUDIO_DATA_IMAGE} sh -c "cp ${AUDIO_DATA_PATH}/* /data/ && chmod 777 /data/*"
     ls -lh 
     cd ${APOLLO_ROOT_DIR}
 
@@ -47,7 +47,7 @@ function prepare_other_data() {
     docker pull ${YOLOV4_DATA_IMAGE} 
     mkdir -p ${YOLOV4_DATA_PATH}
     cd ${YOLOV4_DATA_PATH}
-    docker run --rm --mount "src=$(pwd),dst=/data,type=bind" ${YOLOV4_DATA_IMAGE} "cp ${YOLOV4_DATA_PATH}/* /data/ && chmod 777 /data/*"
+    docker run --rm --mount "src=$(pwd),dst=/data,type=bind" ${YOLOV4_DATA_IMAGE} sh -c "cp ${YOLOV4_DATA_PATH}/* /data/ && chmod 777 /data/*"
     ls -lh 
     cd ${APOLLO_ROOT_DIR}
 
@@ -57,7 +57,7 @@ function prepare_other_data() {
     docker pull ${FASTER_RCNN_DATA_IMAGE} 
     mkdir -p ${FASTER_RCNN_DATA_PATH}
     cd ${FASTER_RCNN_DATA_PATH}
-    docker run --rm --mount "src=$(pwd),dst=/data,type=bind" ${FASTER_RCNN_DATA_IMAGE} "cp ${FASTER_RCNN_DATA_PATH}/* /data/ && chmod 777 /data/*"
+    docker run --rm --mount "src=$(pwd),dst=/data,type=bind" ${FASTER_RCNN_DATA_IMAGE} sh -c "cp ${FASTER_RCNN_DATA_PATH}/* /data/ && chmod 777 /data/*"
     ls -lh 
     cd ${APOLLO_ROOT_DIR}
 
