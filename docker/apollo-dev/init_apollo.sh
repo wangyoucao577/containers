@@ -13,7 +13,7 @@ VOLUME_VERSION="latest"
 
 function prepare_maps() {
     for map_name in ${DEFAULT_MAPS[@]}; do
-        map_image="ApolloAuto/apollo:map_volume-${map_name}-${VOLUME_VERSION}"
+        map_image="apolloauto/apollo:map_volume-${map_name}-${VOLUME_VERSION}"
         docker pull ${map_image}
         #TODO: export mapdata 
         #docker run ${map_image}
