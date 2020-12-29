@@ -79,8 +79,6 @@ emptyDir:
   sharedMemory:
     medium: Memory
     sizeLimit: 16Gi
-  apolloRootDir: 
-    enabled: true
 
 nodeSelector: {}
 

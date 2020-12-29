@@ -70,7 +70,7 @@ spec:
             - mountPath: /dev/shm
               name: shared-memory
             {{- end}}
-            {{- if .Values.emptyDir.apolloRootDir }}         
+            {{- if .Values.cloneCodeByInitContainer.enabled }}
             - mountPath: {{ .Values.container.apolloRootDir }}
               name: apollo-root
             {{- end}}
@@ -80,7 +80,7 @@ spec:
             {{- toYaml .Values.emptyDir.sharedMemory | nindent 12 }}
           name: shared-memory
         {{- end}}
-        {{- if .Values.emptyDir.apolloRootDir }}         
+        {{- if .Values.cloneCodeByInitContainer.enabled }}
         - emptyDir:
           name: apollo-root
         {{- end}}
