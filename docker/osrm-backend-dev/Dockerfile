@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y \
   atop \
   sysstat \
   strace \
+  stow \
   jq
 
 # install docker for docker-in-docker
@@ -33,26 +34,21 @@ RUN export NVM_DIR="$HOME/.nvm" && \
   elasticdump --version 
 
 # osmium
-COPY --from=osmium_builder /osmium/bin /workspace/osmium/bin
+COPY --from=osmium_builder /osmium /usr/local/stow/
+RUN cd /usr/local/stow/ && stow -v osmium
+
+# prepare dotfiles
+RUN cd /root/ && \
+  rm -f .bashrc && \
+  git clone https://github.com/wangyoucao577/dotfiles.git .dotfiles && \
+  cd .dotfiles && \
+  stow -v .
+COPY .bashrc_local /root/
 
 # prepare for sshd
 RUN echo 'root:root' | chpasswd
 RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
-COPY jay_easy_rsa.pub /root/.ssh/
-RUN cat /root/.ssh/jay_easy_rsa.pub >> /root/.ssh/authorized_keys && \
-  chmod 600 /root/.ssh/authorized_keys && \
-  chmod 700 /root/.ssh/ && \
-  chmod 755 /root/
 RUN service ssh start
-
-# easy to use
-COPY .tmux.conf /root/
-COPY .vimrc /root/
-COPY .bashrc /root/
-RUN git config --global core.editor vim && \
-  git config --global http.sslverify false && \
-  git config --global credential.helper 'cache --timeout 3600' && \
-  git config --global log.decorate auto
 
 # vscode configs and latest extensions
 COPY vscode/ /workspace/vscode/ 
