@@ -34,7 +34,7 @@ RUN export NVM_DIR="$HOME/.nvm" && \
   elasticdump --version 
 
 # osmium
-COPY --from=osmium_builder /osmium /usr/local/stow/
+COPY --from=osmium_builder /osmium /usr/local/stow/osmium/
 RUN cd /usr/local/stow/ && stow -v osmium
 
 # prepare dotfiles
