@@ -16,6 +16,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteract
   zip \
   unzip \
   tree \
+  stow \
   iperf3 \
   net-tools \
   iputils-ping \
@@ -33,25 +34,17 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteract
 # install docker for docker-in-docker
 RUN curl -sSL https://get.docker.com/ | sh
 
+# prepare dotfiles
+RUN cd /root/ && \
+  git clone https://github.com/wangyoucao577/dotfiles.git .dotfiles && \
+  cd .dotfiles && \
+  stow -v .
+COPY .bashrc_local /root/
+
 # prepare for sshd
 RUN echo 'root:root' | chpasswd
 RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
-COPY *.pub /root/.ssh/
-RUN cat /root/.ssh/jay_easy_rsa.pub >> /root/.ssh/authorized_keys && \
-  chmod 600 /root/.ssh/authorized_keys && \
-  chmod 700 /root/.ssh/ && \
-  chmod 755 /root/
 RUN service ssh start
-
-# easy to use
-COPY .tmux.conf /root/
-COPY .vimrc /root/
-COPY .bashrc /root/
-RUN git config --global core.editor vim && \
-  git config --global http.sslverify false && \
-  git config --global credential.helper 'cache --timeout 36000' && \
-  git config --global log.decorate auto
-
 
 # set workspace
 WORKDIR /root/workspace
