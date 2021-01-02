@@ -41,14 +41,7 @@ $ docker run -d --restart=always -p 13191:22 --privileged --cap-add=ALL --securi
 ### Init commands after entered into container
 
 ```bash
-# enable docker
-$ service docker start
-$ 
-# clone apollo repo: has to be cloned in root path
-$ cd /
-$ git clone https://github.com/ApolloAuto/apollo.git
-$ 
-# then follow https://github.com/ApolloAuto/apollo/blob/master/docs/quickstart/apollo_software_installation_guide.md to install/build apollo
+$ /init_apollo.sh
 ```
 
 ## Author
