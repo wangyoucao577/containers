@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   atop \
   sysstat \
   strace \
+  stow \
   jq \
   locales-all \
   ca-certificates \
@@ -22,23 +23,17 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 # install docker for docker-in-docker
 RUN curl -sSL https://get.docker.com/ | sh
 
+# prepare dotfiles
+RUN cd /root/ && \
+  rm -f .bashrc && \
+  git clone https://github.com/wangyoucao577/dotfiles.git .dotfiles && \
+  cd .dotfiles && \
+  stow -v --ignore=.bashrc .
+
 # prepare for sshd
 RUN echo 'root:root' | chpasswd
 RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
-COPY *.pub /root/.ssh/
-RUN cat /root/.ssh/jay_easy_rsa.pub >> /root/.ssh/authorized_keys && \
-  chmod 600 /root/.ssh/authorized_keys && \
-  chmod 700 /root/.ssh/ && \
-  chmod 755 /root/
 RUN service ssh start
-
-# easy to use
-COPY .tmux.conf /root/
-COPY .vimrc /root/
-RUN git config --global core.editor vim && \
-  git config --global http.sslverify false && \
-  git config --global credential.helper 'cache --timeout 36000' && \
-  git config --global log.decorate auto
 
 # prepare ApolloAuto/apollo scripts
 COPY *.sh / 
