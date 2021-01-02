@@ -36,6 +36,7 @@ RUN curl -sSL https://get.docker.com/ | sh
 
 # prepare dotfiles
 RUN cd /root/ && \
+  rm -f .bashrc && \
   git clone https://github.com/wangyoucao577/dotfiles.git .dotfiles && \
   cd .dotfiles && \
   stow -v .
