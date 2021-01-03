@@ -72,7 +72,6 @@ RUN wget --progress=dot:mega --no-check-certificate https://golang.org/dl/go1.15
   rm -f go1.15.6.linux-amd64.tar.gz && \
   mkdir -p go/bin /go/src go/pkg
 
-
 # vscode configs and latest extensions
 RUN mkdir -p vscode && cd vscode && \
   wget --progress=dot:mega --no-check-certificate https://github.com/microsoft/vscode-cpptools/releases/download/1.1.3/cpptools-linux.vsix && \
