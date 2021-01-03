@@ -73,3 +73,14 @@ jobs:
         target_repository: registry.cn-shanghai.aliyuncs.com/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
         target_username: ${{ secrets.ALIYUN_REGISTRY_USERNAME }}
         target_password: ${{ secrets.ALIYUN_REGISTRY_PASSWORD }}
+
+  copy-to-hk:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - uses: onichandame/docker-registry-sync-action@master
+      with:
+        source_repository: ghcr.io/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
+        target_repository: hkccr.ccs.tencentyun.com/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
+        target_username: ${{ secrets.TENCENTYUN_DOCKER_REGISTRY_USERNAME }}
+        target_password: ${{ secrets.TENCENTYUN_DOCKER_REGISTRY_PASSWORD }}
