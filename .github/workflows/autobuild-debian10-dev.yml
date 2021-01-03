@@ -19,7 +19,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -62,3 +61,15 @@ jobs:
         workdir: ${{ env.DOCKERFILE_PATH }}
         tags: "latest,${{ env.IMAGE_TAG }}"
         buildargs: "IMAGE_TAG=${{ env.IMAGE_TAG }}"
+
+  copy-to-cn:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - name: Copy latest image to tencent
+      uses: onichandame/docker-registry-sync-action@master
+      with:
+        source_repository: ghcr.io/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
+        target_repository: ccr.ccs.tencentyun.com/user/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
+        target_username: ${{ secrets.TENCENTYUN_DOCKER_REGISTRY_USERNAME }}
+        target_password: ${{ secrets.TENCENTYUN_DOCKER_REGISTRY_PASSWORD }}
