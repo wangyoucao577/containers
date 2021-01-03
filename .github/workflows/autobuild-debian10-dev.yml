@@ -66,7 +66,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-    - name: Copy latest image to tencent
+    - name: Copy latest image to aliyun
       uses: onichandame/docker-registry-sync-action@master
       with:
         source_repository: ghcr.io/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
