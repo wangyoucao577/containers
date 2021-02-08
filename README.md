@@ -40,3 +40,8 @@ See details in [docker/debian10-dev](./docker/debian10-dev/).
 ![Build Docker - apollo-dev](https://github.com/wangyoucao577/containers/workflows/Build%20Docker%20-%20apollo-dev/badge.svg)      
 Dev image based on `ubuntu:focal` to support my playing on [ApolloAuto/apollo](https://github.com/ApolloAuto/apollo).      
 See details in [docker/apollo-dev](./docker/apollo-dev/).      
+
+### nginx-file-server
+![Build Docker - nginx-file-server](https://github.com/wangyoucao577/containers/workflows/Build%20Docker%20-%20nginx-file-server/badge.svg)       
+`nginx` based docker image to serve static files as default.     
+See details in [docker/nginx-file-server](./docker/nginx-file-server/).      
