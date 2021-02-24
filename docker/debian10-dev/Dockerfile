@@ -66,16 +66,16 @@ RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | 
 
 
 # install go
-RUN wget --progress=dot:mega --no-check-certificate https://golang.org/dl/go1.15.6.linux-amd64.tar.gz && \
-  tar -zxf go1.15.6.linux-amd64.tar.gz && \
+RUN wget --progress=dot:mega --no-check-certificate https://golang.org/dl/go1.16.linux-amd64.tar.gz && \
+  tar -zxf go1.16.linux-amd64.tar.gz && \
   mv go /usr/local/ && \
-  rm -f go1.15.6.linux-amd64.tar.gz && \
+  rm -f go1.16.linux-amd64.tar.gz && \
   mkdir -p go/bin /go/src go/pkg
 
 # vscode configs and latest extensions
 RUN mkdir -p vscode && cd vscode && \
-  wget --progress=dot:mega --no-check-certificate https://github.com/microsoft/vscode-cpptools/releases/download/1.1.3/cpptools-linux.vsix && \
-  wget --progress=dot:mega --no-check-certificate https://github.com/golang/vscode-go/releases/download/v0.20.1/go-0.20.1.vsix
+  wget --progress=dot:mega --no-check-certificate https://github.com/microsoft/vscode-cpptools/releases/download/1.2.1/cpptools-linux.vsix && \
+  wget --progress=dot:mega --no-check-certificate https://github.com/golang/vscode-go/releases/download/v0.22.1/go-0.22.1.vsix
 
 
 # for shown on runtime
