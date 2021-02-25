@@ -1,7 +1,7 @@
 
 FROM wangyoucao577/osmium-tool as osmium_builder
 
-FROM telenavmap/osrm-backend-dev:dev-env-upgrade-cceb29c-20210220
+FROM telenavmap/osrm-backend-dev:v3
 
 
 # install extra tools
