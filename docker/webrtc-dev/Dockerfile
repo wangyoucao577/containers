@@ -30,6 +30,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteract
   jq \
   lsb-release \
   sudo \
+  file \
   locales-all \
   pkg-config \
   ca-certificates \
