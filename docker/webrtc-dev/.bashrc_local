@@ -1,0 +1,11 @@
+
+# for golang
+export GO_HOME=/usr/local/go
+export GOPATH=/root/workspace/go
+
+# for depot_tools
+export DEPOT_TOOLS_PATH=/root/workspace/depot_tools
+
+# path
+export PATH=${DEPOT_TOOLS_PATH}:${GOPATH}/bin:${GO_HOME}/bin:$PATH
+
