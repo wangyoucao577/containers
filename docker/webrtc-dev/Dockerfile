@@ -28,6 +28,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteract
   sysstat \
   strace \
   jq \
+  lsb-release \
+  sudo \
   locales-all \
   pkg-config \
   ca-certificates \
