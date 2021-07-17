@@ -59,7 +59,7 @@ RUN usermod -a -G sudo root
 WORKDIR /root/workspace
 
 # install conda for python, https://docs.anaconda.com/anaconda/install/silent-mode/
-RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && 
+RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
   bash ~/miniconda.sh -b -p $HOME/miniconda
 
 # install nvm and nodejs
