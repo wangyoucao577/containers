@@ -55,12 +55,6 @@ RUN service ssh start
 # allow root to run sudo
 RUN usermod -a -G sudo root
 
-# git global configurations
-RUN git config --global core.autocrlf false && \
-  git config --global core.filemode false && \
-  git config --global core.editor vim && \
-  git config --global pull.ff only
-
 # set workspace
 WORKDIR /root/workspace
 
