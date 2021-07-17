@@ -39,6 +39,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteract
 # for jre/jdk installation
 RUN mkdir -p /usr/share/man/man1
 
+# install docker for docker-in-docker
+RUN curl -sSL https://get.docker.com/ | sh
+
 # prepare dotfiles
 RUN cd /root/ && \
   rm -f .bashrc && \
