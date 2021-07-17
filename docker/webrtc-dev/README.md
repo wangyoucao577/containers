@@ -1,5 +1,5 @@
 # webrtc-dev
-[![Build Docker - webrtc-dev](https://github.com/wangyoucao577/containers/actions/workflows/autobuild-webrtc-dev.yml/badge.svg)](https://github.com/wangyoucao577/containers/actions/workflows/autobuild-webrtc-dev.yml) 
+[![Build Docker - webrtc-dev](https://github.com/wangyoucao577/containers/actions/workflows/autobuild-webrtc-dev.yml/badge.svg)](https://github.com/wangyoucao577/containers/actions/workflows/autobuild-webrtc-dev.yml)     
 Image based on `debian:buster` for my webrtc related development.     
 
 ## Build Image
