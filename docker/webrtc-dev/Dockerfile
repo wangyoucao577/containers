@@ -64,7 +64,9 @@ WORKDIR /root/workspace
 
 # install conda for python, https://docs.anaconda.com/anaconda/install/silent-mode/
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
-  bash ~/miniconda.sh -b -p $HOME/miniconda
+  bash ~/miniconda.sh -b -p $HOME/miniconda && \
+  rm -f ~/miniconda.sh && \
+  ~/miniconda/bin/conda init
 
 # install nvm and nodejs
 # https://github.com/nvm-sh/nvm#install--update-script
