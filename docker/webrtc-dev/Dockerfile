@@ -42,6 +42,7 @@ RUN mkdir -p /usr/share/man/man1
 # install docker for docker-in-docker
 RUN curl -sSL https://get.docker.com/ | sh
 
+
 # prepare dotfiles
 RUN cd /root/ && \
   rm -f .bashrc && \
