@@ -54,7 +54,8 @@ COPY .bashrc_local /root/
 
 # prepare for sshd
 RUN echo 'root:root' | chpasswd
-RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config && \
+  echo "Port 13191" >> /etc/ssh/sshd_config
 RUN service ssh start
 
 # allow root to run sudo
