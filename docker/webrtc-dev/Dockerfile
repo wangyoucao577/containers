@@ -23,6 +23,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteract
   net-tools \
   iputils-ping \
   dnsutils \
+  coturn \
   htop \
   atop \
   sysstat \
