@@ -34,6 +34,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteract
   jq \
   lsb-release \
   software-properties-common \
+  gnupg2 \
   sudo \
   file \
   locales-all \
