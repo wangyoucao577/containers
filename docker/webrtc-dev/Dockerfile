@@ -40,6 +40,10 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteract
   ca-certificates \
   && rm -rf /var/lib/apt/lists/*
 
+# install clang
+RUN bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)" && \
+  clang --version
+
 # for jre/jdk installation
 RUN mkdir -p /usr/share/man/man1
 
