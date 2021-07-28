@@ -44,7 +44,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteract
 
 # install clang
 RUN bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)" && \
-  && rm -rf /var/lib/apt/lists/*
+  rm -rf /var/lib/apt/lists/*
 
 
 # for jre/jdk installation
