@@ -80,7 +80,7 @@ RUN usermod -a -G sudo root
 WORKDIR /root/workspace
 
 # install conda for python, https://docs.anaconda.com/anaconda/install/silent-mode/
-RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
+RUN wget --progress=dot:mega https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
   bash ~/miniconda.sh -b -p $HOME/miniconda && \
   rm -f ~/miniconda.sh && \
   ~/miniconda/bin/conda init
@@ -100,7 +100,7 @@ RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | 
 #  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # install cmake
-RUN wget https://github.com/Kitware/CMake/releases/download/v3.21.1/cmake-3.21.1-linux-x86_64.tar.gz && \
+RUN wget --progress=dot:mega https://github.com/Kitware/CMake/releases/download/v3.21.1/cmake-3.21.1-linux-x86_64.tar.gz && \
   tar -zxf cmake-3.21.1-linux-x86_64.tar.gz && \
   mv cmake-3.21.1-linux-x86_64 /usr/local/ && \
   rm cmake-3.21.1-linux-x86_64.tar.gz && \
