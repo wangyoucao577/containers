@@ -6,6 +6,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteract
   build-essential \
   g++-arm-linux-gnueabihf \
   g++-8-arm-linux-gnueabihf \
+  libssl-dev \
+  libz-dev \
   ffmpeg \
   openssh-server \
   python3-pip \
