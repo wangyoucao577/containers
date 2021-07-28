@@ -33,6 +33,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteract
   strace \
   jq \
   lsb-release \
+  software-properties-common \
   sudo \
   file \
   locales-all \
