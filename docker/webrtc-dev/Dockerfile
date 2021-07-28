@@ -1,14 +1,9 @@
 
 FROM debian:buster-slim
 
-# Install necessary packages for proper system state
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
+# Install basic packages
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install --no-install-recommends -y \
   build-essential \
-  g++-arm-linux-gnueabihf \
-  g++-8-arm-linux-gnueabihf \
-  libssl-dev \
-  libz-dev \
-  ffmpeg \
   openssh-server \
   python3-pip \
   gdb \
@@ -25,7 +20,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteract
   net-tools \
   iputils-ping \
   dnsutils \
-  coturn \
   htop \
   atop \
   sysstat \
@@ -51,13 +45,11 @@ RUN bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)" && \
   rm -rf /var/lib/apt/lists/* && \
   clang --version
 
-
 # for jre/jdk installation
 RUN mkdir -p /usr/share/man/man1
 
 # install docker for docker-in-docker
 RUN curl -sSL https://get.docker.com/ | sh
-
 
 # prepare dotfiles
 RUN cd /root/ && \
@@ -75,6 +67,18 @@ RUN service ssh start
 
 # allow root to run sudo
 RUN usermod -a -G sudo root
+
+# install additonal packages for building or application depedencies
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install --no-install-recommends -y \
+  g++-arm-linux-gnueabihf \
+  g++-8-arm-linux-gnueabihf \
+  libssl-dev \
+  libz-dev \
+  libpulse-dev \
+  libasound2-dev \
+  ffmpeg \
+  coturn \
+  && rm -rf /var/lib/apt/lists/*
 
 # set workspace
 WORKDIR /root/workspace
