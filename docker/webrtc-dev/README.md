@@ -27,7 +27,7 @@ $ docker pull ghcr.io/wangyoucao577/webrtc-dev
 ## Run container
 
 ```bash
-$ docker run -d --restart=always --network=host --hostname="webrtc-dev" --cap-add=ALL --security-opt seccomp=unconfined wangyoucao577/webrtc-dev
+$ docker run -d --restart=always --network=host --hostname="webrtc-dev" --cap-add=ALL --security-opt seccomp=unconfined --privileged wangyoucao577/webrtc-dev
 4dce06ca751f4ee803df809396b8e1ed830f496ed530f52476034a92d35c8fe2
 ```
 ### Docker-in-docker
