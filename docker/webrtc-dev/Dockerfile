@@ -38,9 +38,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install --no-instal
 
 # install clang
 RUN bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)" && \
-  update-alternatives --install /usr/bin/clang clang /usr/bin/clang-12 100 && \
-  update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-12 100 && \
-  update-alternatives --install /usr/bin/clang-cpp clang-cpp /usr/bin/clang-cpp-12 100 && \
+  update-alternatives --install /usr/bin/clang clang /usr/bin/clang-13 100 && \
+  update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-13 100 && \
+  update-alternatives --install /usr/bin/clang-cpp clang-cpp /usr/bin/clang-cpp-13 100 && \
   update-alternatives --install /usr/bin/cc cc /usr/bin/clang 100 && \
   update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++ 100 && \
   rm -rf /var/lib/apt/lists/* && \
