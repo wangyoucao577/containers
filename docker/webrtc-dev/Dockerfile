@@ -33,6 +33,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install --no-instal
   locales-all \
   pkg-config \
   ca-certificates \
+  xauth \
   && rm -rf /var/lib/apt/lists/*
 
 # install clang
