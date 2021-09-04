@@ -115,10 +115,10 @@ RUN wget --progress=dot:mega https://github.com/Kitware/CMake/releases/download/
   cmake --version
 
 # install go
-RUN wget --progress=dot:mega --no-check-certificate https://golang.org/dl/go1.16.6.linux-amd64.tar.gz && \
-  tar -zxf go1.16.6.linux-amd64.tar.gz && \
+RUN wget --progress=dot:mega --no-check-certificate https://dl.google.com/go/$(curl https://golang.org/VERSION?m=text).linux-amd64.tar.gz -O go.linux-amd64.tar.gz && \
+  tar -zxf go.linux-amd64.tar.gz && \
   mv go /usr/local/ && \
-  rm -f go1.16.6.linux-amd64.tar.gz && \
+  rm -f go.linux-amd64.tar.gz && \
   mkdir -p go/bin /go/src go/pkg
 
 # vscode configs and latest extensions
