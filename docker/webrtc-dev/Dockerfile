@@ -73,8 +73,6 @@ RUN usermod -a -G sudo root
 
 # install additonal packages for building or application depedencies
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install --no-install-recommends -y \
-  g++-arm-linux-gnueabihf \
-  g++-8-arm-linux-gnueabihf \
   libssl-dev \
   libz-dev \
   libpulse-dev \
