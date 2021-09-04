@@ -27,9 +27,21 @@ $ docker pull ghcr.io/wangyoucao577/webrtc-dev
 ## Run container
 
 ```bash
-$ docker run -d --restart=always --network=host --hostname="webrtc-dev" --cap-add=ALL --security-opt seccomp=unconfined --privileged wangyoucao577/webrtc-dev
+$ docker run -d --restart=always --network=host --cap-add=ALL --security-opt seccomp=unconfined --privileged  --hostname="webrtc-dev" wangyoucao577/webrtc-dev
 4dce06ca751f4ee803df809396b8e1ed830f496ed530f52476034a92d35c8fe2
 ```
+
+### Open GUI Application via X11 Forwarding
+This docker has supported X11 forwarding for GUI applications. Follow below instructions to try:    
+
+1. Run X11 Server application on your local machine, such as [XQuartz](https://www.xquartz.org/) on `MacOSX`. (There's a lot of choices on `Windows` including `Xmanager`, `putty`, etc.)    
+2. `ssh -X YOUR_REMOTE_MACHINE` (use `-X` to enable SSH X11 Forwarding)
+  - `echo $DISPLAY`, you'll see output like `localhost:10.0`    
+  - `xclock`, you'll see the GUI on your local machine.    
+3. Replace `xclock` to any GUI app that you want to run, enjoy!     
+
+
+
 ### Docker-in-docker
 [jpetazzo/dind](https://github.com/jpetazzo/dind) and [Using Docker-in-Docker for your CI or testing environment? Think twice.](http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/) provides awesome help on this topic.    
 
