@@ -34,6 +34,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install --no-instal
   pkg-config \
   ca-certificates \
   xauth \
+  x11-apps \
   && rm -rf /var/lib/apt/lists/*
 
 # install clang
@@ -63,6 +64,7 @@ COPY .bashrc_local /root/
 # prepare for sshd
 RUN echo 'root:root' | chpasswd
 RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config && \
+  echo "X11UseLocalhost no" >> /etc/ssh/sshd_config && \
   echo "Port 13191" >> /etc/ssh/sshd_config
 RUN service ssh start
 
