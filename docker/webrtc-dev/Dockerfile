@@ -115,6 +115,7 @@ RUN wget --progress=dot:mega https://github.com/Kitware/CMake/releases/download/
 
 # install websocat
 RUN wget --progress=dot:mega https://github.com/vi/websocat/releases/download/v1.8.0/websocat_amd64-linux-static && \
+  chmod +x websocat_amd64-linux-static && \
   mv websocat_amd64-linux-static /usr/local/bin/ && \
   ln -s /usr/local/bin/websocat_amd64-linux-static /usr/local/bin/websocat && \
   websocat --version
