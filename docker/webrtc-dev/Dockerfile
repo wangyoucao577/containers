@@ -113,6 +113,12 @@ RUN wget --progress=dot:mega https://github.com/Kitware/CMake/releases/download/
   stow -v --ignore=man . && \
   cmake --version
 
+# install websocat
+RUN wget --progress=dot:mega https://github.com/vi/websocat/releases/download/v1.8.0/websocat_amd64-linux-static && \
+  mv websocat_amd64-linux-static /usr/local/bin/ && \
+  ln -s /usr/local/bin/websocat_amd64-linux-static /usr/local/bin/websocat && \
+  websocat --version
+
 # install go
 RUN wget --progress=dot:mega --no-check-certificate https://dl.google.com/go/$(curl https://golang.org/VERSION?m=text).linux-amd64.tar.gz -O go.linux-amd64.tar.gz && \
   tar -zxf go.linux-amd64.tar.gz && \
