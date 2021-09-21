@@ -37,6 +37,13 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install --no-instal
   x11-apps \
   && rm -rf /var/lib/apt/lists/*
 
+# install android ndk 21
+RUN wget --progress=dot:mega https://dl.google.com/android/repository/android-ndk-r21e-linux-x86_64.zip && \
+  unzip android-ndk-r21e-linux-x86_64.zip && \
+  # env ANDROID_NDK_HOME=/usr/local/android-ndk-r21e will be set in .bashrc_local
+  mv android-ndk-r21e /usr/local/ && \
+  rm android-ndk-r21e-linux-x86_64.zip
+
 # install clang
 RUN bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)" && \
   update-alternatives --install /usr/bin/clang clang /usr/bin/clang-13 100 && \
@@ -72,7 +79,6 @@ RUN usermod -a -G sudo root
 
 # install additonal packages for building or application depedencies
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install --no-install-recommends -y \
-  libssl-dev \
   libz-dev \
   libpulse-dev \
   libasound2-dev \
