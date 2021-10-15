@@ -8,22 +8,15 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install --no-instal
   python3-pip \
   gdb \
   tmux \
-  curl \
-  wget \
+  curl wget \
   vim \
-  git \
-  zip \
-  unzip \
+  git git-lfs \
+  zip unzip \
   tree \
   stow \
-  iperf3 \
-  net-tools \
-  iputils-ping \
+  iperf3 net-tools iputils-ping \
   dnsutils \
-  htop \
-  atop \
-  sysstat \
-  strace \
+  htop atop sysstat strace \
   jq \
   lsb-release \
   software-properties-common \
