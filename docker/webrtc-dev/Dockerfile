@@ -104,11 +104,11 @@ RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | 
 #  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # install cmake
-RUN wget --progress=dot:mega https://github.com/Kitware/CMake/releases/download/v3.21.1/cmake-3.21.1-linux-x86_64.tar.gz && \
-  tar -zxf cmake-3.21.1-linux-x86_64.tar.gz && \
-  mv cmake-3.21.1-linux-x86_64 /usr/local/ && \
-  rm cmake-3.21.1-linux-x86_64.tar.gz && \
-  cd /usr/local/cmake-3.21.1-linux-x86_64/ && \
+RUN wget --progress=dot:mega https://github.com/Kitware/CMake/releases/download/v3.21.3/cmake-3.21.3-linux-x86_64.tar.gz && \
+  tar -zxf cmake-3.21.3-linux-x86_64.tar.gz && \
+  mv cmake-3.21.3-linux-x86_64 /usr/local/ && \
+  rm cmake-3.21.3-linux-x86_64.tar.gz && \
+  cd /usr/local/cmake-3.21.3-linux-x86_64/ && \
   stow -v --ignore=man . && \
   cmake --version
 
