@@ -33,9 +33,15 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install --no-instal
 # install android ndk 21
 RUN wget --progress=dot:mega https://dl.google.com/android/repository/android-ndk-r21e-linux-x86_64.zip && \
   unzip android-ndk-r21e-linux-x86_64.zip && \
-  # env ANDROID_NDK_HOME=/usr/local/android-ndk-r21e will be set in .bashrc_local
-  mv android-ndk-r21e /usr/local/ && \
-  rm android-ndk-r21e-linux-x86_64.zip
+  rm android-ndk-r21e-linux-x86_64.zip && \
+  # refer to https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md#environment-variables-3
+  #   but change ANDROID_SDK_ROOT path to /root/Android/Sdk for android studio auto-sync
+  # env ANDROID_SDK_ROOT, ANDROID_NDK_HOME will be set in .bashrc_local
+  mkdir -p /root/Android/Sdk/ndk/ && \
+  mv android-ndk-r21e /root/Android/Sdk/ndk/ && \
+  cd /root/Android/Sdk/ && \
+  ln -s $(pwd)/ndk/android-ndk-r21e $(pwd)/ndk/21.4.7075529 && \
+  ln -s $(pwd)/ndk/21.4.7075529 $(pwd)/ndk-bundle
 
 # install clang
 RUN bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)" && \
