@@ -82,6 +82,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install --no-instal
   libz-dev \
   libpulse-dev \
   libasound2-dev \
+  libssl-dev \
   yasm \
   ffmpeg \
   coturn \
