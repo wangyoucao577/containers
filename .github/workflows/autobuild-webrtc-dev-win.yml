@@ -24,8 +24,8 @@ jobs:
       uses: actions/checkout@v2
     # - name: Set IMAGE_TAG env # env IMAGE_TAG=BranchName-CommitID-Timestamp
     #   run: echo IMAGE_TAG=$(basename ${GITHUB_REF})-$(echo ${GITHUB_SHA} | cut -c 1-7)-$(date -u +"%Y%m%d") >> ${GITHUB_ENV}
-    - name: Environment Printer
-      uses: managedkaos/print-env@v1.0
+    # - name: Environment Printer
+    #   uses: managedkaos/print-env@v1.0
 
     - name: Build & Publish to Github Container Registry
       uses: elgohr/Publish-Docker-Github-Action@master
