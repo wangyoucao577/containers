@@ -1,9 +1,13 @@
+# escape=`
 
 #FROM mcr.microsoft.com/windows:20H2
 FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
 ### Refer to https://docs.microsoft.com/en-us/visualstudio/install/build-tools-container?view=vs-2019
 ###   to install vs2019 build tools
+
+# Use the latest Windows Server Core image with .NET Framework 4.8.
+# FROM mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019
 
 # Restore the default Windows shell for correct batch processing.
 SHELL ["cmd", "/S", "/C"]
@@ -28,7 +32,6 @@ RUN `
 # Define the entry point for the docker container.
 # This entry point starts the developer command prompt and launches the PowerShell shell.
 ENTRYPOINT ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\BuildTools\\Common7\\Tools\\VsDevCmd.bat", "&&", "powershell.exe", "-NoLogo", "-ExecutionPolicy", "Bypass"]
-
 
 
 LABEL maintainer="wangyoucao577@gmail.com"
