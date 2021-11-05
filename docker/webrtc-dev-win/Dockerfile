@@ -11,8 +11,7 @@ RUN `
     curl -SL --output vs_buildtools.exe https://aka.ms/vs/16/release/vs_buildtools.exe `
     `
     # Install Build Tools with the Microsoft.VisualStudio.Workload.VCTools workload, excluding workloads and components with known issues.
-    && (start /w vs_buildtools.exe --quiet --wait --norestart --nocache modify `
-        --installPath "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\BuildTools" `
+    && (start /w vs_buildtools.exe --quiet --wait --norestart --nocache `
         --add Microsoft.VisualStudio.Workload.VCTools;includeRecommended;includeOptional `
         --remove Microsoft.VisualStudio.Component.Windows10SDK.10240 `
         --remove Microsoft.VisualStudio.Component.Windows10SDK.10586 `
