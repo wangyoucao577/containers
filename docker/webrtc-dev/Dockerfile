@@ -14,8 +14,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install --no-instal
   zip unzip \
   tree \
   stow \
-  iperf3 net-tools iputils-ping \
-  dnsutils \
+  iperf3 net-tools iputils-ping mtr dnsutils \
   htop atop sysstat strace \
   jq \
   lsb-release \
