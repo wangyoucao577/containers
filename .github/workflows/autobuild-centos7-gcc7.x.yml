@@ -35,7 +35,7 @@ jobs:
       with:
         name: ${{ github.repository }}/${{ env.IMAGE_NAME }}
         username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_PACKAGES_TOKEN }}
+        password: ${{ secrets.GITHUB_TOKEN }}
         registry: docker.pkg.github.com
         snapshot: false
         workdir: ${{ env.DOCKERFILE_PATH }}
