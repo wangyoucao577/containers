@@ -1,4 +1,4 @@
-name: Build Docker - webrtc-dev-win 
+name: Build Docker - windows-vs2019cpp
 
 on: 
   push:
@@ -8,11 +8,11 @@ on:
     tags:
     - '**'
     paths:
-    - 'docker/webrtc-dev-win/**'
+    - 'docker/windows-vs2019cpp/**'
 
 env:
-  IMAGE_NAME: webrtc-dev-win
-  DOCKERFILE_PATH: docker/webrtc-dev-win/
+  IMAGE_NAME: windows-vs2019cpp
+  DOCKERFILE_PATH: docker/windows-vs2019cpp/
 
 jobs:
 
@@ -37,7 +37,7 @@ jobs:
     #   with:
     #     name: ${{ github.actor }}/${{ env.IMAGE_NAME }}
     #     username: ${{ github.actor }}
-    #     password: ${{ secrets.GITHUB_PACKAGES_TOKEN }}
+    #     password: ${{ secrets.GITHUB_TOKEN }}
     #     registry: ghcr.io
     #     snapshot: false
     #     workdir: ${{ env.DOCKERFILE_PATH }}
