@@ -15,6 +15,7 @@ env:
   DOCKERFILE_PATH: docker/windows-vs2019cpp/
   GITHUB_CONTAINER_REGISTRY: ghcr.io
   ALIYUN_HK_REGISTRY: registry.cn-hongkong.aliyuncs.com
+  ALIYUN_SH_REGISTRY: registry.cn-shanghai.aliyuncs.com
   TENCENTYUN_HK_REGISTRY: hkccr.ccs.tencentyun.com
 
 jobs:
@@ -42,10 +43,15 @@ jobs:
         docker push ${{ env.GITHUB_CONTAINER_REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
         docker logout ${{ env.GITHUB_CONTAINER_REGISTRY }}
 
-    - name: Publish to DockerHub
+  copy-to-dockerhub:
+    runs-on: windows-latest
+    needs: build
+    steps:
+    - name: Pull & Push
       run: |
+        docker pull ${{ env.GITHUB_CONTAINER_REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}
         echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
-        docker tag ${{ env.IMAGE_NAME }} ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest
+        docker tag ${{ env.GITHUB_CONTAINER_REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }} ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest
         docker logout 
 
@@ -72,3 +78,15 @@ jobs:
         docker tag ${{ env.GITHUB_CONTAINER_REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }} ${{ env.ALIYUN_HK_REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
         docker push ${{ env.ALIYUN_HK_REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
         docker logout ${{ env.ALIYUN_HK_REGISTRY }}
+
+  copy-to-aliyun-sh:
+    runs-on: windows-latest
+    needs: build
+    steps:
+    - name: Pull & Push
+      run: |
+        docker pull ${{ env.GITHUB_CONTAINER_REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}
+        echo ${{ secrets.ALIYUN_REGISTRY_PASSWORD }} | docker login -u ${{ secrets.ALIYUN_REGISTRY_USERNAME }} --password-stdin ${{ env.ALIYUN_SH_REGISTRY }}
+        docker tag ${{ env.GITHUB_CONTAINER_REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }} ${{ env.ALIYUN_SH_REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
+        docker push ${{ env.ALIYUN_SH_REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
+        docker logout ${{ env.ALIYUN_SH_REGISTRY }}
