@@ -26,9 +26,9 @@ COPY . ./
 #   7z: https://www.7-zip.org/a/7z1900-x64.exe
 #   git: https://git-scm.com/download/win
 #   powershell7: https://github.com/PowerShell/PowerShell/releases/download/v7.1.5/PowerShell-7.1.5-win-x64.msi
-RUN if not exist "7z1900-x64.exe" ( curl -SL --output 7z1900-x64.exe https://www.7-zip.org/a/7z1900-x64.exe )
-RUN curl -SL --output PowerShell-7.1.5-win-x64.msi https://github.com/PowerShell/PowerShell/releases/download/v7.1.5/PowerShell-7.1.5-win-x64.msi
-RUN curl -SL --output Git-2.34.0-32-bit.exe https://github.com/git-for-windows/git/releases/download/v2.34.0.windows.1/Git-2.34.0-32-bit.exe
+RUN IF NOT EXIST "7z1900-x64.exe" ( curl -SL --output 7z1900-x64.exe https://www.7-zip.org/a/7z1900-x64.exe )
+RUN IF NOT EXIST "PowerShell-7.1.5-win-x64.msi" ( curl -SL --output PowerShell-7.1.5-win-x64.msi https://github.com/PowerShell/PowerShell/releases/download/v7.1.5/PowerShell-7.1.5-win-x64.msi )
+RUN IF NOT EXIST "Git-2.34.0-32-bit.exe" ( curl -SL --output Git-2.34.0-32-bit.exe https://github.com/git-for-windows/git/releases/download/v2.34.0.windows.1/Git-2.34.0-32-bit.exe )
 RUN 7z1900-x64.exe /S
 RUN Git-2.34.0-32-bit.exe /VERYSILENT /NORESTART
 RUN msiexec.exe /package PowerShell-7.1.5-win-x64.msi /quiet
@@ -40,8 +40,8 @@ RUN echo %VS2019_INSTALL_PATH%
 RUN echo %VCPKG_CMAKE_PATH%
 
 # prepare ninja, cmake
-RUN curl -SL --output ninja-win.zip https://github.com/ninja-build/ninja/releases/download/v1.10.2/ninja-win.zip
-RUN curl -SL --output cmake-3.22.0-rc2-windows-x86_64.zip  https://github.com/Kitware/CMake/releases/download/v3.22.0-rc2/cmake-3.22.0-rc2-windows-x86_64.zip
+RUN IF NOT EXIST "ninja-win.zip" ( curl -SL --output ninja-win.zip https://github.com/ninja-build/ninja/releases/download/v1.10.2/ninja-win.zip )
+RUN IF NOT EXIST "cmake-3.22.0-rc2-windows-x86_64.zip" ( curl -SL --output cmake-3.22.0-rc2-windows-x86_64.zip  https://github.com/Kitware/CMake/releases/download/v3.22.0-rc2/cmake-3.22.0-rc2-windows-x86_64.zip )
 RUN 7z e ninja-win.zip -o./ninja-win && `
   7z e cmake-3.22.0-rc2-windows-x86_64.zip -o./cmake-3.22.0-rc2-windows-x86_64 -y
 
