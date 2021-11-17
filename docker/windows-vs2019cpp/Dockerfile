@@ -47,7 +47,8 @@ RUN 7z e ninja-win.zip -o./ninja-win && `
 
 # install vcpkg
 RUN git clone https://github.com/microsoft/vcpkg && `
-  .\vcpkg\bootstrap-vcpkg.bat
+  .\vcpkg\bootstrap-vcpkg.bat && `
+  .\vcpkg\vcpkg.exe install ffmpeg:x86-windows-static libwebsockets:x86-windows-static
 
 # Define the entry point for the docker container.
 # This entry point starts the developer command prompt and launches the PowerShell shell.
