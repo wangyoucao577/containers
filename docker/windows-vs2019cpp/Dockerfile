@@ -28,9 +28,9 @@ COPY . ./
 #   powershell7: https://github.com/PowerShell/PowerShell/releases/download/v7.1.5/PowerShell-7.1.5-win-x64.msi
 RUN curl -SL --output 7z1900-x64.exe https://www.7-zip.org/a/7z1900-x64.exe
 RUN curl -SL --output PowerShell-7.1.5-win-x64.msi https://github.com/PowerShell/PowerShell/releases/download/v7.1.5/PowerShell-7.1.5-win-x64.msi
-RUN curl -SL --output Git-2.33.1-64-bit.exe https://objects.githubusercontent.com/github-production-release-asset-2e65be/23216272/5cc99ec7-ee82-4076-98be-be4e327603cd?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20211106%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20211106T124623Z&X-Amz-Expires=300&X-Amz-Signature=c6e22a2d5bffd3deee07fb78c024081cd2a515bd44497051f35df3a2eb3830bd&X-Amz-SignedHeaders=host&actor_id=1905370&key_id=0&repo_id=23216272&response-content-disposition=attachment%3B%20filename%3DGit-2.33.1-64-bit.exe&response-content-type=application%2Foctet-stream
+RUN curl -SL --output Git-2.34.0-32-bit.exe https://github.com/git-for-windows/git/releases/download/v2.34.0.windows.1/Git-2.34.0-32-bit.exe
 RUN 7z1900-x64.exe /S
-RUN Git-2.33.1-64-bit.exe /VERYSILENT /NORESTART
+RUN Git-2.34.0-32-bit.exe /VERYSILENT /NORESTART
 RUN msiexec.exe /package PowerShell-7.1.5-win-x64.msi /quiet
 
 # set path
