@@ -41,9 +41,9 @@ RUN echo %VCPKG_CMAKE_PATH%
 
 # prepare ninja, cmake
 RUN IF NOT EXIST "ninja-win.zip" ( curl -SL --output ninja-win.zip https://github.com/ninja-build/ninja/releases/download/v1.10.2/ninja-win.zip )
-RUN IF NOT EXIST "cmake-3.22.0-rc2-windows-x86_64.zip" ( curl -SL --output cmake-3.22.0-rc2-windows-x86_64.zip  https://github.com/Kitware/CMake/releases/download/v3.22.0-rc2/cmake-3.22.0-rc2-windows-x86_64.zip )
+RUN IF NOT EXIST "cmake-windows-x86_64.zip" ( curl -SL --output cmake-windows-x86_64.zip  https://github.com/Kitware/CMake/releases/download/v3.22.0-rc2/cmake-3.22.0-rc2-windows-x86_64.zip )
 RUN 7z e ninja-win.zip -o./ninja-win && `
-  7z e cmake-3.22.0-rc2-windows-x86_64.zip -o./cmake-3.22.0-rc2-windows-x86_64 -y
+  7z e cmake-windows-x86_64.zip -o./cmake-windows-x86_64 -y
 
 # install vcpkg
 RUN git clone https://github.com/microsoft/vcpkg && `
