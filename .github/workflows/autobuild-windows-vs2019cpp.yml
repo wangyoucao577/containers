@@ -27,6 +27,13 @@ jobs:
         cd ${{ env.DOCKERFILE_PATH }}
         docker build -t ${{ env.IMAGE_NAME }} -m 2GB . 
 
+    - name: Publish to Github Container Registry
+      run: |
+        echo "${GITHUB_TOKEN}" | docker login -u ${GITHUB_ACTOR} --password-stdin ghcr.io
+        docker tag ${{ env.IMAGE_NAME }} ghcr.io/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
+        docker push ghcr.io/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
+        docker logout ghcr.io
+
     # - name: Set IMAGE_TAG env # env IMAGE_TAG=BranchName-CommitID-Timestamp
     #   run: echo IMAGE_TAG=$(basename ${GITHUB_REF})-$(echo ${GITHUB_SHA} | cut -c 1-7)-$(date -u +"%Y%m%d") >> ${GITHUB_ENV}
     # - name: Environment Printer
