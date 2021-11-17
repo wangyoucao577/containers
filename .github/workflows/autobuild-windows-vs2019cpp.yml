@@ -42,18 +42,19 @@ jobs:
         docker push ${{ env.GITHUB_CONTAINER_REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
         docker logout ${{ env.GITHUB_CONTAINER_REGISTRY }}
 
-    # - name: Publish to DockerHub
-    #   run: |
-    #     echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
-    #     docker tag ${{ env.IMAGE_NAME }} ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest
-    #     docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest
-    #     docker logout 
+    - name: Publish to DockerHub
+      run: |
+        echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin 
+        docker tag ${{ env.IMAGE_NAME }} ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest
+        docker logout 
 
   copy-to-tencentyun-hk:
     runs-on: windows-latest
     needs: build
     steps:
-    - run: |
+    - name: Pull & Push
+      run: |
         docker pull ${{ env.GITHUB_CONTAINER_REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}
         echo ${{ secrets.TENCENTYUN_DOCKER_REGISTRY_PASSWORD }} | docker login -u ${{ secrets.TENCENTYUN_DOCKER_REGISTRY_USERNAME }} --password-stdin ${{ env.TENCENTYUN_HK_REGISTRY }}
         docker tag ${{ env.GITHUB_CONTAINER_REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }} ${{ env.TENCENTYUN_HK_REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
@@ -64,7 +65,8 @@ jobs:
     runs-on: windows-latest
     needs: build
     steps:
-    - run: |
+    - name: Pull & Push
+      run: |
         docker pull ${{ env.GITHUB_CONTAINER_REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}
         echo ${{ secrets.ALIYUN_REGISTRY_PASSWORD }} | docker login -u ${{ secrets.ALIYUN_REGISTRY_USERNAME }} --password-stdin ${{ env.ALIYUN_HK_REGISTRY }}
         docker tag ${{ env.GITHUB_CONTAINER_REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }} ${{ env.ALIYUN_HK_REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
