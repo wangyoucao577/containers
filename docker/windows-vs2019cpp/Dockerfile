@@ -55,6 +55,5 @@ RUN git clone https://github.com/microsoft/vcpkg && `
 # ENTRYPOINT ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\BuildTools\\Common7\\Tools\\VsDevCmd.bat", "&&", "powershell.exe", "-NoLogo", "-ExecutionPolicy", "Bypass"]
 ENTRYPOINT ["pwsh"]
 
-
 LABEL maintainer="wangyoucao577@gmail.com"
 LABEL org.opencontainers.image.source https://github.com/wangyoucao577/containers
