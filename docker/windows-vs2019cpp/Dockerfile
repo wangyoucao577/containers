@@ -45,6 +45,9 @@ RUN IF NOT EXIST "cmake-3.22.0-rc2-windows-x86_64.zip" ( curl -SL --output cmake
 RUN 7z e ninja-win.zip -o./ninja-win && `
   7z e cmake-3.22.0-rc2-windows-x86_64.zip -o./cmake-3.22.0-rc2-windows-x86_64 -y
 
+# install vcpkg
+RUN git clone https://github.com/microsoft/vcpkg && `
+  \vcpkg\bootstrap-vcpkg.bat
 
 # Define the entry point for the docker container.
 # This entry point starts the developer command prompt and launches the PowerShell shell.
