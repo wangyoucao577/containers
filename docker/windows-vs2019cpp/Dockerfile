@@ -26,7 +26,7 @@ COPY . ./
 #   7z: https://www.7-zip.org/a/7z1900-x64.exe
 #   git: https://git-scm.com/download/win
 #   powershell7: https://github.com/PowerShell/PowerShell/releases/download/v7.1.5/PowerShell-7.1.5-win-x64.msi
-RUN curl -SL --output 7z1900-x64.exe https://www.7-zip.org/a/7z1900-x64.exe
+RUN if not exist "7z1900-x64.exe" ( curl -SL --output 7z1900-x64.exe https://www.7-zip.org/a/7z1900-x64.exe )
 RUN curl -SL --output PowerShell-7.1.5-win-x64.msi https://github.com/PowerShell/PowerShell/releases/download/v7.1.5/PowerShell-7.1.5-win-x64.msi
 RUN curl -SL --output Git-2.34.0-32-bit.exe https://github.com/git-for-windows/git/releases/download/v2.34.0.windows.1/Git-2.34.0-32-bit.exe
 RUN 7z1900-x64.exe /S
