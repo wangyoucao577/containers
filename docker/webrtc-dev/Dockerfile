@@ -67,8 +67,9 @@ RUN cd /root/ && \
 COPY .bashrc_local /root/
 
 # prepare for sshd
-RUN echo 'root:root' | chpasswd
+# RUN echo 'root:root' | chpasswd
 RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config && \
+  echo "PasswordAuthentication no" >> /etc/ssh/sshd_config && \
   echo "X11UseLocalhost no" >> /etc/ssh/sshd_config && \
   echo "Port 13191" >> /etc/ssh/sshd_config
 RUN service ssh start
