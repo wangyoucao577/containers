@@ -13,6 +13,7 @@ on:
 env:
   IMAGE_NAME: webrtc-dev
   DOCKERFILE_PATH: docker/webrtc-dev/
+  GITHUB_CONTAINER_REGISTRY: ghcr.io
 
 jobs:
 
@@ -33,7 +34,7 @@ jobs:
         name: ${{ github.actor }}/${{ env.IMAGE_NAME }}
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-        registry: ghcr.io
+        registry: ${{ env.GITHUB_CONTAINER_REGISTRY }}
         snapshot: false
         workdir: ${{ env.DOCKERFILE_PATH }}
         tags: "latest,${{ env.IMAGE_TAG }}"
@@ -56,8 +57,19 @@ jobs:
     steps:
     - uses: onichandame/docker-registry-sync-action@master
       with:
-        source_repository: ghcr.io/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
+        source_repository: ${{ env.GITHUB_CONTAINER_REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
         target_repository: registry.cn-hongkong.aliyuncs.com/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
+        target_username: ${{ secrets.ALIYUN_REGISTRY_USERNAME }}
+        target_password: ${{ secrets.ALIYUN_REGISTRY_PASSWORD }}
+
+  copy-to-aliyun-sh:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - uses: onichandame/docker-registry-sync-action@master
+      with:
+        source_repository: ${{ env.GITHUB_CONTAINER_REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
+        target_repository: registry.cn-shanghai.aliyuncs.com/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
         target_username: ${{ secrets.ALIYUN_REGISTRY_USERNAME }}
         target_password: ${{ secrets.ALIYUN_REGISTRY_PASSWORD }}
 
@@ -67,7 +79,19 @@ jobs:
     steps:
     - uses: onichandame/docker-registry-sync-action@master
       with:
-        source_repository: ghcr.io/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
+        source_repository: ${{ env.GITHUB_CONTAINER_REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
         target_repository: hkccr.ccs.tencentyun.com/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
         target_username: ${{ secrets.TENCENTYUN_DOCKER_REGISTRY_USERNAME }}
         target_password: ${{ secrets.TENCENTYUN_DOCKER_REGISTRY_PASSWORD }}
+        
+  copy-to-tencentyun-default:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - uses: onichandame/docker-registry-sync-action@master
+      with:
+        source_repository: ${{ env.GITHUB_CONTAINER_REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
+        target_repository: ccr.ccs.tencentyun.com/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
+        target_username: ${{ secrets.TENCENTYUN_DOCKER_REGISTRY_USERNAME }}
+        target_password: ${{ secrets.TENCENTYUN_DOCKER_REGISTRY_PASSWORD }}
+
