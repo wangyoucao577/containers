@@ -112,11 +112,11 @@ RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | 
 #  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # install cmake
-RUN wget --progress=dot:mega https://github.com/Kitware/CMake/releases/download/v3.21.3/cmake-3.21.3-linux-x86_64.tar.gz && \
-  tar -zxf cmake-3.21.3-linux-x86_64.tar.gz && \
-  mv cmake-3.21.3-linux-x86_64 /usr/local/ && \
-  rm cmake-3.21.3-linux-x86_64.tar.gz && \
-  cd /usr/local/cmake-3.21.3-linux-x86_64/ && \
+RUN wget --progress=dot:mega https://github.com/Kitware/CMake/releases/download/v3.22.0/cmake-3.22.0-linux-x86_64.tar.gz && \
+  tar -zxf cmake-3.22.0-linux-x86_64.tar.gz && \
+  mv cmake-3.22.0-linux-x86_64 /usr/local/ && \
+  rm cmake-3.22.0-linux-x86_64.tar.gz && \
+  cd /usr/local/cmake-3.22.0-linux-x86_64/ && \
   stow -v --ignore=man . && \
   cmake --version
 
@@ -136,8 +136,8 @@ RUN wget --progress=dot:mega --no-check-certificate https://go.dev/dl/$(curl htt
 
 # vscode configs and latest extensions
 RUN mkdir -p vscode && cd vscode && \
-  wget --progress=dot:mega --no-check-certificate https://github.com/microsoft/vscode-cpptools/releases/download/1.5.1/cpptools-linux.vsix && \
-  wget --progress=dot:mega --no-check-certificate https://github.com/golang/vscode-go/releases/download/v0.26.0/go-0.26.0.vsix
+  wget --progress=dot:mega --no-check-certificate https://github.com/microsoft/vscode-cpptools/releases/download/1.7.1/cpptools-linux.vsix && \
+  wget --progress=dot:mega --no-check-certificate https://github.com/golang/vscode-go/releases/download/v0.29.0/go-0.29.0.vsix
 
 # install depot_tools: https://commondatastorage.googleapis.com/chrome-infra-docs/flat/depot_tools/docs/html/depot_tools_tutorial.html#_setting_up
 RUN git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
