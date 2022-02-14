@@ -20,7 +20,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install --no-instal
   lsb-release \
   software-properties-common \
   gnupg2 \
-  sudo \
+  sudo psmisc \
   file \
   locales-all \
   pkg-config \
