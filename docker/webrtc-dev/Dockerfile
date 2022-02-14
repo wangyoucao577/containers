@@ -6,7 +6,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install --no-instal
   build-essential \
   openssh-server \
   python3-pip \
-  gdb \
+  gdb bear \
   tmux \
   curl wget \
   vim \
@@ -42,7 +42,7 @@ RUN wget --progress=dot:mega https://dl.google.com/android/repository/android-nd
   ln -s $(pwd)/ndk/android-ndk-r21e $(pwd)/ndk/21.4.7075529 && \
   ln -s $(pwd)/ndk/21.4.7075529 $(pwd)/ndk-bundle
 
-# install clang
+# install clang, refer to https://apt.llvm.org/
 RUN bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)" && \
   update-alternatives --install /usr/bin/clang clang /usr/bin/clang-14 100 && \
   update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-14 100 && \
