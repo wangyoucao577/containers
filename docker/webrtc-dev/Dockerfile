@@ -44,10 +44,10 @@ RUN wget --progress=dot:mega https://dl.google.com/android/repository/android-nd
 
 # install clang
 RUN bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)" && \
-  update-alternatives --install /usr/bin/clang clang /usr/bin/clang-13 100 && \
-  update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-13 100 && \
-  update-alternatives --install /usr/bin/clang-cpp clang-cpp /usr/bin/clang-cpp-13 100 && \
-  update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-13 100 && \
+  update-alternatives --install /usr/bin/clang clang /usr/bin/clang-14 100 && \
+  update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-14 100 && \
+  update-alternatives --install /usr/bin/clang-cpp clang-cpp /usr/bin/clang-cpp-14 100 && \
+  update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-14 100 && \
   update-alternatives --install /usr/bin/cc cc /usr/bin/clang 100 && \
   update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++ 100 && \
   rm -rf /var/lib/apt/lists/* && \
