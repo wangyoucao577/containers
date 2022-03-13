@@ -43,13 +43,16 @@ RUN wget --progress=dot:mega https://dl.google.com/android/repository/android-nd
   ln -s $(pwd)/ndk/21.4.7075529 $(pwd)/ndk-bundle
 
 # install clang, refer to https://apt.llvm.org/
-RUN bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)" && \
+RUN wget https://apt.llvm.org/llvm.sh && \
+  chmod +x llvm.sh && \
+  ./llvm.sh all && \
   update-alternatives --install /usr/bin/clang clang /usr/bin/clang-14 100 && \
   update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-14 100 && \
   update-alternatives --install /usr/bin/clang-cpp clang-cpp /usr/bin/clang-cpp-14 100 && \
   update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-14 100 && \
   rm -rf /var/lib/apt/lists/* && \
-  clang --version
+  clang --version && \
+  rm -f llvm.sh
 
 # for jre/jdk installation
 RUN mkdir -p /usr/share/man/man1
