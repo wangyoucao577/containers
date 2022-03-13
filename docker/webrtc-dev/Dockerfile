@@ -50,6 +50,8 @@ RUN wget https://apt.llvm.org/llvm.sh && \
   update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-14 100 && \
   update-alternatives --install /usr/bin/clang-cpp clang-cpp /usr/bin/clang-cpp-14 100 && \
   update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-14 100 && \
+  update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-14 100 && \
+  update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-14 100 && \
   rm -rf /var/lib/apt/lists/* && \
   clang --version && \
   rm -f llvm.sh
