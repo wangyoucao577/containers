@@ -4,7 +4,7 @@ export GO_HOME=/usr/local/go
 export GOPATH=/root/workspace/go
 
 # for depot_tools
-export DEPOT_TOOLS_PATH=/root/workspace/depot_tools
+#export DEPOT_TOOLS_PATH=/root/workspace/depot_tools
 
 # for android ndk
 export ANDROID_SDK_ROOT=/root/Android/Sdk
