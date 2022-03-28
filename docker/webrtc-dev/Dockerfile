@@ -29,6 +29,16 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install --no-instal
   x11-apps \
   && rm -rf /var/lib/apt/lists/*
 
+# install nvidia cuda toolkit
+# https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=Debian&target_version=11&target_type=deb_local
+RUN wget https://developer.download.nvidia.com/compute/cuda/11.6.2/local_installers/cuda-repo-debian11-11-6-local_11.6.2-510.47.03-1_amd64.deb && \
+  dpkg -i cuda-repo-debian11-11-6-local_11.6.2-510.47.03-1_amd64.deb && \
+  apt-key add /var/cuda-repo-debian11-11-6-local/7fa2af80.pub && \
+  add-apt-repository contrib && \
+  apt-get update && \
+  apt-get -y install cuda && \
+  rm cuda-repo-debian11-11-6-local_11.6.2-510.47.03-1_amd64.deb
+
 # install android ndk 21
 RUN wget --progress=dot:mega https://dl.google.com/android/repository/android-ndk-r21e-linux-x86_64.zip && \
   unzip android-ndk-r21e-linux-x86_64.zip && \
