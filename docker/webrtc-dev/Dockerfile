@@ -39,6 +39,16 @@ RUN wget https://developer.download.nvidia.com/compute/cuda/11.6.2/local_install
   apt-get -y install cuda && \
   rm cuda-repo-debian11-11-6-local_11.6.2-510.47.03-1_amd64.deb
 
+# install nvidia container runtime
+# https://nvidia.github.io/nvidia-container-runtime/
+RUN curl -s -L https://nvidia.github.io/nvidia-container-runtime/gpgkey | apt-key add - && \
+  distribution=$(. /etc/os-release;echo $ID$VERSION_ID) && \
+  curl -s -L https://nvidia.github.io/nvidia-container-runtime/$distribution/nvidia-container-runtime.list | \
+    tee /etc/apt/sources.list.d/nvidia-container-runtime.list && \
+  apt-get update && \
+  apt-get install nvidia-container-runtime
+  
+
 # install android ndk 21
 RUN wget --progress=dot:mega https://dl.google.com/android/repository/android-ndk-r21e-linux-x86_64.zip && \
   unzip android-ndk-r21e-linux-x86_64.zip && \
