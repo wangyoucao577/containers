@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   tmux tree stow \
   iperf3 net-tools iputils-ping mtr dnsutils netcat \
   sudo psmisc file htop atop sysstat strace \
-  lsb-release software-properties-common gnupg2 \
+  lsb-release software-properties-common gnupg2 autoconf \
   locales-all ca-certificates \
   xauth x11-apps \
   && rm -rf /var/lib/apt/lists/*
