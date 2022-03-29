@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   zip unzip \
   tree \
   stow \
-  iperf3 net-tools iputils-ping mtr dnsutils \
+  iperf3 net-tools iputils-ping mtr dnsutils netcat \
   htop atop sysstat strace \
   jq \
   lsb-release \
