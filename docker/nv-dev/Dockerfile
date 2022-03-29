@@ -1,5 +1,5 @@
 
-FROM nvidia/cuda:11.6.0-devel-ubuntu20.04
+FROM nvidia/cuda:11.2.1-devel-ubuntu20.04
 
 # avoid interactive during apt install
 ARG DEBIAN_FRONTEND=noninteractive
