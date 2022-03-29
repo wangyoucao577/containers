@@ -168,11 +168,6 @@ RUN wget --progress=dot:mega --no-check-certificate https://go.dev/dl/$(curl htt
   rm -f go.linux-amd64.tar.gz && \
   mkdir -p go/bin /go/src go/pkg
 
-# vscode configs and latest extensions
-RUN mkdir -p vscode && cd vscode && \
-  wget --progress=dot:mega --no-check-certificate https://github.com/microsoft/vscode-cpptools/releases/download/1.7.1/cpptools-linux.vsix && \
-  wget --progress=dot:mega --no-check-certificate https://github.com/golang/vscode-go/releases/download/v0.29.0/go-0.29.0.vsix
-
 # install depot_tools: https://commondatastorage.googleapis.com/chrome-infra-docs/flat/depot_tools/docs/html/depot_tools_tutorial.html#_setting_up
 RUN git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
 
