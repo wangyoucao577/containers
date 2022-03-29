@@ -1,0 +1,8 @@
+
+# for golang
+export GO_HOME=/usr/local/go
+export GOPATH=/root/workspace/go
+
+# path
+export PATH=${GOPATH}/bin:${GO_HOME}/bin:$PATH
+
