@@ -1,8 +1,11 @@
 
 FROM debian:bullseye-slim
 
+# avoid interactive during apt install
+ARG DEBIAN_FRONTEND=noninteractive
+
 # Install basic packages
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install --no-install-recommends -y \
+RUN apt-get update && apt-get install --no-install-recommends -y \
   build-essential \
   openssh-server \
   python3-pip \
@@ -47,7 +50,7 @@ RUN curl -s -L https://nvidia.github.io/nvidia-container-runtime/gpgkey | apt-ke
     tee /etc/apt/sources.list.d/nvidia-container-runtime.list && \
   apt-get update && \
   apt-get install nvidia-container-runtime
-  
+
 
 # install android ndk 21
 RUN wget --progress=dot:mega https://dl.google.com/android/repository/android-ndk-r21e-linux-x86_64.zip && \
