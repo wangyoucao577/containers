@@ -6,30 +6,17 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # Install basic packages
 RUN apt-get update && apt-get install --no-install-recommends -y \
-  build-essential \
+  build-essential pkg-config  gdb bear \
   openssh-server \
   python3-pip \
-  gdb bear \
-  tmux \
-  curl wget \
-  vim \
-  git git-lfs \
+  vim curl wget git git-lfs jq \
   zip unzip \
-  tree \
-  stow \
+  tmux tree stow \
   iperf3 net-tools iputils-ping mtr dnsutils netcat \
-  htop atop sysstat strace \
-  jq \
-  lsb-release \
-  software-properties-common \
-  gnupg2 \
-  sudo psmisc \
-  file \
-  locales-all \
-  pkg-config \
-  ca-certificates \
-  xauth \
-  x11-apps \
+  sudo psmisc file htop atop sysstat strace \
+  lsb-release software-properties-common gnupg2 \
+  locales-all ca-certificates \
+  xauth x11-apps \
   && rm -rf /var/lib/apt/lists/*
 
 # install nvidia cuda toolkit
@@ -106,13 +93,8 @@ RUN usermod -a -G sudo root
 
 # install additonal packages for building or application depedencies
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install --no-install-recommends -y \
-  libz-dev \
-  libpulse-dev \
-  libasound2-dev \
-  libssl-dev \
-  yasm \
-  ffmpeg \
-  coturn \
+  libz-dev libpulse-dev libasound2-dev libssl-dev \
+  yasm ffmpeg coturn \
   && rm -rf /var/lib/apt/lists/*
 
 # set workspace
@@ -126,7 +108,7 @@ RUN wget --progress=dot:mega https://repo.anaconda.com/miniconda/Miniconda3-late
 
 # install nvm and nodejs
 # https://github.com/nvm-sh/nvm#install--update-script
-RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash && \
+RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash && \
   export NVM_DIR="$HOME/.nvm" && \
   # This loads nvm
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  && \
@@ -139,11 +121,11 @@ RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | 
 #  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # install cmake
-RUN wget --progress=dot:mega https://github.com/Kitware/CMake/releases/download/v3.22.0/cmake-3.22.0-linux-x86_64.tar.gz && \
-  tar -zxf cmake-3.22.0-linux-x86_64.tar.gz && \
-  mv cmake-3.22.0-linux-x86_64 /usr/local/ && \
-  rm cmake-3.22.0-linux-x86_64.tar.gz && \
-  cd /usr/local/cmake-3.22.0-linux-x86_64/ && \
+RUN wget --progress=dot:mega https://github.com/Kitware/CMake/releases/download/v3.23.0-rc5/cmake-3.23.0-rc5-linux-x86_64.tar.gz && \
+  tar -zxf cmake-3.23.0-rc5-linux-x86_64.tar.gz && \
+  mv cmake-3.23.0-rc5-linux-x86_64 /usr/local/ && \
+  rm cmake-3.23.0-rc5-linux-x86_64.tar.gz.tar.gz && \
+  cd /usr/local/cmake-3.23.0-rc5-linux-x86_64/ && \
   stow -v --ignore=man . && \
   cmake --version
 
