@@ -49,7 +49,7 @@ RUN curl -s -L https://nvidia.github.io/nvidia-container-runtime/gpgkey | apt-ke
   curl -s -L https://nvidia.github.io/nvidia-container-runtime/$distribution/nvidia-container-runtime.list | \
     tee /etc/apt/sources.list.d/nvidia-container-runtime.list && \
   apt-get update && \
-  apt-get install nvidia-container-runtime
+  apt-get -y install nvidia-container-runtime
 
 
 # install android ndk 21
