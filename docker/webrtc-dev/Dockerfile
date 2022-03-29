@@ -125,7 +125,7 @@ RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | 
 RUN wget --progress=dot:mega https://github.com/Kitware/CMake/releases/download/v3.23.0-rc5/cmake-3.23.0-rc5-linux-x86_64.tar.gz && \
   tar -zxf cmake-3.23.0-rc5-linux-x86_64.tar.gz && \
   mv cmake-3.23.0-rc5-linux-x86_64 /usr/local/ && \
-  rm cmake-3.23.0-rc5-linux-x86_64.tar.gz.tar.gz && \
+  rm cmake-3.23.0-rc5-linux-x86_64.tar.gz && \
   cd /usr/local/cmake-3.23.0-rc5-linux-x86_64/ && \
   stow -v --ignore=man . && \
   cmake --version
