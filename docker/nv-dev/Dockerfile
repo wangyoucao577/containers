@@ -20,7 +20,9 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   && rm -rf /var/lib/apt/lists/*
 
 # install clang, refer to https://apt.llvm.org/
+#   NOTE: downgrade to llvm 13 due to too old OS
 RUN wget https://apt.llvm.org/llvm.sh && \
+  sed "s/CURRENT_LLVM_STABLE=14/CURRENT_LLVM_STABLE=13/g" llvm.sh && \
   chmod +x llvm.sh && \
   ./llvm.sh all && \
   update-alternatives --install /usr/bin/clang clang /usr/bin/clang-14 100 && \
