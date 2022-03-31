@@ -1,5 +1,5 @@
 
-FROM nvidia/cuda:11.2.1-devel-ubuntu18.04
+FROM nvidia/cuda:11.2.1-devel-ubuntu20.04
 
 # avoid interactive during apt install
 ARG DEBIAN_FRONTEND=noninteractive
@@ -20,17 +20,15 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   && rm -rf /var/lib/apt/lists/*
 
 # install clang, refer to https://apt.llvm.org/
-#   NOTE: downgrade to llvm 13 due to too old OS
 RUN wget https://apt.llvm.org/llvm.sh && \
-  sed -i "s/CURRENT_LLVM_STABLE=14/CURRENT_LLVM_STABLE=13/g" llvm.sh && \
   chmod +x llvm.sh && \
   ./llvm.sh all && \
-  update-alternatives --install /usr/bin/clang clang /usr/bin/clang-13 100 && \
-  update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-13 100 && \
-  update-alternatives --install /usr/bin/clang-cpp clang-cpp /usr/bin/clang-cpp-13 100 && \
-  update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-13 100 && \
-  update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-13 100 && \
-  update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-13 100 && \
+  update-alternatives --install /usr/bin/clang clang /usr/bin/clang-14 100 && \
+  update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-14 100 && \
+  update-alternatives --install /usr/bin/clang-cpp clang-cpp /usr/bin/clang-cpp-14 100 && \
+  update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-14 100 && \
+  update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-14 100 && \
+  update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-14 100 && \
   rm -rf /var/lib/apt/lists/* && \
   clang --version && \
   rm -f llvm.sh
