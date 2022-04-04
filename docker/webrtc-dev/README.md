@@ -71,7 +71,7 @@ Refer to [VS Code Remote Development](https://code.visualstudio.com/docs/remote/
 ### Debugging via [Remote-SSH](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh)
 
 - Install [Remote-SSH](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh) extension in your local vscode 
-- Make sure `ssh` works on your local machine: `ssh -i <YOUR_PRIVATE_KEY> -p 19001 root@<CONTAINER_IP>`
+- Make sure `ssh` works on your local machine: `ssh -i <YOUR_PRIVATE_KEY> -p 13191 root@<CONTAINER_IP>`
 - Use "Remote-SSH: Connect to Host" to connect to your container in vscode
 - Install vscode extensions remotely
   - Either install from the vscode Extensions page, 
