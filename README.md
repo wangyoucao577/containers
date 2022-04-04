@@ -50,3 +50,11 @@ See details in [docker/nginx-file-server](./docker/nginx-file-server/).
 [![Build Docker - webrtc-dev](https://github.com/wangyoucao577/containers/actions/workflows/autobuild-webrtc-dev.yml/badge.svg)](https://github.com/wangyoucao577/containers/actions/workflows/autobuild-webrtc-dev.yml)     
 Image for my webrtc related development.     
 See details in [docker/webrtc-dev](./docker/webrtc-dev/).      
+
+### windows-vs2019cpp
+[![Build Docker - windows-vs2019cpp](https://github.com/wangyoucao577/containers/actions/workflows/autobuild-windows-vs2019cpp.yml/badge.svg)](https://github.com/wangyoucao577/containers/actions/workflows/autobuild-windows-vs2019cpp.yml)    
+Visual Studio 2019 Build Tools container, born for CI/CD.     
+
+### nv-dev
+[![Build Docker - nv-dev](https://github.com/wangyoucao577/containers/actions/workflows/autobuild-nv-dev.yml/badge.svg)](https://github.com/wangyoucao577/containers/actions/workflows/autobuild-nv-dev.yml)        
+See details in [docker/nv-dev](./docker/nv-dev/).      
