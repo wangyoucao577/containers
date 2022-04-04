@@ -28,7 +28,6 @@ $ docker pull ghcr.io/wangyoucao577/webrtc-dev
 
 ```bash
 $ docker run -d --restart=always --network=host --cap-add=ALL --security-opt seccomp=unconfined --privileged  --hostname="webrtc-dev" wangyoucao577/webrtc-dev
-4dce06ca751f4ee803df809396b8e1ed830f496ed530f52476034a92d35c8fe2
 ```
 
 ### Open GUI Application via X11 Forwarding
