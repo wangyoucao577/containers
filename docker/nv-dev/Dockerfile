@@ -1,6 +1,10 @@
 
 FROM nvidia/cuda:11.2.1-devel-ubuntu20.04
 
+# nvidia-container-runtime envs, see https://github.com/NVIDIA/nvidia-container-runtime
+ENV NVIDIA_VISIBLE_DEVICES all
+ENV NVIDIA_DRIVER_CAPABILITIES all
+
 # avoid interactive during apt install
 ARG DEBIAN_FRONTEND=noninteractive
 
