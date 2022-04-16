@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   build-essential pkg-config  gdb bear \
   openssh-server \
   python3-pip \
-  vim curl wget httpie git git-lfs jq \
+  vim curl wget git git-lfs jq \
   zip unzip \
   tmux tree stow \
   iperf3 net-tools iputils-ping mtr dnsutils netcat iproute2 \
