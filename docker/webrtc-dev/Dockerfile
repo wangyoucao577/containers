@@ -68,6 +68,9 @@ RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config && \
   echo "Port 13191" >> /etc/ssh/sshd_config
 RUN service ssh start
 
+# vscode settings
+COPY settings.json /root/.vscode-server/data/Machine/
+
 # allow root to run sudo
 RUN usermod -a -G sudo root
 
