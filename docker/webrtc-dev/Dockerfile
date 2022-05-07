@@ -16,8 +16,6 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   lsb-release software-properties-common gnupg2 autoconf \
   locales-all ca-certificates \
   xauth x11-apps \
-  # below line for Bear
-  libfmt-dev libspdlog-dev nlohmann-json3-dev libgrpc++-dev protobuf-compiler-grpc libssl-dev \
   && rm -rf /var/lib/apt/lists/*
 
 # install android ndk 21
