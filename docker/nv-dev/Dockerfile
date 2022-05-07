@@ -10,7 +10,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # Install basic packages
 RUN apt-get update && apt-get install --no-install-recommends -y \
-  build-essential pkg-config gdb bear \
+  build-essential pkg-config gdb \
   zsh openssh-server \
   python3-pip \
   vim curl wget git git-lfs jq \
@@ -95,6 +95,15 @@ RUN wget --progress=dot:mega https://github.com/ninja-build/ninja/releases/downl
   mv ninja /usr/local/bin/ && \
   rm -f ninja-linux.zip && \
   ninja --version
+
+# install bear, https://github.com/rizsotto/Bear/blob/master/INSTALL.md
+RUN git clone https://github.com/rizsotto/Bear.git && \
+  cd Bear && mkdir -p build && cd build && \
+  cmake -DENABLE_UNIT_TESTS=OFF -DENABLE_FUNC_TESTS=OFF ..  && \
+  make && make install && \
+  cd ../../ && \
+  /usr/local/bin/bear --version && \
+  rm -rf ./Bear
 
 # install go
 RUN wget --progress=dot:mega --no-check-certificate https://go.dev/dl/$(curl https://go.dev/VERSION?m=text).linux-amd64.tar.gz -O go.linux-amd64.tar.gz && \
