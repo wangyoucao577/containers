@@ -10,8 +10,8 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # Install basic packages
 RUN apt-get update && apt-get install --no-install-recommends -y \
-  build-essential pkg-config  gdb bear \
-  openssh-server \
+  build-essential pkg-config gdb bear \
+  zsh openssh-server \
   python3-pip \
   vim curl wget git git-lfs jq \
   zip unzip \
@@ -44,13 +44,16 @@ RUN mkdir -p /usr/share/man/man1
 # install docker for docker-in-docker
 RUN curl -sSL https://get.docker.com/ | sh
 
-# prepare dotfiles
+# install oh-my-zsh, then prepare dotfiles
+COPY .shrc_local /root/
+RUN chsh -s $(which zsh) && \
+  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" && \
+  echo '[[ -f ~/.shrc_local ]] && . ~/.shrc_local' >> ~/.zshrc
 RUN cd /root/ && \
   rm -f .bashrc && \
   git clone https://github.com/wangyoucao577/dotfiles.git .dotfiles && \
   cd .dotfiles && \
   stow -v .
-COPY .bashrc_local /root/
 
 # prepare for sshd
 # RUN echo 'root:root' | chpasswd
