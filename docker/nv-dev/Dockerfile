@@ -80,7 +80,7 @@ WORKDIR /root/workspace
 RUN wget --progress=dot:mega https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
   bash ~/miniconda.sh -b -p $HOME/miniconda && \
   rm -f ~/miniconda.sh && \
-  ~/miniconda/bin/conda init
+  ~/miniconda/bin/conda init zsh
 
 # install cmake
 RUN wget --progress=dot:mega https://github.com/Kitware/CMake/releases/download/v3.23.0-rc5/cmake-3.23.0-rc5-linux-x86_64.tar.gz && \

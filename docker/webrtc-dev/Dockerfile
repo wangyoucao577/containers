@@ -93,7 +93,7 @@ WORKDIR /root/workspace
 RUN wget --progress=dot:mega https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
   bash ~/miniconda.sh -b -p $HOME/miniconda && \
   rm -f ~/miniconda.sh && \
-  ~/miniconda/bin/conda init
+  ~/miniconda/bin/conda init zsh
 
 # install nvm and nodejs
 # https://github.com/nvm-sh/nvm#install--update-script
