@@ -6,7 +6,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # Install basic packages
 RUN apt-get update && apt-get install --no-install-recommends -y \
-  build-essential pkg-config  gdb bear \
+  build-essential pkg-config gdb \
   openssh-server \
   python3-pip \
   vim curl wget git git-lfs jq \
@@ -17,6 +17,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   lsb-release software-properties-common gnupg2 autoconf \
   locales-all ca-certificates \
   xauth x11-apps \
+  # below line for Bear
+  libfmt-dev libspdlog-dev nlohmann-json3-dev libgrpc++-dev protobuf-compiler-grpc libssl-dev \
   && rm -rf /var/lib/apt/lists/*
 
 # install android ndk 21
@@ -132,6 +134,15 @@ RUN wget --progress=dot:mega --no-check-certificate https://go.dev/dl/$(curl htt
   mv go /usr/local/ && \
   rm -f go.linux-amd64.tar.gz && \
   mkdir -p go/bin /go/src go/pkg
+
+# install bear, https://github.com/rizsotto/Bear/blob/master/INSTALL.md
+RUN git clone https://github.com/rizsotto/Bear.git && \
+  cd Bear && mkdir -p build && cd build && \
+  cmake -DENABLE_UNIT_TESTS=OFF -DENABLE_FUNC_TESTS=OFF ..  && \
+  make && make install && \
+  cd ../../ && \
+  /usr/local/bin/bear --version && \
+  rm -rf ./Bear
 
 # install depot_tools: https://commondatastorage.googleapis.com/chrome-infra-docs/flat/depot_tools/docs/html/depot_tools_tutorial.html#_setting_up
 RUN git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
