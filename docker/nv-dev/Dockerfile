@@ -13,8 +13,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   build-essential pkg-config gdb \
   zsh openssh-server \
   python3-pip \
-  vim curl wget git git-lfs jq \
-  zip unzip \
+  vim curl wget git git-lfs jq zip unzip \
   tmux tree stow \
   iperf3 net-tools iputils-ping mtr dnsutils netcat iproute2 \
   sudo psmisc file htop atop sysstat strace \
@@ -48,11 +47,14 @@ RUN curl -sSL https://get.docker.com/ | sh
 COPY .shrc_local /root/
 RUN chsh -s $(which zsh) && \
   sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" && \
-  echo '[[ -f ~/.shrc_local ]] && . ~/.shrc_local' >> ~/.zshrc
+  echo '[[ -f ~/.shrc_local ]] && . ~/.shrc_local' >> ~/.zshrc && \
+  echo 'PROMPT="%F{cyan}%n@%F{cyan}%m ${PROMPT}"' >> ~/.zshrc && \
+  echo 'DISABLE_AUTO_TITLE="true"' >> ~/.zshrc && \
+  echo 'title "%m"' >> ~/.zshrc
 RUN cd /root/ && \
-  rm -f .bashrc && \
   git clone https://github.com/wangyoucao577/dotfiles.git .dotfiles && \
   cd .dotfiles && \
+  rm -f .bashrc && \
   stow -v .
 
 # prepare for sshd
