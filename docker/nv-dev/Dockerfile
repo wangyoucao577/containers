@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   build-essential pkg-config gdb \
   zsh openssh-server \
   python3-pip \
-  vim curl wget git git-lfs jq zip unzip \
+  less vim curl wget git git-lfs jq zip unzip \
   tmux tree stow \
   iperf3 net-tools iputils-ping mtr dnsutils netcat iproute2 \
   sudo psmisc file htop atop sysstat strace \
