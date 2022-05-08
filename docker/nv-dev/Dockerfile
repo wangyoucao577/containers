@@ -99,8 +99,9 @@ RUN wget --progress=dot:mega https://github.com/ninja-build/ninja/releases/downl
   ninja --version
 
 # install bear, https://github.com/rizsotto/Bear/blob/master/INSTALL.md
-RUN git clone https://github.com/rizsotto/Bear.git && \
-  cd Bear && mkdir -p build && cd build && \
+RUN git clone -n https://github.com/rizsotto/Bear.git && \
+  cd Bear && git checkout 3.0.19 && \
+  mkdir -p build && cd build && \
   cmake -DENABLE_UNIT_TESTS=OFF -DENABLE_FUNC_TESTS=OFF ..  && \
   make && make install && \
   cd ../../ && \
