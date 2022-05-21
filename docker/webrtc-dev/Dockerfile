@@ -83,7 +83,7 @@ RUN usermod -a -G sudo root
 # install additonal packages for building or application depedencies
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install --no-install-recommends -y \
   libz-dev libpulse-dev libasound2-dev libssl-dev \
-  yasm ffmpeg coturn \
+  yasm nasm ffmpeg coturn \
   && rm -rf /var/lib/apt/lists/*
 
 # set workspace
