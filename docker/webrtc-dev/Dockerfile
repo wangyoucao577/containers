@@ -49,7 +49,9 @@ RUN wget https://apt.llvm.org/llvm.sh && \
 RUN mkdir -p /usr/share/man/man1
 
 # install docker for docker-in-docker
+# use volume to leverage overlay2 in dind docker, see more in https://stackoverflow.com/questions/67953609/overlay2-driver-not-supported
 RUN curl -sSL https://get.docker.com/ | sh
+VOLUME /var/lib/docker
 
 # install oh-my-zsh, then prepare dotfiles
 COPY .shrc_local /root/
