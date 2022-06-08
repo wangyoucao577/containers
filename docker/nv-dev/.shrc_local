@@ -3,6 +3,9 @@
 export GO_HOME=/usr/local/go
 export GOPATH=/root/workspace/go
 
+# for lldb
+export LLDB_DEBUGSERVER_PATH=/usr/bin/lldb-server
+
 # path
 export PATH=/usr/local/cuda/bin/:${GOPATH}/bin:${GO_HOME}/bin:$PATH
 

@@ -33,6 +33,10 @@ RUN wget https://apt.llvm.org/llvm.sh && \
   update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-14 100 && \
   update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-14 100 && \
   update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-14 100 && \
+  update-alternatives --install /usr/bin/lldb lldb /usr/bin/lldb-14 100 && \
+  update-alternatives --install /usr/bin/lldb-server lldb-server /usr/bin/lldb-server-14 100 && \
+  # install additional liblldb-14-dev for lldb-mi compilation
+  apt install -y liblldb-14-dev && \
   rm -rf /var/lib/apt/lists/* && \
   clang --version && \
   rm -f llvm.sh
@@ -116,6 +120,15 @@ RUN wget --progress=dot:mega --no-check-certificate https://go.dev/dl/$(curl htt
   mv go /usr/local/ && \
   rm -f go.linux-amd64.tar.gz && \
   mkdir -p go/bin /go/src go/pkg
+
+# install lldb-mi
+RUN git clone https://github.com/lldb-tools/lldb-mi.git && \
+  mkdir -p lldb-mi/build && \
+  cd lldb-mi/build && \
+  cmake .. -GNinja && \
+  ninja install && \
+  cd ../.. && \
+  rm -rf lldb-mi
 
 # for shown on runtime
 ARG IMAGE_TAG
