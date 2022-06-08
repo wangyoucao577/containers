@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   vim curl wget git git-lfs jq zip unzip \
   tmux tree stow \
   iperf3 net-tools iputils-ping mtr dnsutils netcat iproute2 \
-  sudo psmisc file htop atop sysstat strace \
+  sudo psmisc file htop atop sysstat strace elfutils pax-utils libc-bin \
   lsb-release software-properties-common gnupg2 autoconf \
   locales-all ca-certificates \
   xauth x11-apps \
