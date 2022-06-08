@@ -10,6 +10,9 @@ export GOPATH=/root/workspace/go
 export ANDROID_SDK_ROOT=/root/Android/Sdk
 export ANDROID_NDK_HOME=${ANDROID_SDK_ROOT}/ndk-bundle
 
+# for lldb
+export LLDB_DEBUGSERVER_PATH=/usr/bin/lldb-server
+
 # path
 export PATH=${DEPOT_TOOLS_PATH}:${GOPATH}/bin:${GO_HOME}/bin:$PATH
 

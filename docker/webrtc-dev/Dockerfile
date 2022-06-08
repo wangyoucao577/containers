@@ -41,6 +41,10 @@ RUN wget https://apt.llvm.org/llvm.sh && \
   update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-14 100 && \
   update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-14 100 && \
   update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-14 100 && \
+  update-alternatives --install /usr/bin/lldb lldb /usr/bin/lldb-14 100 && \
+  update-alternatives --install /usr/bin/lldb-server lldb-server /usr/bin/lldb-server-14 100 && \
+  # install additional liblldb-14-dev for lldb-mi compilation
+  apt install -y liblldb-14-dev && \
   rm -rf /var/lib/apt/lists/* && \
   clang --version && \
   rm -f llvm.sh
@@ -154,6 +158,14 @@ RUN git clone -n https://github.com/rizsotto/Bear.git && \
 # install depot_tools: https://commondatastorage.googleapis.com/chrome-infra-docs/flat/depot_tools/docs/html/depot_tools_tutorial.html#_setting_up
 RUN git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
 
+# install lldb-mi
+RUN git clone https://github.com/lldb-tools/lldb-mi.git && \
+  mkdir -p lldb-mi/build && \
+  cd lldb-mi/build && \
+  cmake .. -GNinja && \
+  ninja install && \
+  cd ../.. && \
+  rm -rf lldb-mi
 
 # for shown on runtime
 ARG IMAGE_TAG
