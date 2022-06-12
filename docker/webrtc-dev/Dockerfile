@@ -19,17 +19,17 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   && rm -rf /var/lib/apt/lists/*
 
 # install android ndk 21
-RUN wget --progress=dot:mega https://dl.google.com/android/repository/android-ndk-r21e-linux-x86_64.zip && \
-  unzip android-ndk-r21e-linux-x86_64.zip && \
-  rm android-ndk-r21e-linux-x86_64.zip && \
+RUN wget --progress=dot:mega https://dl.google.com/android/repository/android-ndk-r23c-linux.zip && \
+  unzip android-ndk-r23c-linux.zip && \
+  rm android-ndk-r23c-linux.zip && \
   # refer to https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md#environment-variables-3
   #   but change ANDROID_SDK_ROOT path to /root/Android/Sdk for android studio auto-sync
-  # env ANDROID_SDK_ROOT, ANDROID_NDK_HOME will be set in .bashrc_local
+  # env ANDROID_SDK_ROOT, ANDROID_NDK_ROOT, ANDROID_NDK_HOME will be set in .bashrc_local
   mkdir -p /root/Android/Sdk/ndk/ && \
-  mv android-ndk-r21e /root/Android/Sdk/ndk/ && \
+  mv android-ndk-r23c /root/Android/Sdk/ndk/ && \
   cd /root/Android/Sdk/ && \
-  ln -s $(pwd)/ndk/android-ndk-r21e $(pwd)/ndk/21.4.7075529 && \
-  ln -s $(pwd)/ndk/21.4.7075529 $(pwd)/ndk-bundle
+  ln -s $(pwd)/ndk/android-ndk-r23c $(pwd)/ndk/23.2.8568313 && \
+  ln -s $(pwd)/ndk/android-ndk-r23c $(pwd)/ndk-bundle
 
 # install clang, refer to https://apt.llvm.org/
 RUN wget https://apt.llvm.org/llvm.sh && \
