@@ -7,8 +7,11 @@ export GOPATH=/root/workspace/go
 #export DEPOT_TOOLS_PATH=/root/workspace/depot_tools
 
 # for android ndk
+# according to https://github.com/actions/virtual-environments/issues/2426, 
+#   set both ADNROID_NDK_ROOT and ANDROID_NDK_HOME
 export ANDROID_SDK_ROOT=/root/Android/Sdk
-export ANDROID_NDK_HOME=${ANDROID_SDK_ROOT}/ndk-bundle
+export ANDROID_NDK_ROOT=${ANDROID_SDK_ROOT}/ndk-bundle
+export ANDROID_NDK_HOME=${ANDROID_NDK_ROOT}
 
 # for lldb
 export LLDB_DEBUGSERVER_PATH=/usr/bin/lldb-server
