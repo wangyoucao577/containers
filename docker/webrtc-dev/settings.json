@@ -5,5 +5,9 @@
         "--header-insertion=never", // avoid error header insertion 
     ],
     "editor.formatOnSave": true, // Use clangd's internal clang-format engine
-    "json.maxItemsComputed": 50000
+    "json.maxItemsComputed": 50000,
+    "cmake.configureOnOpen": false,
+    "terminal.integrated.copyOnSelection": true,
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "C_Cpp.codeAnalysis.clangTidy.enabled": true
 }
