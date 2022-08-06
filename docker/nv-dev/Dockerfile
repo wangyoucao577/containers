@@ -1,5 +1,5 @@
 
-FROM nvidia/cuda:11.2.1-devel-ubuntu20.04
+FROM nvidia/cuda:11.3.1-cudnn8-devel-ubuntu20.04
 
 # nvidia-container-runtime envs, see https://github.com/NVIDIA/nvidia-container-runtime
 ENV NVIDIA_VISIBLE_DEVICES all
@@ -28,15 +28,13 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 # versions: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/
 # tensorrt: https://docs.nvidia.com/deeplearning/tensorrt/install-guide/index.html#maclearn-net-repo-install
 # tensorrt: https://docs.nvidia.com/deeplearning/tensorrt/quick-start-guide/index.html#installing-debian
-# be aware that tensorrt 8.4.2.4-1+cuda11.6 compatible with cuda11.2
+# be aware that tensorrt 8.4.2.4-1+cuda11.6 compatible lower cuda11
 RUN wget --progress=dot:mega --no-check-certificate https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin && \
   mv cuda-ubuntu2004.pin /etc/apt/preferences.d/cuda-repository-pin-600 && \
   apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/7fa2af80.pub && \
   add-apt-repository "deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/ /" && \
   apt-get update && \
-  apt-get install --no-install-recommends -y \
-    libcudnn8=8.1.1.33-1+cuda11.2 libcudnn8-dev=8.1.1.33-1+cuda11.2 \
-    tensorrt-libs=8.4.2.4-1+cuda11.6 tensorrt-dev=8.4.2.4-1+cuda11.6 && \
+  apt-get install --no-install-recommends -y tensorrt=8.4.2.4-1+cuda11.6 && \
   rm -rf /var/lib/apt/lists/*
 
 # install clang, refer to https://apt.llvm.org/
