@@ -102,6 +102,10 @@ RUN wget --progress=dot:mega https://repo.anaconda.com/miniconda/Miniconda3-late
   rm -f ~/miniconda.sh && \
   ~/miniconda/bin/conda init zsh
 
+# install meson
+RUN pip install meson && \
+  meson --version
+
 # install cmake
 RUN export CMAKE_VERSION="3.25.1" && \
   wget --progress=dot:mega https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}-linux-x86_64.tar.gz && \

@@ -101,6 +101,10 @@ RUN wget --progress=dot:mega https://repo.anaconda.com/miniconda/Miniconda3-late
   rm -f ~/miniconda.sh && \
   ~/miniconda/bin/conda init zsh
 
+# install meson
+RUN pip install meson && \
+  meson --version
+
 # install nvm and nodejs
 # https://github.com/nvm-sh/nvm#install--update-script
 RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash && \
