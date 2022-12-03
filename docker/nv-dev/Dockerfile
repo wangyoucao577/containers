@@ -103,16 +103,17 @@ RUN wget --progress=dot:mega https://repo.anaconda.com/miniconda/Miniconda3-late
   ~/miniconda/bin/conda init zsh
 
 # install cmake
-RUN wget --progress=dot:mega https://github.com/Kitware/CMake/releases/download/v3.23.0-rc5/cmake-3.23.0-rc5-linux-x86_64.tar.gz && \
-  tar -zxf cmake-3.23.0-rc5-linux-x86_64.tar.gz && \
-  mv cmake-3.23.0-rc5-linux-x86_64 /usr/local/ && \
-  rm cmake-3.23.0-rc5-linux-x86_64.tar.gz && \
-  cd /usr/local/cmake-3.23.0-rc5-linux-x86_64/ && \
+RUN export CMAKE_VERSION="3.25.1" && \
+  wget --progress=dot:mega https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}-linux-x86_64.tar.gz && \
+  tar -zxf cmake-${CMAKE_VERSION}-linux-x86_64.tar.gz && \
+  mv cmake-${CMAKE_VERSION}-linux-x86_64 /usr/local/ && \
+  rm cmake-${CMAKE_VERSION}-linux-x86_64.tar.gz && \
+  cd /usr/local/cmake-${CMAKE_VERSION}-linux-x86_64/ && \
   stow -v --ignore=man . && \
   cmake --version
 
 # install ninja
-RUN wget --progress=dot:mega https://github.com/ninja-build/ninja/releases/download/v1.10.2/ninja-linux.zip && \
+RUN wget --progress=dot:mega https://github.com/ninja-build/ninja/releases/download/v1.11.1/ninja-linux.zip && \
   unzip ninja-linux.zip && \
   mv ninja /usr/local/bin/ && \
   rm -f ninja-linux.zip && \
@@ -120,7 +121,7 @@ RUN wget --progress=dot:mega https://github.com/ninja-build/ninja/releases/downl
 
 # install bear, https://github.com/rizsotto/Bear/blob/master/INSTALL.md
 RUN git clone -n https://github.com/rizsotto/Bear.git && \
-  cd Bear && git checkout 3.0.19 && \
+  cd Bear && git checkout 3.0.20 && \
   mkdir -p build && cd build && \
   cmake -DENABLE_UNIT_TESTS=OFF -DENABLE_FUNC_TESTS=OFF ..  && \
   make && make install && \
