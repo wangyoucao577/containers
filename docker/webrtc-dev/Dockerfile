@@ -6,7 +6,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # Install basic packages
 RUN apt-get update && apt-get install --no-install-recommends -y \
-  build-essential pkg-config gdb \
+  build-essential pkg-config libtool gdb \
   zsh openssh-server \
   python3-pip \
   vim curl wget git git-lfs jq zip unzip \
@@ -18,18 +18,18 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   xauth x11-apps \
   && rm -rf /var/lib/apt/lists/*
 
-# install android ndk 21
-RUN wget --progress=dot:mega https://dl.google.com/android/repository/android-ndk-r23c-linux.zip && \
-  unzip android-ndk-r23c-linux.zip && \
-  rm android-ndk-r23c-linux.zip && \
+# install android ndk 25
+RUN wget --progress=dot:mega https://dl.google.com/android/repository/android-ndk-r25b-linux.zip && \
+  unzip android-ndk-r25b-linux.zip && \
+  rm android-ndk-r25b-linux.zip && \
   # refer to https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md#environment-variables-3
   #   but change ANDROID_SDK_ROOT path to /root/Android/Sdk for android studio auto-sync
   # env ANDROID_SDK_ROOT, ANDROID_NDK_ROOT, ANDROID_NDK_HOME will be set in .bashrc_local
   mkdir -p /root/Android/Sdk/ndk/ && \
-  mv android-ndk-r23c /root/Android/Sdk/ndk/ && \
+  mv android-ndk-r25b /root/Android/Sdk/ndk/ && \
   cd /root/Android/Sdk/ && \
-  ln -s $(pwd)/ndk/android-ndk-r23c $(pwd)/ndk/23.2.8568313 && \
-  ln -s $(pwd)/ndk/android-ndk-r23c $(pwd)/ndk-bundle
+  ln -s $(pwd)/ndk/android-ndk-r25b $(pwd)/ndk/25.1.8937393 && \
+  ln -s $(pwd)/ndk/android-ndk-r25b $(pwd)/ndk-bundle
 
 # install clang, refer to https://apt.llvm.org/
 RUN wget https://apt.llvm.org/llvm.sh && \
@@ -103,7 +103,7 @@ RUN wget --progress=dot:mega https://repo.anaconda.com/miniconda/Miniconda3-late
 
 # install nvm and nodejs
 # https://github.com/nvm-sh/nvm#install--update-script
-RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash && \
+RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash && \
   export NVM_DIR="$HOME/.nvm" && \
   # This loads nvm
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  && \
@@ -116,16 +116,17 @@ RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | 
 #  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # install cmake
-RUN wget --progress=dot:mega https://github.com/Kitware/CMake/releases/download/v3.23.0-rc5/cmake-3.23.0-rc5-linux-x86_64.tar.gz && \
-  tar -zxf cmake-3.23.0-rc5-linux-x86_64.tar.gz && \
-  mv cmake-3.23.0-rc5-linux-x86_64 /usr/local/ && \
-  rm cmake-3.23.0-rc5-linux-x86_64.tar.gz && \
-  cd /usr/local/cmake-3.23.0-rc5-linux-x86_64/ && \
+RUN export CMAKE_VERSION="3.25.1" && \
+  wget --progress=dot:mega https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}-linux-x86_64.tar.gz && \
+  tar -zxf cmake-${CMAKE_VERSION}-linux-x86_64.tar.gz && \
+  mv cmake-${CMAKE_VERSION}-linux-x86_64 /usr/local/ && \
+  rm cmake-${CMAKE_VERSION}-linux-x86_64.tar.gz && \
+  cd /usr/local/cmake-${CMAKE_VERSION}-linux-x86_64/ && \
   stow -v --ignore=man . && \
   cmake --version
 
 # install ninja
-RUN wget --progress=dot:mega https://github.com/ninja-build/ninja/releases/download/v1.10.2/ninja-linux.zip && \
+RUN wget --progress=dot:mega https://github.com/ninja-build/ninja/releases/download/v1.11.1/ninja-linux.zip && \
   unzip ninja-linux.zip && \
   mv ninja /usr/local/bin/ && \
   rm -f ninja-linux.zip && \
@@ -147,7 +148,7 @@ RUN wget --progress=dot:mega --no-check-certificate https://go.dev/dl/$(curl htt
 
 # install bear, https://github.com/rizsotto/Bear/blob/master/INSTALL.md
 RUN git clone -n https://github.com/rizsotto/Bear.git && \
-  cd Bear && git checkout 3.0.19 && \
+  cd Bear && git checkout 3.0.20 && \
   mkdir -p build && cd build && \
   cmake -DENABLE_UNIT_TESTS=OFF -DENABLE_FUNC_TESTS=OFF ..  && \
   make && make install && \
