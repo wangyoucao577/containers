@@ -6,7 +6,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # Install basic packages
 RUN apt-get update && apt-get install --no-install-recommends -y \
-  build-essential pkg-config libtool gperf gdb \
+  build-essential pkg-config automake libtool gperf gdb \
   zsh openssh-server \
   python3-pip \
   vim curl wget git git-lfs jq zip unzip \
