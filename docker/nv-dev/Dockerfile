@@ -123,7 +123,7 @@ RUN wget --progress=dot:mega https://github.com/ninja-build/ninja/releases/downl
   ninja --version
 
 # install valgrind
-wget --progress=dot:mega --no-check-certificate https://sourceware.org/pub/valgrind/valgrind-3.20.0.tar.bz2 -O valgrind-3.20.0.tar.bz2 && \
+RUN wget --progress=dot:mega --no-check-certificate https://sourceware.org/pub/valgrind/valgrind-3.20.0.tar.bz2 -O valgrind-3.20.0.tar.bz2 && \
   tar -xjf valgrind-3.20.0.tar.bz2 && \
   cd valgrind-3.20.0 && \
   ./configure --enable-only64bit && \
