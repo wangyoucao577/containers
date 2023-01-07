@@ -150,6 +150,17 @@ RUN wget --progress=dot:mega --no-check-certificate https://go.dev/dl/$(curl htt
   rm -f go.linux-amd64.tar.gz && \
   mkdir -p go/bin /go/src go/pkg
 
+# install valgrind
+wget --progress=dot:mega --no-check-certificate https://sourceware.org/pub/valgrind/valgrind-3.20.0.tar.bz2 -O valgrind-3.20.0.tar.bz2 && \
+  tar -xjf valgrind-3.20.0.tar.bz2 && \
+  cd valgrind-3.20.0 && \
+  ./configure --enable-only64bit && \
+  make -j $(nproc) && make install && \
+  cd ../ && \
+  which valgrind && \
+  /usr/local/bin/valgrind --version && \
+  rm -rf ./valgrind*
+
 # install bear, https://github.com/rizsotto/Bear/blob/master/INSTALL.md
 RUN git clone -n https://github.com/rizsotto/Bear.git && \
   cd Bear && git checkout 3.0.20 && \
