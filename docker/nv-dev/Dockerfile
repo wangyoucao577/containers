@@ -136,7 +136,7 @@ wget --progress=dot:mega --no-check-certificate https://sourceware.org/pub/valgr
 
 # install bear, https://github.com/rizsotto/Bear/blob/master/INSTALL.md
 RUN git clone -n https://github.com/rizsotto/Bear.git && \
-  cd Bear && git checkout 3.0.20 && \
+  cd Bear && git checkout 3.0.21 && \
   mkdir -p build && cd build && \
   cmake -DENABLE_UNIT_TESTS=OFF -DENABLE_FUNC_TESTS=OFF ..  && \
   make && make install && \
