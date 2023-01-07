@@ -21,7 +21,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Set IMAGE_TAG env # env IMAGE_TAG=BranchName-CommitID-Timestamp
       run: echo ::set-env name=IMAGE_TAG::$(basename ${GITHUB_REF})-$(echo ${GITHUB_SHA} | cut -c 1-7)-$(date -u +"%Y%m%d")
@@ -36,7 +36,7 @@ jobs:
       uses: managedkaos/print-env@v1.0
 
     - name: Build & Publish to Github Package
-      uses: elgohr/Publish-Docker-Github-Action@master
+      uses: elgohr/Publish-Docker-Github-Action@v5
       with:
         name: ${{ github.repository }}/${{ env.IMAGE_NAME }}
         username: ${{ github.actor }}
@@ -48,7 +48,7 @@ jobs:
         buildargs: "IMAGE_TAG=${{ env.IMAGE_TAG }},CMAKE_BUILD_EXTRA_ARGS="
 
     - name: Build & Publish to DockerHub
-      uses: elgohr/Publish-Docker-Github-Action@master
+      uses: elgohr/Publish-Docker-Github-Action@v5
       with:
         name: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}
         username: ${{ secrets.DOCKERHUB_USERNAME }}
