@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   build-essential pkg-config automake libtool gperf gdb \
   zsh openssh-server \
   python3-pip \
-  vim curl wget git git-lfs jq zip unzip \
+  vim curl wget rsync git git-lfs jq zip unzip \
   tmux tree stow \
   iperf3 net-tools iputils-ping mtr dnsutils netcat iproute2 \
   sudo psmisc file htop atop sysstat strace elfutils pax-utils libc-bin \
