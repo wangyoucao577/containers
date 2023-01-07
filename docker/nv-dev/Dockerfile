@@ -1,4 +1,3 @@
-
 FROM nvidia/cuda:11.3.1-cudnn8-devel-ubuntu20.04
 
 # nvidia-container-runtime envs, see https://github.com/NVIDIA/nvidia-container-runtime
