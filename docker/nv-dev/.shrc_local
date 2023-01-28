@@ -7,5 +7,5 @@ export GOPATH=/root/workspace/go
 export LLDB_DEBUGSERVER_PATH=/usr/bin/lldb-server
 
 # path
-export PATH==/usr/src/tensorrt/bin:/usr/local/cuda/bin/:${GOPATH}/bin:${GO_HOME}/bin:$PATH
+export PATH=/usr/src/tensorrt/bin:/usr/local/cuda/bin/:${GOPATH}/bin:${GO_HOME}/bin:$PATH
 
