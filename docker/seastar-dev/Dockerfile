@@ -41,7 +41,8 @@ RUN cd /root/ && \
 # RUN echo 'root:root' | chpasswd
 RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config && \
   echo "PasswordAuthentication no" >> /etc/ssh/sshd_config && \
-  echo "X11UseLocalhost no" >> /etc/ssh/sshd_config 
+  echo "X11UseLocalhost no" >> /etc/ssh/sshd_config && \
+  echo "Port 13161" >> /etc/ssh/sshd_config
 RUN service ssh start
 
 # allow root to run sudo
