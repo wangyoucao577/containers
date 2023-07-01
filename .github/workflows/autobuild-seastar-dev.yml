@@ -40,58 +40,24 @@ jobs:
         tags: "latest,${{ env.IMAGE_TAG }}"
         buildargs: "IMAGE_TAG=${{ env.IMAGE_TAG }}"
 
-  #   - name: Build & Publish to DockerHub
-  #     uses: elgohr/Publish-Docker-Github-Action@v5
-  #     with:
-  #       name: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}
-  #       username: ${{ secrets.DOCKERHUB_USERNAME }}
-  #       password: ${{ secrets.DOCKERHUB_TOKEN }}
-  #       snapshot: false
-  #       workdir: ${{ env.DOCKERFILE_PATH }}
-  #       tags: "latest,${{ env.IMAGE_TAG }}"
-  #       buildargs: "IMAGE_TAG=${{ env.IMAGE_TAG }}"
+  copy-to-aliyun-hk:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - uses: onichandame/docker-registry-sync-action@master
+      with:
+        source_repository: ${{ env.GITHUB_CONTAINER_REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
+        target_repository: registry.cn-hongkong.aliyuncs.com/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
+        target_username: ${{ secrets.ALIYUN_REGISTRY_USERNAME }}
+        target_password: ${{ secrets.ALIYUN_REGISTRY_PASSWORD }}
 
-  # copy-to-aliyun-hk:
-  #   runs-on: ubuntu-latest
-  #   needs: build
-  #   steps:
-  #   - uses: onichandame/docker-registry-sync-action@master
-  #     with:
-  #       source_repository: ${{ env.GITHUB_CONTAINER_REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
-  #       target_repository: registry.cn-hongkong.aliyuncs.com/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
-  #       target_username: ${{ secrets.ALIYUN_REGISTRY_USERNAME }}
-  #       target_password: ${{ secrets.ALIYUN_REGISTRY_PASSWORD }}
-
-  # copy-to-aliyun-sh:
-  #   runs-on: ubuntu-latest
-  #   needs: build
-  #   steps:
-  #   - uses: onichandame/docker-registry-sync-action@master
-  #     with:
-  #       source_repository: ${{ env.GITHUB_CONTAINER_REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
-  #       target_repository: registry.cn-shanghai.aliyuncs.com/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
-  #       target_username: ${{ secrets.ALIYUN_REGISTRY_USERNAME }}
-  #       target_password: ${{ secrets.ALIYUN_REGISTRY_PASSWORD }}
-
-  # copy-to-tencentyun-hk:
-  #   runs-on: ubuntu-latest
-  #   needs: build
-  #   steps:
-  #   - uses: onichandame/docker-registry-sync-action@master
-  #     with:
-  #       source_repository: ${{ env.GITHUB_CONTAINER_REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
-  #       target_repository: hkccr.ccs.tencentyun.com/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
-  #       target_username: ${{ secrets.TENCENTYUN_DOCKER_REGISTRY_USERNAME }}
-  #       target_password: ${{ secrets.TENCENTYUN_DOCKER_REGISTRY_PASSWORD }}
-        
-  # copy-to-tencentyun-default:
-  #   runs-on: ubuntu-latest
-  #   needs: build
-  #   steps:
-  #   - uses: onichandame/docker-registry-sync-action@master
-  #     with:
-  #       source_repository: ${{ env.GITHUB_CONTAINER_REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
-  #       target_repository: ccr.ccs.tencentyun.com/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
-  #       target_username: ${{ secrets.TENCENTYUN_DOCKER_REGISTRY_USERNAME }}
-  #       target_password: ${{ secrets.TENCENTYUN_DOCKER_REGISTRY_PASSWORD }}
-
+  copy-to-aliyun-sh:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - uses: onichandame/docker-registry-sync-action@master
+      with:
+        source_repository: ${{ env.GITHUB_CONTAINER_REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
+        target_repository: registry.cn-shanghai.aliyuncs.com/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
+        target_username: ${{ secrets.ALIYUN_REGISTRY_USERNAME }}
+        target_password: ${{ secrets.ALIYUN_REGISTRY_PASSWORD }}
