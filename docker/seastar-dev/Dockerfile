@@ -6,6 +6,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # Install basic packages
 RUN apt-get update && apt-get install --no-install-recommends -y \
+  clangd \
   zsh openssh-server \
   python3-pip \
   less vim curl wget rsync git git-lfs jq zip unzip \
