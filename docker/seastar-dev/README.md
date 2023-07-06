@@ -1,4 +1,4 @@
-# nv-dev
+# seastar-dev
 [![Build Docker - seastar-dev](https://github.com/wangyoucao577/containers/actions/workflows/autobuild-seastar-dev.yml/badge.svg)](https://github.com/wangyoucao577/containers/actions/workflows/autobuild-seastar-dev.yml)       
 Image based on `ghcr.io/wangyoucao577/seastar/seastar-dev` which build from [wangyoucao577/seastar](https://github.com/wangyoucao577/seastar) for my seastar related development.     
 
