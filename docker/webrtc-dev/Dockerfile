@@ -143,7 +143,7 @@ RUN wget --progress=dot:mega https://github.com/vi/websocat/releases/download/v1
   websocat --version
 
 # install go
-RUN wget --progress=dot:mega --no-check-certificate https://go.dev/dl/$(curl https://go.dev/VERSION?m=text).linux-amd64.tar.gz -O go.linux-amd64.tar.gz && \
+RUN wget --progress=dot:mega --no-check-certificate https://go.dev/dl/$(curl https://go.dev/VERSION?m=text | head -n1).linux-amd64.tar.gz -O go.linux-amd64.tar.gz && \
   tar -zxf go.linux-amd64.tar.gz && \
   mv go /usr/local/ && \
   rm -f go.linux-amd64.tar.gz && \
