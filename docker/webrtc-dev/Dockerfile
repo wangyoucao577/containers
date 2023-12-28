@@ -1,4 +1,4 @@
-FROM debian:bullseye-slim
+FROM debian:bookworm-slim
 
 # avoid interactive during apt install
 ARG DEBIAN_FRONTEND=noninteractive
@@ -16,19 +16,6 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   locales-all ca-certificates \
   xauth x11-apps \
   && rm -rf /var/lib/apt/lists/*
-
-# install android ndk 25
-RUN wget --progress=dot:mega https://dl.google.com/android/repository/android-ndk-r25b-linux.zip && \
-  unzip android-ndk-r25b-linux.zip && \
-  rm android-ndk-r25b-linux.zip && \
-  # refer to https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md#environment-variables-3
-  #   but change ANDROID_SDK_ROOT path to /root/Android/Sdk for android studio auto-sync
-  # env ANDROID_SDK_ROOT, ANDROID_NDK_ROOT, ANDROID_NDK_HOME will be set in .bashrc_local
-  mkdir -p /root/Android/Sdk/ndk/ && \
-  mv android-ndk-r25b /root/Android/Sdk/ndk/ && \
-  cd /root/Android/Sdk/ && \
-  ln -s $(pwd)/ndk/android-ndk-r25b $(pwd)/ndk/25.1.8937393 && \
-  ln -s $(pwd)/ndk/android-ndk-r25b $(pwd)/ndk-bundle
 
 # install clang, refer to https://apt.llvm.org/
 RUN wget https://apt.llvm.org/llvm.sh && \
@@ -106,7 +93,7 @@ RUN pip install meson && \
 
 # install nvm and nodejs
 # https://github.com/nvm-sh/nvm#install--update-script
-RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash && \
+RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash && \
   export NVM_DIR="$HOME/.nvm" && \
   # This loads nvm
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  && \
@@ -119,7 +106,7 @@ RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | 
 #  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # install cmake
-RUN export CMAKE_VERSION="3.25.1" && \
+RUN export CMAKE_VERSION="3.28.1" && \
   wget --progress=dot:mega https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}-linux-x86_64.tar.gz && \
   tar -zxf cmake-${CMAKE_VERSION}-linux-x86_64.tar.gz && \
   mv cmake-${CMAKE_VERSION}-linux-x86_64 /usr/local/ && \
@@ -150,9 +137,9 @@ RUN wget --progress=dot:mega --no-check-certificate https://go.dev/dl/$(curl htt
   mkdir -p go/bin /go/src go/pkg
 
 # install valgrind
-RUN wget --progress=dot:mega --no-check-certificate https://sourceware.org/pub/valgrind/valgrind-3.20.0.tar.bz2 -O valgrind-3.20.0.tar.bz2 && \
-  tar -xjf valgrind-3.20.0.tar.bz2 && \
-  cd valgrind-3.20.0 && \
+RUN wget --progress=dot:mega --no-check-certificate https://sourceware.org/pub/valgrind/valgrind-3.22.0.tar.bz2 -O valgrind-3.22.0.tar.bz2 && \
+  tar -xjf valgrind-3.22.0.tar.bz2 && \
+  cd valgrind-3.22.0 && \
   ./configure --enable-only64bit && \
   make -j $(nproc) && make install && \
   cd ../ && \
@@ -162,7 +149,7 @@ RUN wget --progress=dot:mega --no-check-certificate https://sourceware.org/pub/v
 
 # install bear, https://github.com/rizsotto/Bear/blob/master/INSTALL.md
 RUN git clone -n https://github.com/rizsotto/Bear.git && \
-  cd Bear && git checkout 3.0.21 && \
+  cd Bear && git checkout 3.1.3 && \
   mkdir -p build && cd build && \
   cmake -DENABLE_UNIT_TESTS=OFF -DENABLE_FUNC_TESTS=OFF ..  && \
   make && make install && \
