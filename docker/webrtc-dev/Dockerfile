@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   python3-pip \
   vim curl wget rsync git git-lfs jq zip unzip less \
   tmux tree stow \
-  iperf3 net-tools iputils-ping mtr dnsutils netcat iproute2 \
+  iperf3 net-tools iputils-ping mtr dnsutils iproute2 \
   sudo psmisc file htop atop sysstat strace elfutils pax-utils libc-bin \
   lsb-release software-properties-common gnupg2 autoconf \
   locales-all ca-certificates \
