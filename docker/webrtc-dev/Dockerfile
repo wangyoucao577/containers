@@ -1,4 +1,4 @@
-FROM debian:bookworm-slim
+FROM ubuntu:22.04
 
 # avoid interactive during apt install
 ARG DEBIAN_FRONTEND=noninteractive
