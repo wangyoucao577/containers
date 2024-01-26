@@ -33,7 +33,7 @@ RUN wget --progress=dot:mega --no-check-certificate https://developer.download.n
   apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/7fa2af80.pub && \
   add-apt-repository "deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/ /" && \
   apt-get update && \
-  apt-get install --no-install-recommends -y tensorrt=8.5.2.2-1+cuda11.8 && \
+  apt-get install --no-install-recommends -y tensorrt=8.6.1.6-1+cuda12.0 && \
   rm -rf /var/lib/apt/lists/*
 
 # install clang, refer to https://apt.llvm.org/
