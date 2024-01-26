@@ -40,16 +40,16 @@ RUN wget --progress=dot:mega --no-check-certificate https://developer.download.n
 RUN wget https://apt.llvm.org/llvm.sh && \
   chmod +x llvm.sh && \
   ./llvm.sh all && \
-  update-alternatives --install /usr/bin/clang clang /usr/bin/clang-17 100 && \
-  update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-17 100 && \
-  update-alternatives --install /usr/bin/clang-cpp clang-cpp /usr/bin/clang-cpp-17 100 && \
-  update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-17 100 && \
-  update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-17 100 && \
-  update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-17 100 && \
-  update-alternatives --install /usr/bin/lldb lldb /usr/bin/lldb-17 100 && \
-  update-alternatives --install /usr/bin/lldb-server lldb-server /usr/bin/lldb-server-17 100 && \
-  # install additional liblldb-17-dev for lldb-mi compilation
-  apt install -y liblldb-17-dev && \
+  update-alternatives --install /usr/bin/clang clang /usr/bin/clang-18 100 && \
+  update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-18 100 && \
+  update-alternatives --install /usr/bin/clang-cpp clang-cpp /usr/bin/clang-cpp-18 100 && \
+  update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-18 100 && \
+  update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-18 100 && \
+  update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-18 100 && \
+  update-alternatives --install /usr/bin/lldb lldb /usr/bin/lldb-18 100 && \
+  update-alternatives --install /usr/bin/lldb-server lldb-server /usr/bin/lldb-server-18 100 && \
+  # install additional liblldb-18-dev for lldb-mi compilation
+  apt install -y liblldb-18-dev && \
   rm -rf /var/lib/apt/lists/* && \
   clang --version && \
   rm -f llvm.sh
