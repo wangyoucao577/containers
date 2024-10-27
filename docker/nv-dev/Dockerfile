@@ -1,4 +1,4 @@
-FROM nvidia/cuda:11.3.1-cudnn8-devel-ubuntu20.04
+FROM nvidia/cuda:12.1.1-cudnn8-devel-ubuntu22.04
 
 # nvidia-container-runtime envs, see https://github.com/NVIDIA/nvidia-container-runtime
 ENV NVIDIA_VISIBLE_DEVICES all
@@ -11,7 +11,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install --no-install-recommends -y \
   build-essential pkg-config automake libtool gperf gdb \
   zsh openssh-server \
-  python3-pip \
+  python3 python3-venv python3-pip python3-dev \
   less vim curl wget rsync git git-lfs jq zip unzip \
   tmux tree stow \
   iperf3 net-tools iputils-ping mtr dnsutils netcat iproute2 \
@@ -28,13 +28,13 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 # tensorrt: https://docs.nvidia.com/deeplearning/tensorrt/install-guide/index.html#maclearn-net-repo-install
 # tensorrt: https://docs.nvidia.com/deeplearning/tensorrt/quick-start-guide/index.html#installing-debian
 # be aware that tensorrt 8.5.1.7-1+cuda11.8 compatible lower cuda11
-RUN wget --progress=dot:mega --no-check-certificate https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin && \
-  mv cuda-ubuntu2004.pin /etc/apt/preferences.d/cuda-repository-pin-600 && \
-  apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/7fa2af80.pub && \
-  add-apt-repository "deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/ /" && \
-  apt-get update && \
-  apt-get install --no-install-recommends -y tensorrt=8.6.1.6-1+cuda12.0 && \
-  rm -rf /var/lib/apt/lists/*
+# RUN wget --progress=dot:mega --no-check-certificate https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin && \
+#  mv cuda-ubuntu2004.pin /etc/apt/preferences.d/cuda-repository-pin-600 && \
+#  apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/7fa2af80.pub && \
+#  add-apt-repository "deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/ /" && \
+#  apt-get update && \
+#  apt-get install --no-install-recommends -y tensorrt=8.6.1.6-1+cuda12.0 && \
+#  rm -rf /var/lib/apt/lists/*
 
 # install clang, refer to https://apt.llvm.org/
 RUN wget https://apt.llvm.org/llvm.sh && \
@@ -54,13 +54,10 @@ RUN wget https://apt.llvm.org/llvm.sh && \
   clang --version && \
   rm -f llvm.sh
 
-# for jre/jdk installation
-RUN mkdir -p /usr/share/man/man1
-
 # install docker for docker-in-docker
 # use volume to leverage overlay2 in dind docker, see more in https://stackoverflow.com/questions/67953609/overlay2-driver-not-supported
-RUN curl -sSL https://get.docker.com/ | sh
-VOLUME /var/lib/docker
+#RUN curl -sSL https://get.docker.com/ | sh
+#VOLUME /var/lib/docker
 
 # install oh-my-zsh, then prepare dotfiles
 COPY .shrc_local /root/
@@ -106,7 +103,7 @@ RUN pip install meson && \
   meson --version
 
 # install cmake
-RUN export CMAKE_VERSION="3.28.1" && \
+RUN export CMAKE_VERSION="3.30.3" && \
   wget --progress=dot:mega https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}-linux-x86_64.tar.gz && \
   tar -zxf cmake-${CMAKE_VERSION}-linux-x86_64.tar.gz && \
   mv cmake-${CMAKE_VERSION}-linux-x86_64 /usr/local/ && \
@@ -116,7 +113,7 @@ RUN export CMAKE_VERSION="3.28.1" && \
   cmake --version
 
 # install ninja
-RUN wget --progress=dot:mega https://github.com/ninja-build/ninja/releases/download/v1.11.1/ninja-linux.zip && \
+RUN wget --progress=dot:mega https://github.com/ninja-build/ninja/releases/download/v1.12.1/ninja-linux.zip && \
   unzip ninja-linux.zip && \
   mv ninja /usr/local/bin/ && \
   rm -f ninja-linux.zip && \
@@ -135,7 +132,7 @@ RUN wget --progress=dot:mega --no-check-certificate https://sourceware.org/pub/v
 
 # install bear, https://github.com/rizsotto/Bear/blob/master/INSTALL.md
 RUN git clone -n https://github.com/rizsotto/Bear.git && \
-  cd Bear && git checkout 3.1.3 && \
+  cd Bear && git checkout 3.1.5 && \
   mkdir -p build && cd build && \
   cmake -DENABLE_UNIT_TESTS=OFF -DENABLE_FUNC_TESTS=OFF ..  && \
   make && make install && \
