@@ -153,13 +153,13 @@ RUN curl https://sh.rustup.rs -sSf | sh -s -- -y && \
   /root/.cargo/bin/rustup default nightly
 
 # install lldb-mi
-RUN git clone https://github.com/lldb-tools/lldb-mi.git && \
-  mkdir -p lldb-mi/build && \
-  cd lldb-mi/build && \
-  cmake .. -GNinja && \
-  ninja install && \
-  cd ../.. && \
-  rm -rf lldb-mi
+#RUN git clone https://github.com/lldb-tools/lldb-mi.git && \
+#  mkdir -p lldb-mi/build && \
+#  cd lldb-mi/build && \
+#  cmake .. -GNinja && \
+#  ninja install && \
+#  cd ../.. && \
+#  rm -rf lldb-mi
 
 # for shown on runtime
 ARG IMAGE_TAG
