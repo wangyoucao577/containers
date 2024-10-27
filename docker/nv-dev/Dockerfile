@@ -147,6 +147,11 @@ RUN wget --progress=dot:mega --no-check-certificate https://go.dev/dl/$(curl htt
   rm -f go.linux-amd64.tar.gz && \
   mkdir -p go/bin /go/src go/pkg
 
+# install rust
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y && \
+  /root/.cargo/bin/rustup install nightly && \
+  /root/.cargo/bin/rustup default nightly
+
 # install lldb-mi
 RUN git clone https://github.com/lldb-tools/lldb-mi.git && \
   mkdir -p lldb-mi/build && \
