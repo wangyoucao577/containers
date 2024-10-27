@@ -1,7 +1,7 @@
 FROM nvidia/cuda:12.1.1-cudnn8-devel-ubuntu22.04
 
 # nvidia-container-runtime envs, see https://github.com/NVIDIA/nvidia-container-runtime
-ENV NVIDIA_VISIBLE_DEVICES all
+# ENV NVIDIA_VISIBLE_DEVICES all
 ENV NVIDIA_DRIVER_CAPABILITIES all
 
 # avoid interactive during apt install
