@@ -131,14 +131,14 @@ RUN wget --progress=dot:mega --no-check-certificate https://sourceware.org/pub/v
   rm -rf ./valgrind*
 
 # install bear, https://github.com/rizsotto/Bear/blob/master/INSTALL.md
-RUN git clone -n https://github.com/rizsotto/Bear.git && \
-  cd Bear && git checkout 3.1.5 && \
-  mkdir -p build && cd build && \
-  cmake -DENABLE_UNIT_TESTS=OFF -DENABLE_FUNC_TESTS=OFF ..  && \
-  make && make install && \
-  cd ../../ && \
-  /usr/local/bin/bear --version && \
-  rm -rf ./Bear
+#RUN git clone -n https://github.com/rizsotto/Bear.git && \
+#  cd Bear && git checkout 3.1.5 && \
+#  mkdir -p build && cd build && \
+#  cmake -DENABLE_UNIT_TESTS=OFF -DENABLE_FUNC_TESTS=OFF ..  && \
+#  make && make install && \
+#  cd ../../ && \
+#  /usr/local/bin/bear --version && \
+#  rm -rf ./Bear
 
 # install go
 RUN wget --progress=dot:mega --no-check-certificate https://go.dev/dl/$(curl https://go.dev/VERSION?m=text | head -n1).linux-amd64.tar.gz -O go.linux-amd64.tar.gz && \
