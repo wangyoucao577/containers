@@ -26,7 +26,7 @@ $ docker pull ghcr.io/wangyoucao577/nv-dev
 ## Run container
 
 ```bash
-$ docker run -d --restart=always -p 13171:22 --name="nv-dev" --hostname="nv-dev" --cap-add=ALL --security-opt seccomp=unconfined --privileged --gpus all wangyoucao577/nv-dev
+$ docker run -d --restart=always -p 13171:13171 --name="nv-dev" --hostname="nv-dev" --cap-add=ALL --security-opt seccomp=unconfined --privileged --gpus all wangyoucao577/nv-dev
 ```
 
 ## Author
