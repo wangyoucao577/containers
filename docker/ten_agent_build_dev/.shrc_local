@@ -1,4 +1,8 @@
 
+if [ -f ~/.bash_aliases ]; then
+  source ~/.bash_aliases
+fi
+
 # for golang
 export GO_HOME=/usr/local/go
 export GOPATH=/root/workspace/go
