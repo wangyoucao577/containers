@@ -2,8 +2,6 @@
 # for golang
 export GO_HOME=/usr/local/go
 export GOPATH=/root/workspace/go
-
-# path
 export PATH=${GOPATH}/bin:${GO_HOME}/bin:$PATH
 
 # ten framework
@@ -18,3 +16,4 @@ export SSH_AUTH_SOCK="$HOME/.ssh/ssh_auth_sock"
 
 export COLORTERM=truecolor
 
+export PATH=/root/.local/bin:$PATH
