@@ -38,6 +38,12 @@ RUN usermod -a -G sudo root
 # set workspace
 WORKDIR /root/workspace
 
+# install coding agents
+RUN npm i -g @openai/codex
+RUN curl -fsSL https://claude.ai/install.sh | bash
+RUN curl -fsSL https://cli.kiro.dev/install | bash
+RUN npm install -g @google/gemini-cli
+
 # for shown on runtime
 ARG IMAGE_TAG
 ENV IMAGE_TAG ${IMAGE_TAG}
