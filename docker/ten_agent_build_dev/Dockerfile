@@ -29,7 +29,8 @@ RUN cd /root/ && \
 RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config && \
   echo "PasswordAuthentication no" >> /etc/ssh/sshd_config && \
   echo "X11UseLocalhost no" >> /etc/ssh/sshd_config && \
-  echo "Port 13171" >> /etc/ssh/sshd_config
+  echo "Port 13171" >> /etc/ssh/sshd_config && \
+  echo "AcceptEnv GITHUB_* TEN_*" >> /etc/ssh/sshd_config
 RUN service ssh start
 
 # allow root to run sudo
