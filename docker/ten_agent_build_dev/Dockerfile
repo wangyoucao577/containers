@@ -56,6 +56,7 @@ RUN npm i -g @openai/codex
 RUN curl -fsSL https://claude.ai/install.sh | bash
 RUN curl -fsSL https://cli.kiro.dev/install | bash
 RUN npm install -g @google/gemini-cli
+RUN npm install -g agent-browser && agent-browser install --with-deps
 
 # for shown on runtime
 ARG IMAGE_TAG
