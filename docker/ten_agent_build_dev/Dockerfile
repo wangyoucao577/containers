@@ -17,7 +17,9 @@ RUN chsh -s $(which zsh) && \
   echo '[[ -f ~/.shrc_local ]] && . ~/.shrc_local' >> ~/.zshrc && \
   echo 'PROMPT="%F{cyan}%n@%F{cyan}%m ${PROMPT}"' >> ~/.zshrc && \
   echo 'DISABLE_AUTO_TITLE="true"' >> ~/.zshrc && \
-  echo 'title "%m"' >> ~/.zshrc
+  echo 'title "%m"' >> ~/.zshrc && \
+  sed -i "s/plugins=(git)/#plugins=(git)/g" ~/.zshrc && \
+  sed "s/PROMPT+=/#PROMPT+=/g" /root/.oh-my-zsh/themes/robbyrussell.zsh-theme
 RUN cd /root/ && \
   git clone https://github.com/wangyoucao577/dotfiles.git .dotfiles && \
   cd .dotfiles && \
