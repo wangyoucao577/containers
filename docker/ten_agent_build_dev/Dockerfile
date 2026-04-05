@@ -56,8 +56,10 @@ RUN npm i -g @openai/codex
 RUN curl -fsSL https://claude.ai/install.sh | bash
 RUN curl -fsSL https://cli.kiro.dev/install | bash
 RUN npm install -g @google/gemini-cli
-#RUN npm install -g agent-browser
-#RUN agent-browser install --with-deps
+RUN wget https://desktop-release.q.us-east-1.amazonaws.com/latest/kiro-cli.deb && \
+	sudo dpkg -i kiro-cli.deb && \
+	sudo apt-get install -f
+
 
 # for shown on runtime
 ARG IMAGE_TAG
