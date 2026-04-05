@@ -57,8 +57,10 @@ RUN curl -fsSL https://claude.ai/install.sh | bash
 RUN curl -fsSL https://cli.kiro.dev/install | bash
 RUN npm install -g @google/gemini-cli
 RUN wget https://desktop-release.q.us-east-1.amazonaws.com/latest/kiro-cli.deb && \
-	sudo dpkg -i kiro-cli.deb && \
-	sudo apt-get install -f
+	dpkg -i kiro-cli.deb || true && \
+    apt-get install -y -f && \
+    rm -f kiro-cli.deb && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
 
 # for shown on runtime
