@@ -1,4 +1,4 @@
-FROM ghcr.io/ten-framework/ten_agent_build:0.7.14
+FROM ghcr.io/ten-framework/ten_agent_build:0.7.18
 
 # avoid interactive during apt install
 ARG DEBIAN_FRONTEND=noninteractive
