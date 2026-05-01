@@ -63,7 +63,7 @@ RUN wget https://desktop-release.q.us-east-1.amazonaws.com/latest/kiro-cli.deb &
     apt-get install -y -f && \
     rm -f kiro-cli.deb && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
-
+RUN npm install -g happy
 
 # for shown on runtime
 ARG IMAGE_TAG
