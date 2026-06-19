@@ -65,6 +65,9 @@ RUN wget https://desktop-release.q.us-east-1.amazonaws.com/latest/kiro-cli.deb &
     apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN npm install -g happy
 
+# install atlassian-cli
+RUN curl -fsSL https://raw.githubusercontent.com/LichKing-2234/atlassian-cli/main/install.sh | sh
+
 # for shown on runtime
 ARG IMAGE_TAG
 ENV IMAGE_TAG ${IMAGE_TAG}
