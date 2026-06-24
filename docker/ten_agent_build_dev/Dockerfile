@@ -8,7 +8,17 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   sudo zsh openssh-server \
   less vim curl wget rsync git git-lfs jq zip unzip rsyslog \
   tmux tree stow net-tools netcat \
+  bat \
   && rm -rf /var/lib/apt/lists/*
+
+# Install rust
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# Install extra modern tools
+RUN curl -fsSL https://rmux.io/install.sh | sh
+RUN curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+RUN cargo binstall ripgrep
+RUN cargo install git-delta eza fd-find
 
 # install oh-my-zsh, then prepare dotfiles
 COPY .shrc_local /root/
